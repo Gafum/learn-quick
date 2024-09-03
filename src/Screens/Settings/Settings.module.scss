@@ -1,0 +1,35 @@
+.settingsScreen {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   flex-direction: column;
+   gap: 10px;
+   .section {
+      gap: 5px;
+      h3 {
+         margin-top: 10px;
+         width: 100%;
+         text-align: left;
+         font-size: 20px;
+         text-transform: capitalize;
+      }
+      .parameter {
+         width: 100%;
+         display: flex;
+         justify-content: space-between;
+         align-items: center;
+         align-content: center;
+         gap: 10px;
+         padding-bottom: 10px;
+         border-bottom: 1px solid var(--main-bg-color);
+         svg {
+            position: relative;
+            top: 1px;
+            margin-left: 3px;
+            width: 15px;
+         }
+      }
+   }
+}

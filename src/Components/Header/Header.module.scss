@@ -1,0 +1,113 @@
+header {
+   background-color: var(--main-bg-color);
+   border-bottom-left-radius: 25px;
+   border-bottom-right-radius: 25px;
+   width: 100%;
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 5;
+   margin-bottom: 30px;
+
+   &.staticHader {
+      position: static;
+      visibility: hidden;
+      opacity: 0;
+   }
+
+   .headerContent {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      transition: padding-bottom 0.2s;
+   }
+
+   .btnSection {
+      max-height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      a {
+         filter: invert(1) brightness(200%);
+         img {
+            width: 25px;
+            @media (hover: hover) {
+               &:hover {
+                  -webkit-filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.3));
+                  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.3));
+               }
+            }
+         }
+      }
+   }
+
+   .headerInner {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      gap: 20px;
+
+      a {
+         font-size: 25px;
+         color: white;
+         font-weight: bold;
+         text-wrap: nowrap;
+         transition: text-shadow 0.2s;
+         @media (hover: hover) {
+            &:hover {
+               text-shadow: 0 0 3px rgb(169, 169, 169);
+            }
+         }
+      }
+   }
+   nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      gap: 10px;
+      a {
+         color: white;
+         &.active {
+            text-shadow: 0 0 4px rgb(169, 169, 169);
+         }
+      }
+   }
+}
+
+.testsPosition {
+   bottom: 0;
+   transform: translateY(50%);
+   position: absolute;
+   width: 100%;
+
+   .testsBlock {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      align-content: center;
+      background-color: white;
+      border-radius: 20px;
+      padding: 20px 25px;
+      box-shadow: 0 3px 10px 0 rgba(1, 25, 54, 0.25);
+      font-weight: 300;
+      font-size: 15px;
+      color: #222;
+      gap: 10px;
+   }
+}
+
+.sectionScreen {
+   &.staticHader {
+      margin-bottom: 75px;
+   }
+   &.headerContent {
+      padding-bottom: 30px;
+   }
+}

@@ -1,0 +1,90 @@
+.sectionName {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   align-content: center;
+   > span {
+      font-weight: 300;
+   }
+   > button {
+      font-weight: 300;
+      padding: 4px 18px 5px;
+      border-radius: 10px;
+      font-size: 14px;
+   }
+}
+
+.flashcards {
+   margin-top: 40px;
+   display: flex;
+   flex-wrap: wrap;
+   gap: 15px;
+}
+
+.floatBtn {
+   position: fixed;
+   z-index: 7;
+   bottom: 20px;
+   right: 20px;
+   width: 50px;
+   height: 50px;
+   aspect-ratio: 1/1;
+   background-color: var(--main-bg-color);
+   border-radius: 50%;
+   box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.25);
+   transition-duration: 0.2s;
+   transition-property: filter, box-shadow, scale;
+   > img {
+      margin: auto;
+      height: 25px;
+      width: 25px;
+   }
+
+   @media (hover: hover) {
+      &:hover {
+         box-shadow: 0 0 17px 5px rgba(0, 0, 0, 0.25);
+         filter: brightness(1.2);
+         scale: 1.02;
+      }
+   }
+}
+
+.addSectionBlock {
+   padding: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   text-align: center;
+   flex-direction: column;
+   gap: 20px;
+   h3 {
+      color: var(--main-bg-color);
+      font-size: 24px;
+   }
+
+   .addSectionForm {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      flex-direction: column;
+      gap: 15px;
+      min-width: 40vw;
+      .selectImg {
+         width: 150px;
+         .sliderElement {
+            width: 60px;
+            height: 60px;
+            img {
+               margin: auto;
+               width: 60px;
+               height: auto;
+            }
+         }
+      }
+      > button {
+         width: 100%;
+      }
+   }
+}

@@ -1,0 +1,28 @@
+.errorComponent {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   width: 100%;
+   height: 100vh;
+   gap: 25px;
+   h2 {
+      font-size: 34px;
+   }
+
+   a {
+      border-radius: 5px;
+      color: white;
+      background-color: var(--main-bg-color);
+      padding: 5px 25px 7px;
+      transition-property: filter box-shadow;
+      transition-duration: 0.2s;
+      @media (hover: hover) {
+         &:hover {
+            box-shadow: 0 0 5px var(--main-bg-color);
+            filter: brightness(1.2);
+         }
+      }
+   }
+}

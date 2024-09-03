@@ -1,0 +1,39 @@
+.inputes {
+   position: relative;
+
+   input,
+   textarea {
+      resize: none;
+      text-align: left;
+      border-radius: 8px;
+      font-size: 16px;
+      padding: 6px 12px;
+      width: 100%;
+      border: 1px solid var(--main-text-color);
+      transition: box-shadow 0.2s;
+      margin: 0;
+      &.incorrect {
+         box-shadow: 0px 0px 5px red;
+      }
+      &:focus ~ label,
+      &:valid ~ label {
+         color: var(--main-text-color);
+         transform: translateX(-5%) translateY(-82%) scale(0.75);
+         padding-left: 5px;
+         padding-right: 5px;
+      }
+   }
+   label {
+      pointer-events: none;
+      cursor: text;
+      transition-duration: 0.2s;
+      transition-property: color transform;
+      color: #11144cb1;
+      font-size: 16px;
+      position: absolute;
+      left: 12px;
+      top: 6px;
+      background-color: white;
+      border-radius: 3px;
+   }
+}

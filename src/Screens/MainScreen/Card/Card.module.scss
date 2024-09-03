@@ -1,0 +1,40 @@
+.card {
+   width: 120px;
+   height: 120px;
+   box-shadow: 3px 3px 10px 0 rgba(1, 25, 54, 0.25);
+   background: #fff;
+   border-radius: 10px;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
+   align-content: center;
+   gap: 10px;
+   padding: 34px 10px 10px;
+   position: relative;
+   transition-property: box-shadow filter scale;
+   transition-duration: 0.2s;
+   cursor: pointer;
+   > img {
+      width: 30px;
+   }
+   > span {
+      width: 100%;
+      color: var(--main-bg-color);
+      text-align: center;
+      overflow: hidden;
+      font-size: 16px;
+      bottom: 15px;
+      font-weight: 400;
+      text-wrap: nowrap;
+      text-overflow: ellipsis;
+   }
+
+   @media (hover: hover) {
+      &:hover {
+         box-shadow: 5px 5px 15px 0 rgba(1, 25, 54, 0.25);
+         filter: brightness(0.99);
+         scale: 1.01;
+      }
+   }
+}

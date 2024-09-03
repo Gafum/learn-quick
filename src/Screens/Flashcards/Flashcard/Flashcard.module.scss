@@ -1,0 +1,160 @@
+.flashcard {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   transition-duration: 0.4s;
+   transition-property: scale opacity;
+   height: 64vh;
+   max-height: 400px;
+   scale: 0.94;
+   opacity: 0.9;
+   cursor: pointer;
+   overflow: hidden;
+   border-radius: 10px;
+}
+
+.flashcardInner {
+   font-size: 48px;
+   height: 100%;
+   background-color: var(--main-bg-color);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   text-align: center;
+   color: white;
+   width: 100%;
+   position: relative;
+   transform-style: preserve-3d;
+   transition: transform 0.4s;
+   &.flipped {
+      transform: rotateY(180deg);
+   }
+}
+
+.cardFront,
+.cardBack {
+   border-radius: 10px;
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   backface-visibility: hidden;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: white;
+   padding: 20px 5%;
+   font-size: 40px;
+   gap: 5%;
+   & h4 {
+      width: 80%;
+      max-height: 100%;
+      overflow-y: auto;
+      text-wrap: wrap;
+      max-width: 100%;
+      font-size: inherit;
+      color: inherit;
+      word-break: break-all;
+   }
+}
+
+.cardFront {
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   align-content: center;
+   gap: 10%;
+}
+
+.cardBack {
+   background-color: var(--main-text-color);
+   transform: rotateY(180deg);
+   flex-direction: row-reverse;
+   & > img {
+      width: auto;
+      max-width: 50%;
+      max-height: 320px;
+      border-radius: 10px;
+   }
+   & > .meaning {
+      overflow-y: auto;
+      max-height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      width: 100%;
+      font-size: inherit;
+      color: inherit;
+      word-break: break-all;
+      > h4 {
+         overflow: visible;
+      }
+      &:nth-child(2) {
+         width: 50%;
+         > h4 {
+            text-align: right;
+            width: fit-content;
+         }
+      }
+   }
+}
+
+.favorite {
+   position: absolute;
+   top: 10px;
+   right: 10px;
+
+   svg {
+      stroke: white;
+      fill: var(--main-text-color);
+      transition-duration: 0.2s;
+      transition-property: filter fill;
+      @media (hover: hover) {
+         &:hover {
+            -webkit-filter: drop-shadow(0px 0px 2px white);
+            filter: drop-shadow(0px 0px 2px white);
+         }
+      }
+   }
+
+   &.added {
+      svg {
+         stroke: white;
+         fill: white;
+      }
+   }
+}
+
+.tipCard {
+   position: absolute;
+   bottom: 0;
+   background-color: var(--main-text-color);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   gap: 20px;
+   width: 100%;
+   overflow: hidden;
+   padding: 10px;
+
+   h4 {
+      font-size: 24px;
+      color: white;
+      word-break: normal;
+      width: auto;
+   }
+
+   img {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-40%);
+      width: 20px;
+      min-width: 20px;
+      height: auto;
+   }
+}

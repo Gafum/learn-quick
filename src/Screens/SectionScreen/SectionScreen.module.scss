@@ -1,0 +1,63 @@
+.sectionScreen {
+   display: flex;
+   gap: 5px;
+   flex-direction: column;
+}
+
+//Dialog
+.addWordBlock {
+   min-width: 40vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   flex-direction: column;
+   gap: 10px;
+
+   .addWordForm {
+      width: 100%;
+
+      > div > input {
+         margin: 0 0 15px;
+      }
+
+      button {
+         width: 100%;
+         margin-top: 5px;
+         &.addImgBtn {
+            background-color: var(--main-contrast-color);
+         }
+      }
+
+      .imageSelector {
+         display: flex;
+         justify-content: flex-start;
+         align-items: center;
+         align-content: center;
+         padding: 7px 0;
+
+         .imageSelectorInputs {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            flex-direction: column;
+            gap: 17px;
+         }
+
+         .selectedImg {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+
+            img {
+               width: 50px;
+               max-height: 100px;
+               border-radius: 4px;
+            }
+         }
+      }
+   }
+}

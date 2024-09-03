@@ -1,0 +1,28 @@
+.chooseTest {
+   display: grid;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   width: 100%;
+   gap: 10px;
+
+   max-width: 1000px;
+   margin: auto;
+
+   .testType {
+      border: 2px solid var(--main-bg-color);
+      padding: 4px;
+      border-radius: 5px;
+      text-align: center;
+      color: var(--main-bg-color);
+      transition: box-shadow 0.2s;
+      &.disabled {
+         background-color: gray;
+      }
+      @media (hover: hover) {
+         &.hasElements:hover {
+            box-shadow: 0 0 4px var(--main-bg-color);
+         }
+      }
+   }
+}

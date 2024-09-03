@@ -1,0 +1,46 @@
+.writingScreen {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   width: 100%;
+   height: 100%;
+   flex-direction: column;
+   text-align: center;
+
+   form {
+      margin-top: 13px;
+      width: 100%;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      flex-direction: column;
+      button {
+         width: 100%;
+      }
+   }
+   .writingDialog {
+      max-width: 50vw;
+      width: 100%;
+      min-width: 40vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      gap: 15px;
+      flex-direction: column;
+      h3 {
+         font-size: 20px;
+         color: #932217;
+         margin-bottom: 20px;
+         span {
+            color: inherit;
+         }
+      }
+      button {
+         width: 100%;
+      }
+   }
+}
