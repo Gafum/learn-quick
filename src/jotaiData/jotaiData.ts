@@ -1,5 +1,6 @@
 import { atom } from "jotai";
 import { topicData, IsettingsData } from "../types/interfaces";
+import { atomWithStorage } from "jotai/utils";
 
 export const topicsData = atom<topicData[]>([
    {
@@ -347,41 +348,44 @@ export const topicsData = atom<topicData[]>([
    },
 ]);
 
-export const settingsDataConst = atom<IsettingsData>({
-   flashcards: {
-      showBack: {
-         question: "Which side to show?",
-         answes: ["Back", "Front"], //   true, false
-         data: false,
+export const settingsDataConst = atomWithStorage<IsettingsData>(
+   "settingsData",
+   {
+      flashcards: {
+         showBack: {
+            question: "Which side to show?",
+            answes: ["Back", "Front"], //   true, false
+            data: false,
+         },
+         whereIsImage: {
+            question: "What will be written with the image?",
+            answes: ["Word", "Meaning"],
+            data: false,
+         },
       },
-      whereIsImage: {
-         question: "What will be written with the image?",
-         answes: ["Word", "Meaning"],
-         data: false,
+      tests: {
+         whatAsk: {
+            question: "What should be asked?",
+            answes: ["Meaning", "Word"],
+            data: false,
+         },
+         showQuestion: {
+            question: "What should be shown?",
+            answes: ["Image", "Word"],
+            data: false,
+         },
       },
-   },
-   tests: {
-      whatAsk: {
-         question: "What should be asked?",
-         answes: ["Meaning", "Word"],
-         data: false,
+      writing: {
+         whatAsk: {
+            question: "What should be asked?",
+            answes: ["Word", "Meaning"],
+            data: false,
+         },
+         showQuestion: {
+            question: "What should be shown?",
+            answes: ["Image", "Word"],
+            data: false,
+         },
       },
-      showQuestion: {
-         question: "What should be shown?",
-         answes: ["Image", "Word"],
-         data: false,
-      },
-   },
-   writing: {
-      whatAsk: {
-         question: "What should be asked?",
-         answes: ["Word", "Meaning"],
-         data: false,
-      },
-      showQuestion: {
-         question: "What should be shown?",
-         answes: ["Image", "Word"],
-         data: false,
-      },
-   },
-});
+   }
+);

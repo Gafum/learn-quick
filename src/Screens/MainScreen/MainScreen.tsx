@@ -15,16 +15,24 @@ function MainScreen(): JSX.Element {
 
 
    return (<>
-      <div className={styles.sectionName}>
-         <span>Flashcard Categories</span>
-         <CustomBtn>Filter</CustomBtn>
-      </div>
+      {topicList.length == 0 ?
+         (<div>
+            Empty List
+         </div>) :
+         (<>
+            <div className={styles.sectionName}>
+               <span>Flashcard Categories</span>
+               <CustomBtn>Filter</CustomBtn>
+            </div>
 
-      <div className={styles.flashcards}>
-         {
-            [...topicList].map((element) => <Card key={element.id.toString()} data={element} />)
-         }
-      </div>
+            <div className={styles.flashcards}>
+               {
+                  topicList.map((element) => <Card key={element.id.toString()} data={element} />)
+               }
+            </div>
+         </>
+         )
+      }
       <button className={styles.floatBtn} onClick={() => setShow(true)}>
          <ImgTag src="/plus.svg" style={{
             filter: "invert(1)"
