@@ -3,6 +3,8 @@ import { settingsDataConst } from "../../jotaiData/jotaiData";
 import { IsettingsData } from "../../types/interfaces";
 import styles from "./Settings.module.scss";
 import { createClasses } from "../../function/createClasses";
+import CustomBtn from "../../UI/CustomBtn/CustomBtn";
+import { RESET } from "jotai/utils";
 
 export interface paramInSettings {
    question: string;
@@ -59,7 +61,12 @@ function Settings(): JSX.Element {
                      }
                   </div>
                )
-            })}
+            })
+         }
+
+         <CustomBtn className={styles.resetBtn} onClick={() => setSettingsData(RESET)}>
+            Reset Settings
+         </CustomBtn>
       </div>
    );
 }
