@@ -6,13 +6,15 @@ import { useAtom } from "jotai";
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
 import DialogCreateNewSection from "./Dialogs/DialogCreateNewSection";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
+import { filterList } from "./MyFunction/sortFilter";
+import DialogFilter from "./Dialogs/DialogFilter";
 
 function MainScreen(): JSX.Element {
    const [topicList] = useAtom(topicsData)
 
    //Data for imported Components
-   const [show, setShow] = useCustomDialog()
-
+   const [showAddSection, setShowAddSection] = useCustomDialog()
+   const [showFilterModule, setShowFilterModule] = useCustomDialog()
 
    return (<>
       {topicList.length == 0 ?
@@ -22,24 +24,27 @@ function MainScreen(): JSX.Element {
          (<>
             <div className={styles.sectionName}>
                <span>Flashcard Categories</span>
-               <CustomBtn>Filter</CustomBtn>
+               <CustomBtn onClick={() => setShowFilterModule(true)}>Filter</CustomBtn>
             </div>
 
             <div className={styles.flashcards}>
                {
-                  topicList.map((element) => <Card key={element.id.toString()} data={element} />)
+                  filterList(topicList, { parameter: "name" }).map((element) => <Card key={element.id.toString()} data={element} />)
                }
             </div>
          </>
          )
       }
-      <button className={styles.floatBtn} onClick={() => setShow(true)}>
+
+      <button className={styles.floatBtn} onClick={() => setShowAddSection(true)}>
          <ImgTag src="/plus.svg" style={{
             filter: "invert(1)"
          }} />
       </button >
 
-      <DialogCreateNewSection show={show} setShow={setShow} title="Create New Section" />
+      <DialogCreateNewSection show={showAddSection} setShow={setShowAddSection} title="Create New Section" />
+      <DialogFilter show={showFilterModule} setShow={setShowFilterModule} title="Select Filter" />
+
    </>);
 }
 
