@@ -1,0 +1,20 @@
+.radioContainer {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: flex-start;
+   align-content: center;
+   flex-direction: column;
+   label {
+      width: 100%;
+      input[type="radio"] {
+         + span {
+            transition: color 0.2s;
+            cursor: pointer;
+         }
+         &:checked + span {
+            color: var(--main-red-color);
+         }
+      }
+   }
+}

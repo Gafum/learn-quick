@@ -34,4 +34,9 @@ export interface IsettingsData {
       whatAsk: paramInSettings;
       showQuestion: paramInSettings;
    };
+   filterParams: {
+      selectedSortType: sortTypeNames;
+   };
 }
+
+export type sortTypeNames = "name" | "length" | "id" | "icon";

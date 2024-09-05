@@ -37,7 +37,7 @@
             background-color: #359427;
          }
          &.redBtn {
-            background-color: #932217;
+            background-color: var(--main-red-color);
             box-shadow: none;
             filter: brightness(1);
             &:hover {

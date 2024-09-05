@@ -387,5 +387,8 @@ export const settingsDataConst = atomWithStorage<IsettingsData>(
             data: false,
          },
       },
+      filterParams: {
+         selectedSortType: "id",
+      },
    }
 );
