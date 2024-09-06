@@ -3,8 +3,9 @@ import styles from "./ChooseFilter.module.scss";
 import { useAtom } from "jotai";
 import { settingsDataConst } from "../../jotaiData/jotaiData";
 import { IsettingsData, sortTypeNames } from "../../types/interfaces";
+import { SimpleSelector } from "../../Screens/Settings/SimpleSelector/SimpleSelector";
 
-const filterList: { name: string; sortType: sortTypeNames }[] = [
+export const filterList: { name: string; sortType: sortTypeNames }[] = [
    { name: "Name", sortType: "name" },
    { name: "Length", sortType: "length" },
    { name: "Date", sortType: "id" },
@@ -13,12 +14,12 @@ const filterList: { name: string; sortType: sortTypeNames }[] = [
 
 
 function ChooseFilter(): JSX.Element {
-   const [{ filterParams }, setSettings] = useAtom(settingsDataConst)
+   const [settingsData, setSettingsData] = useAtom(settingsDataConst)
 
-   const selectedOption = filterParams.selectedSortType
+   const selectedOption = settingsData.filterParams.selectedSortType
 
    function setSelectedOption(newValue: sortTypeNames) {
-      setSettings((prev) => {
+      setSettingsData((prev) => {
          const localList: IsettingsData = JSON.parse(JSON.stringify(prev))
          localList.filterParams.selectedSortType = newValue;
          return localList;
@@ -31,24 +32,37 @@ function ChooseFilter(): JSX.Element {
 
 
    return (
-      <div className={styles.radioContainer}>
-         {filterList.map(({ name, sortType }) => {
-            return (
-               <label className={styles.customLabel} key={name}>
-                  <input
-                     type="radio"
-                     name="filter"
-                     value={sortType}
-                     checked={selectedOption === sortType}
-                     onChange={handleOptionChange}
-                     className={styles.radioInput}
-                  />
-                  <span>{name}</span>
-               </label>
-            )
-         })}
+      <>
+         <div className={styles.spaceBetweenBlock}>
+            <span>Select filter:</span>
+            <div className={styles.radioContainer}>
+               {filterList.map(({ name, sortType }) => {
+                  return (
+                     <label className={styles.customLabel} key={name}>
+                        <input
+                           type="radio"
+                           name="filter"
+                           value={sortType}
+                           checked={selectedOption === sortType}
+                           onChange={handleOptionChange}
+                           className={styles.radioInput}
+                        />
+                        <span>{name}</span>
+                     </label>
+                  )
+               })}
 
-      </div>);
+            </div>
+         </div>
+
+         <SimpleSelector
+            setSettingsData={setSettingsData}
+            settingsData={settingsData}
+            listName="filterParams"
+            parameterName="reverseList"
+         />
+      </>
+   );
 }
 
 export default ChooseFilter;

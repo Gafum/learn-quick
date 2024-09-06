@@ -1,8 +1,8 @@
 import Card from "./Card/Card";
 import styles from "./MainScreen.module.scss";
 import ImgTag from "../../UI/CustomImage/CustomImageTag";
-import { topicsData } from "../../jotaiData/jotaiData";
-import { useAtom } from "jotai";
+import { settingsDataConst, topicsData } from "../../jotaiData/jotaiData";
+import { useAtom, useAtomValue } from "jotai";
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
 import DialogCreateNewSection from "./Dialogs/DialogCreateNewSection";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
@@ -15,6 +15,7 @@ function MainScreen(): JSX.Element {
    //Data for imported Components
    const [showAddSection, setShowAddSection] = useCustomDialog()
    const [showFilterModule, setShowFilterModule] = useCustomDialog()
+   const { filterParams } = useAtomValue(settingsDataConst)
 
    return (<>
       {topicList.length == 0 ?
@@ -27,9 +28,14 @@ function MainScreen(): JSX.Element {
                <CustomBtn onClick={() => setShowFilterModule(true)}>Filter</CustomBtn>
             </div>
 
-            <div className={styles.flashcards}>
+            <div className={styles.cards}>
                {
-                  filterList(topicList, { parameter: "name" }).map((element) => <Card key={element.id.toString()} data={element} />)
+                  filterList(topicList, {
+                     parameter: filterParams.selectedSortType,
+                     reverse: filterParams.reverseList.data,
+                  }).map((element) =>
+                     <Card key={element.id.toString()} data={element} />
+                  )
                }
             </div>
          </>

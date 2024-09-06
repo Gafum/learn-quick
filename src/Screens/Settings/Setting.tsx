@@ -2,12 +2,10 @@ import { IsettingsData } from "../../types/interfaces";
 import styles from "./Settings.module.scss";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import { RESET } from "jotai/utils";
-import ChooseFilter from "../../Components/ChooseFilter/ChooseFilter";
-import SimpleSelector from "./SimpleSelector/SimpleSelector";
+import { SettingsListGenerator } from "./SimpleSelector/SettingsListGenerator";
 
 import { settingsDataConst } from "../../jotaiData/jotaiData";
 import { useAtom } from "jotai";
-import { createClasses } from "../../function/createClasses";
 
 export interface paramInSettings {
    question: string;
@@ -23,19 +21,10 @@ function Settings(): JSX.Element {
       <div className={styles.settingsScreen}>
          {(Object.keys(settingsData) as (keyof IsettingsData)[])
             .map((elem: keyof IsettingsData) => {
-               if (elem == "filterParams") {
-                  return <div
-                     className={createClasses([styles.section, styles.settingsScreen])}
-                  >
-                     <h3>Filter settings</h3>
-                     <div className={styles.leftSideBlock}>
-                        <ChooseFilter />
-                     </div>
-                  </div>
-               }
                return (
-                  <SimpleSelector
-                     myName={elem}
+                  <SettingsListGenerator
+                     key={elem.toString()}
+                     listName={elem}
                      setSettingsData={setSettingsData}
                      settingsData={settingsData}
                   />

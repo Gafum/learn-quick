@@ -12,12 +12,13 @@ export function filterList(
       reverse = false
    }: IfilterListParams
 ): topicData[] {
-   return list.sort((a: topicData, b: topicData) => {
+   let localList = list.sort((a: topicData, b: topicData) => {
 
       let result = 0;
 
       function standartSorter(parameter: keyof topicData) {
          if (!a[parameter] || !b[parameter]) return 0;
+         if (a[parameter] == b[parameter]) return 0;
          return a[parameter] > b[parameter] ? 1 : -1
       }
 
@@ -31,14 +32,18 @@ export function filterList(
          }
          case "length": {
             if (!a.data || !b.data) result = 0;
+            if (a.data!.length == b.data!.length) result = 0;
             result = a.data!.length > b.data!.length ? 1 : -1
             break;
          }
       }
-
-      if (reverse) {
-         return result;
-      }
       return result;
    })
+
+
+   if (reverse) {
+      return localList.reverse();
+   }
+
+   return localList;
 }

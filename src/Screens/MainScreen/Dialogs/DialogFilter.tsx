@@ -1,7 +1,7 @@
 import ChooseFilter from "../../../Components/ChooseFilter/ChooseFilter";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 import CustomDialog, { ICustomDialogProps } from "../../../UI/CustomDialog/CustomDialog";
-
+import styles from "../MainScreen.module.scss";
 
 function DialogFilter({
    show,
@@ -11,15 +11,15 @@ function DialogFilter({
 
    return (
       <CustomDialog setShow={setShow} show={show} title={title}>
-         <form onSubmit={() => console.log("sdas")
-         }>
+         <div className={styles.dialogFilter}>
             <ChooseFilter />
 
-            <CustomBtn>
+            <CustomBtn onClick={() => setShow(false)}>
                Ok
             </CustomBtn>
-         </form>
-      </CustomDialog>
+         </div>
+
+      </CustomDialog >
    );
 }
 

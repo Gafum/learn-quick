@@ -14,7 +14,7 @@
    }
 }
 
-.flashcards {
+.cards {
    margin-top: 40px;
    display: flex;
    flex-wrap: wrap;
@@ -49,6 +49,7 @@
    }
 }
 
+//Dialog =====>
 .addSectionBlock {
    padding: 10px;
    display: flex;
@@ -86,5 +87,19 @@
       > button {
          width: 100%;
       }
+   }
+}
+
+.dialogFilter {
+   width: 40vw;
+   min-width: 200px;
+   max-width: 400px;
+
+   svg {
+      width: 20px;
+   }
+   > button {
+      margin-top: 20px;
+      width: 100%;
    }
 }

@@ -4,7 +4,7 @@ import { atomWithStorage } from "jotai/utils";
 
 export const topicsData = atom<topicData[]>([
    {
-      id: 0,
+      id: "11",
       icon: "language",
       name: "first",
       data: [
@@ -389,6 +389,11 @@ export const settingsDataConst = atomWithStorage<IsettingsData>(
       },
       filterParams: {
          selectedSortType: "id",
+         reverseList: {
+            question: "Do you want to reverse list?",
+            answes: ["Yes", "No"],
+            data: false,
+         },
       },
    }
 );

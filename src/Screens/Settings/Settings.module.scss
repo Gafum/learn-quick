@@ -1,3 +1,19 @@
+.parameterSelector {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   align-content: center;
+   gap: 10px;
+
+   svg {
+      position: relative;
+      top: 1px;
+      margin-left: 3px;
+      width: 15px;
+   }
+}
+
 .settingsScreen {
    width: 100%;
    display: flex;
@@ -6,6 +22,12 @@
    align-content: center;
    flex-direction: column;
    gap: 10px;
+
+   .parameterSelector {
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--main-bg-color);
+   }
+
    .section {
       gap: 5px;
       h3 {
@@ -15,38 +37,10 @@
          font-size: 20px;
          text-transform: capitalize;
       }
-      .parameter {
-         width: 100%;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         align-content: center;
-         gap: 10px;
-         padding-bottom: 10px;
-         border-bottom: 1px solid var(--main-bg-color);
-         svg {
-            position: relative;
-            top: 1px;
-            margin-left: 3px;
-            width: 15px;
-         }
-      }
    }
+
    > .resetBtn {
       margin-top: 20px;
       width: 100%;
-   }
-   .leftSideBlock {
-      width: 100%;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--main-bg-color);
-      label {
-         display: flex;
-         justify-content: flex-end;
-         align-items: center;
-         align-content: center;
-         text-align: right;
-         
-      }
    }
 }

@@ -36,6 +36,7 @@ export interface IsettingsData {
    };
    filterParams: {
       selectedSortType: sortTypeNames;
+      reverseList: paramInSettings;
    };
 }
 
