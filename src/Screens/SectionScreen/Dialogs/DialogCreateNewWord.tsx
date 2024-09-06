@@ -97,6 +97,26 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
       setImage(URL.createObjectURL(file[0]));
    }
 
+   function deleteWord(event: React.MouseEvent) {
+      event.stopPropagation()
+      event.preventDefault()
+      setTopicList((prev) => {
+         let localList: topicData[] = JSON.parse(JSON.stringify(prev))
+         localList[findIndexOfELement(localList, sectionId)].data.splice(
+            findIndexOfELement(
+               localList[findIndexOfELement(localList, sectionId)]
+                  .data,
+               itemData.id)
+            , 1)
+
+         console.log(localList);
+
+         return localList;
+      })
+
+      setShow(false)
+   }
+
 
    return (<>
       <CustomDialog
@@ -155,6 +175,15 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
                      </div>
                   </div>
                )}
+
+               {
+                  itemData.id
+                     ?
+                     <CustomBtn className={styles.deleteBtn} onClick={deleteWord}>
+                        Delete Word
+                     </CustomBtn>
+                     : ""
+               }
 
                <CustomBtn>
                   {itemData.id ? "Edit" : "Add"} Word

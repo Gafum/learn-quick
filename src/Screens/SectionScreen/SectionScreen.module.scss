@@ -27,6 +27,15 @@
          &.addImgBtn {
             background-color: var(--main-contrast-color);
          }
+
+         &.deleteBtn {
+            background-color: var(--main-red-color);
+            @media (hover: hover) {
+               &:hover {
+                  filter: brightness(1.13);
+               }
+            }
+         }
       }
 
       .imageSelector {
