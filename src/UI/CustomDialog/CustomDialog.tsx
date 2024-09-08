@@ -10,15 +10,22 @@ export interface ICustomDialogProps {
    title: string;
 }
 
+interface ICustomHookDialogReturn<T> {
+   show: boolean | Dispatch<SetStateAction<boolean>>;
+   setShow: Dispatch<SetStateAction<boolean>>;
+   myData: T;
+   setMyData: Dispatch<SetStateAction<T>>
+}
 
-export function useCustomDialog():
-   [boolean | Dispatch<SetStateAction<boolean>>,
-      Dispatch<SetStateAction<boolean>>] {
+export function useCustomDialog<T>(data: T): ICustomHookDialogReturn<T> {
    const [show, setShow] = useState<boolean>(false);
-   return ([
+   const [myData, setMyData] = useState<T>(data);
+   return ({
       show,
-      setShow
-   ]);
+      setShow,
+      myData,
+      setMyData
+   });
 }
 
 function CustomDialog({ children, show, setShow, title }: ICustomDialogProps): JSX.Element {

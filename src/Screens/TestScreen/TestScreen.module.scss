@@ -35,6 +35,7 @@
          transition-duration: 0.2s;
          &.greenBtn {
             background-color: #359427;
+            border: 2px solid black;
          }
          &.redBtn {
             background-color: var(--main-red-color);

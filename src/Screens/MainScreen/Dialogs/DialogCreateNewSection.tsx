@@ -1,4 +1,4 @@
-import { FormEvent } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import CustomDialog, { ICustomDialogProps } from "../../../UI/CustomDialog/CustomDialog";
 import CustomInput, { useCustomInput } from "../../../UI/CustomInput/CustomInput";
 
@@ -10,46 +10,57 @@ import { topicData } from "../../../types/interfaces";
 import Slider from "react-slick";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
-
-interface IFormSectionData extends Omit<topicData, "data" | "id"> { }
-
+import { findIndexOfELement } from "../../../function/findElementByID";
 
 const allImg = ["language", "science", "mathematics", "literature"];
 
-function DialogCreateNewSection({ show, setShow, title }: ICustomDialogProps): JSX.Element {
+interface IdialogCreateNewSection extends ICustomDialogProps {
+   itemData: topicData;
+}
+
+function DialogCreateNewSection({ show, setShow, title, itemData }: IdialogCreateNewSection): JSX.Element {
    const setTopicList = useSetAtom(topicsData)
-   const [value, setValue] = useCustomInput("")
 
-   //Get Data from user
-   function getSectionData(event: FormEvent<HTMLFormElement>): IFormSectionData {
-      const sectionIcon: HTMLDivElement | null =
-         event.currentTarget.
-            querySelector<HTMLDivElement>(".slick-active");
+   const [value, setValue] = useCustomInput(itemData.name)
+   const [slideIndex, setSlideIndex] = useState(0);
+   const sliderRef = useRef<Slider>(null);
 
-      if (!sectionIcon) throw new Error("400");
+   useEffect(() => {
+      if (!sliderRef.current) return;
 
-      let sectionIconIndex = Number(sectionIcon.dataset.index);
+      setValue(itemData.name)
+      sliderRef.current.slickGoTo(
+         allImg.findIndex(element => element == itemData.icon),
+         true
+      )
 
-      let myName = value.toString().trim();
-
-      setValue("")
-
-      return { name: myName.toString(), icon: allImg[sectionIconIndex] }
-   }
+   }, [itemData])
 
    function createNewSection(event: FormEvent<HTMLFormElement>) {
       event.preventDefault()
 
-      setTopicList(
-         (data: topicData[]) => {
-            return [...data,
-            {
-               ...getSectionData(event),
-               id: generateUnicID(),
-               data: []
-            }];
-         }
-      )
+      if (itemData.id == "") {
+         setTopicList(
+            (data: topicData[]) => {
+               return [...data,
+               {
+                  icon: allImg[slideIndex],
+                  name: value.toString().trim().toString(),
+                  id: generateUnicID(),
+                  data: []
+               }];
+            }
+         )
+      } else {
+         setTopicList(
+            (prev: topicData[]) => {
+               let localList: topicData[] = JSON.parse(JSON.stringify(prev))
+               localList[findIndexOfELement(localList, itemData.id)].name = value;
+               localList[findIndexOfELement(localList, itemData.id)].icon = allImg[slideIndex];
+               return localList;
+            }
+         )
+      }
 
       setShow(false)
    }
@@ -60,7 +71,14 @@ function DialogCreateNewSection({ show, setShow, title }: ICustomDialogProps): J
 
             <form className={styles.addSectionForm} onSubmit={createNewSection}>
                <div className={styles.selectImg}>
-                  <Slider infinite={true} dots={false} speed={400} slidesToShow={1}>
+                  <Slider
+                     infinite={true}
+                     dots={false}
+                     speed={400}
+                     slidesToShow={1}
+                     ref={sliderRef}
+                     afterChange={(index) => setSlideIndex(index)}
+                  >
                      {allImg.map((e) =>
                         <div className={styles.sliderElement} key={e}>
                            <ImgTag src={`/${e}.svg`} />
@@ -77,11 +95,11 @@ function DialogCreateNewSection({ show, setShow, title }: ICustomDialogProps): J
                />
 
                <CustomBtn>
-                  Add
+                  {itemData.id == "" ? "Add" : "Edit"}
                </CustomBtn>
             </form>
-         </div>
-      </CustomDialog>
+         </div >
+      </CustomDialog >
    </>);
 }
 

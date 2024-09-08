@@ -8,14 +8,31 @@ import DialogCreateNewSection from "./Dialogs/DialogCreateNewSection";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import { filterList } from "./MyFunction/sortFilter";
 import DialogFilter from "./Dialogs/DialogFilter";
+import { MouseEvent, useState } from "react";
+import { topicData } from "../../types/interfaces";
 
 function MainScreen(): JSX.Element {
    const [topicList] = useAtom(topicsData)
 
-   //Data for imported Components
-   const [showAddSection, setShowAddSection] = useCustomDialog()
-   const [showFilterModule, setShowFilterModule] = useCustomDialog()
+   //Filter and sort settings
    const { filterParams } = useAtomValue(settingsDataConst)
+
+   //Data for imported Components:
+   const {
+      show: showAddSection,
+      setShow: setShowAddSection,
+      myData: newComponentData,
+      setMyData: setNewComponentData,
+   } = useCustomDialog<topicData>({
+      id: "",
+      data: [],
+      name: "",
+      icon: "language"
+   })
+
+
+   const [showFilterModule, setShowFilterModule] = useState(false)
+
 
    return (<>
       {topicList.length == 0 ?
@@ -34,7 +51,16 @@ function MainScreen(): JSX.Element {
                      parameter: filterParams.selectedSortType,
                      reverse: filterParams.reverseList.data,
                   }).map((element) =>
-                     <Card key={element.id.toString()} data={element} />
+                     <Card
+                        key={element.id.toString()}
+                        editCard={
+                           (event: MouseEvent) => {
+                              event.stopPropagation()
+                              event.preventDefault()
+                              setNewComponentData({ ...element })
+                              setShowAddSection(true);
+                           }}
+                        data={element} />
                   )
                }
             </div>
@@ -42,14 +68,29 @@ function MainScreen(): JSX.Element {
          )
       }
 
-      <button className={styles.floatBtn} onClick={() => setShowAddSection(true)}>
+      <button className={styles.floatBtn} onClick={() => {
+         setNewComponentData({
+            id: "",
+            data: [],
+            name: "",
+            icon: "language"
+         })
+         setShowAddSection(true)
+      }}>
          <ImgTag src="/plus.svg" style={{
             filter: "invert(1)"
          }} />
       </button >
 
-      <DialogCreateNewSection show={showAddSection} setShow={setShowAddSection} title="Create New Section" />
-      <DialogFilter show={showFilterModule} setShow={setShowFilterModule} title="Select Filter" />
+      <DialogCreateNewSection
+         show={showAddSection}
+         setShow={setShowAddSection}
+         title="Create New Section"
+         itemData={newComponentData} />
+      <DialogFilter
+         show={showFilterModule}
+         setShow={setShowFilterModule}
+         title="Select Filter" />
 
    </>);
 }

@@ -33,6 +33,7 @@ function WordCard({ id, word, meaning, img, editElement }: IwordCardProps): JSX.
          <button className={styles.editBtn}>
             <ImgTag src="/edit.svg" />
          </button>
+
       </div>
    );
 }

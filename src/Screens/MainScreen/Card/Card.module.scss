@@ -15,7 +15,7 @@
    transition-property: box-shadow filter scale;
    transition-duration: 0.2s;
    cursor: pointer;
-   > img {
+   > .sectionImg {
       width: 30px;
    }
    > span {
@@ -28,6 +28,13 @@
       font-weight: 400;
       text-wrap: nowrap;
       text-overflow: ellipsis;
+   }
+
+   .editBtn {
+      width: 18px;
+      position: absolute;
+      right: 8px;
+      top: 8px;
    }
 
    @media (hover: hover) {
