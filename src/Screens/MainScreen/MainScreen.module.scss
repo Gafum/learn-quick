@@ -70,10 +70,11 @@
       align-items: center;
       align-content: center;
       flex-direction: column;
-      gap: 15px;
+      gap: 6px;
       min-width: 40vw;
       .selectImg {
          width: 150px;
+         margin-bottom: 10px;
          .sliderElement {
             width: 60px;
             height: 60px;
@@ -86,6 +87,14 @@
       }
       > button {
          width: 100%;
+         &.delteBtn {
+            background-color: var(--main-red-color);
+            @media (hover: hover) {
+               &:hover {
+                  filter: brightness(1.1);
+               }
+            }
+         }
       }
    }
 }

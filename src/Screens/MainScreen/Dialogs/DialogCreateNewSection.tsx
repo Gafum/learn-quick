@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
 import CustomDialog, { ICustomDialogProps } from "../../../UI/CustomDialog/CustomDialog";
 import CustomInput, { useCustomInput } from "../../../UI/CustomInput/CustomInput";
 
@@ -29,6 +29,8 @@ function DialogCreateNewSection({ show, setShow, title, itemData }: IdialogCreat
       if (!sliderRef.current) return;
 
       setValue(itemData.name)
+
+      setSlideIndex(allImg.findIndex(element => element == itemData.icon))
       sliderRef.current.slickGoTo(
          allImg.findIndex(element => element == itemData.icon),
          true
@@ -65,6 +67,19 @@ function DialogCreateNewSection({ show, setShow, title, itemData }: IdialogCreat
       setShow(false)
    }
 
+   function deleteSection(event: MouseEvent) {
+      event.preventDefault()
+      event.stopPropagation()
+      setTopicList(
+         (prev: topicData[]) => {
+            let localList: topicData[] = JSON.parse(JSON.stringify(prev))
+            localList.splice(findIndexOfELement(localList, itemData.id), 1)
+            return localList;
+         }
+      )
+      setShow(false)
+   }
+
    return (<>
       <CustomDialog show={show} setShow={setShow} title={title}>
          <div className={styles.addSectionBlock}>
@@ -93,6 +108,14 @@ function DialogCreateNewSection({ show, setShow, title, itemData }: IdialogCreat
                   setValue={setValue}
                   maxLength={12}
                />
+
+               {itemData.id == ""
+                  ? "" :
+                  <CustomBtn onClick={deleteSection} className={styles.delteBtn}>
+                     Delete
+                  </CustomBtn>
+               }
+
 
                <CustomBtn>
                   {itemData.id == "" ? "Add" : "Edit"}
