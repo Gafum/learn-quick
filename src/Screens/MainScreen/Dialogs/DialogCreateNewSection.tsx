@@ -107,6 +107,7 @@ function DialogCreateNewSection({ show, setShow, title, itemData }: IdialogCreat
                   value={value}
                   setValue={setValue}
                   maxLength={12}
+                  updateFocuseData={itemData}
                />
 
                {itemData.id == ""

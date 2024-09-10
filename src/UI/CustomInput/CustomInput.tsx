@@ -9,6 +9,7 @@ interface Iinput {
    maxLength?: number;
    rows?: number;
    required?: boolean;
+   updateFocuseData?: any
 }
 
 export function useCustomInput(text?: string): [string, Dispatch<SetStateAction<string>>] {
@@ -51,6 +52,7 @@ function CustomInput(
       value,
       setValue,
       maxLength,
+      updateFocuseData,
       rows = 0,
       required = true
    }: Iinput
@@ -75,7 +77,7 @@ function CustomInput(
          inp.current.focus()
          inp.current.classList.remove(styles.incorrect)
       }
-   }, [])
+   }, [updateFocuseData])
 
    return (
       <div

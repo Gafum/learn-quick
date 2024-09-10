@@ -131,6 +131,8 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
                   value={wordValue}
                   setValue={setWordValue}
                   maxLength={50}
+                  rows={0}
+                  updateFocuseData={itemData}
                />
 
                <CustomInput
