@@ -41,7 +41,7 @@ function MainScreen(): JSX.Element {
          </div>) :
          (<>
             <div className={styles.sectionName}>
-               <span>Flashcard Categories</span>
+               <span>Categories</span>
                <CustomBtn onClick={() => setShowFilterModule(true)}>Filter</CustomBtn>
             </div>
 
@@ -85,7 +85,7 @@ function MainScreen(): JSX.Element {
       <DialogCreateNewSection
          show={showAddSection}
          setShow={setShowAddSection}
-         title="Create New Section"
+         title="Create New Category"
          itemData={newComponentData} />
       <DialogFilter
          show={showFilterModule}

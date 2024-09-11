@@ -162,7 +162,7 @@ export const topicsData = atom<topicData[]>([
             rate: 0,
          },
          {
-            id: 676,
+            id: 676123123,
             word: "rainbow",
             meaning: "райдуга",
             img: "rainbow.png",

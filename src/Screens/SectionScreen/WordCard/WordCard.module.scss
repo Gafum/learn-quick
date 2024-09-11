@@ -87,3 +87,10 @@
       opacity: 90%;
    }
 }
+
+@media (max-width: 300px) {
+   .wordCard {
+      max-width: 300px;
+      width: 100%;
+   }
+}

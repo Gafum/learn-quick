@@ -1,4 +1,16 @@
 .conteiner {
-   padding: 35px 35px;
+   padding: 35px;
    margin: auto;
+}
+
+@media (max-width: 480px) {
+   .conteiner {
+      padding: 25px;
+   }
+}
+
+@media (max-width: 340px) {
+   .conteiner {
+      padding: 10px 20px 15px;
+   }
 }

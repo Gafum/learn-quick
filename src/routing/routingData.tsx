@@ -15,7 +15,7 @@ interface IRouterComponentProps extends Omit<IcontainerProps, 'children'> { }
 const router = createBrowserRouter([
    {
       path: "/",
-      element: <RouterComponent />,
+      element: <RouterComponent newPadding={{ b: "60px", }} />,
       errorElement: <ErrorComponent />,
       children: [
          {
@@ -30,6 +30,17 @@ const router = createBrowserRouter([
             path: "/section/:sectionId",
             element: <SectionScreen />,
          },
+      ],
+   },
+   {
+      path: "/",
+      element: <RouterComponent newPadding={{ all: 0 }} />,
+      errorElement: <ErrorComponent />,
+      children: [
+         {
+            path: "/flashcards/:sectionId",
+            element: <Flashcards />,
+         },
          {
             path: "/test/:sectionId",
             element: <TestScreen />,
@@ -38,31 +49,21 @@ const router = createBrowserRouter([
             path: "/writing/:sectionId",
             element: <WritingScreen />,
          },
-
-      ],
-   },
-   {
-      path: "/flashcards/:sectionId",
-      element: <RouterComponent newPadding={{ all: 0 }} />,
-      errorElement: <ErrorComponent />,
-      children: [
-         {
-            path: "",
-            element: <Flashcards />,
-         }
       ],
    },
 ]);
 
 
 function RouterComponent(conteinerData?: IRouterComponentProps): JSX.Element {
-   return <div>
-      <Header></Header>
-      <Conteiner {...conteinerData}>
-         <Outlet />
-      </Conteiner>
+   return (
+      <div>
+         <Header></Header>
+         <Conteiner {...conteinerData}>
+            <Outlet />
+         </Conteiner>
 
-   </div>;
+      </div>
+   );
 }
 
 function MainRouter(): JSX.Element {

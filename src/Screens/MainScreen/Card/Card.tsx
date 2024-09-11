@@ -15,9 +15,9 @@ function Card({ data, editCard }: ICardProps): JSX.Element {
       <Link to={`/section/${data.id}`}>
          <div className={styles.card}>
             <ImgTag src={`/${data.icon}.svg`} className={styles.sectionImg} />
-            <span>{data.name}</span>
-            <button onClick={editCard}>
-               <ImgTag src="/edit.svg" className={styles.editBtn} />
+            <span className={styles.sectionName}>{data.name}</span>
+            <button onClick={editCard} className={styles.editBtn} >
+               <ImgTag src="/edit.svg" />
             </button>
          </div>
 

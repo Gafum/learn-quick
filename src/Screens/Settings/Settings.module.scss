@@ -26,6 +26,10 @@
    .parameterSelector {
       padding-bottom: 10px;
       border-bottom: 1px solid var(--main-bg-color);
+      .chengerBtn {
+         word-break: keep-all;
+         white-space: nowrap;
+      }
    }
 
    .section {
@@ -42,5 +46,18 @@
    > .resetBtn {
       margin-top: 20px;
       width: 100%;
+   }
+}
+
+@media (max-width: 420px) {
+   .parameterSelector {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 2px;
+      .chengerBtn {
+         align-self: flex-end;
+      }
    }
 }

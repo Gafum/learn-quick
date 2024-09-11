@@ -22,22 +22,28 @@ header {
       align-items: center;
       align-content: center;
       transition: padding-bottom 0.2s;
-   }
 
-   .btnSection {
-      max-height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      a {
-         filter: invert(1) brightness(200%);
-         img {
-            width: 25px;
-            @media (hover: hover) {
-               &:hover {
-                  -webkit-filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.3));
-                  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.3));
+      .btnSection {
+         min-height: 100%;
+         height: 37px;
+         display: flex;
+         justify-content: center;
+         align-items: flex-end;
+         a {
+            filter: invert(1) brightness(200%);
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            img {
+               width: 25px;
+               @media (hover: hover) {
+                  &:hover {
+                     -webkit-filter: drop-shadow(
+                        0px 0px 4px rgba(0, 0, 0, 0.3)
+                     );
+                     filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.3));
+                  }
                }
             }
          }
@@ -62,19 +68,6 @@ header {
             &:hover {
                text-shadow: 0 0 3px rgb(169, 169, 169);
             }
-         }
-      }
-   }
-   nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      align-content: center;
-      gap: 10px;
-      a {
-         color: white;
-         &.active {
-            text-shadow: 0 0 4px rgb(169, 169, 169);
          }
       }
    }
@@ -109,5 +102,34 @@ header {
    }
    &.headerContent {
       padding-bottom: 30px;
+   }
+}
+
+@media (max-width: 480px) {
+   header {
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+      &.staticHader {
+         margin-bottom: 15px;
+      }
+   }
+}
+
+@media (max-width: 340px) {
+   header {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+      .headerInner > a {
+         font-size: 18px;
+      }
+      .headerContent .btnSection {
+         height: 22px;
+         > a {
+            > img {
+               height: 20px;
+               width: 20px;
+            }
+         }
+      }
    }
 }

@@ -12,13 +12,13 @@
    gap: 10px;
    padding: 34px 10px 10px;
    position: relative;
-   transition-property: box-shadow filter scale;
+   transition-property: box-shadow, filter, scale;
    transition-duration: 0.2s;
    cursor: pointer;
    > .sectionImg {
       width: 30px;
    }
-   > span {
+   > .sectionName {
       width: 100%;
       color: var(--main-bg-color);
       text-align: center;
@@ -28,6 +28,7 @@
       font-weight: 400;
       text-wrap: nowrap;
       text-overflow: ellipsis;
+      max-width: 90vw;
    }
 
    .editBtn {
@@ -35,6 +36,12 @@
       position: absolute;
       right: 8px;
       top: 8px;
+      transition: scale 0.2s;
+      @media (hover: hover) {
+         &:hover {
+            scale: 1.15;
+         }
+      }
    }
 
    @media (hover: hover) {
@@ -42,6 +49,16 @@
          box-shadow: 5px 5px 15px 0 rgba(1, 25, 54, 0.25);
          filter: brightness(0.99);
          scale: 1.01;
+      }
+   }
+}
+
+@media (max-width: 340px) {
+   .card {
+      width: 100%;
+      > .sectionName {
+         width: 50vw;
+         text-overflow: ellipsis;
       }
    }
 }

@@ -18,7 +18,7 @@ interface IdialogCreateNewSection extends ICustomDialogProps {
    itemData: topicData;
 }
 
-function DialogCreateNewSection({ show, setShow, title, itemData }: IdialogCreateNewSection): JSX.Element {
+function DialogCreateNewSection({ show, setShow, itemData }: IdialogCreateNewSection): JSX.Element {
    const setTopicList = useSetAtom(topicsData)
 
    const [value, setValue] = useCustomInput(itemData.name)
@@ -81,7 +81,13 @@ function DialogCreateNewSection({ show, setShow, title, itemData }: IdialogCreat
    }
 
    return (<>
-      <CustomDialog show={show} setShow={setShow} title={title}>
+      <CustomDialog
+         show={show}
+         setShow={setShow}
+         title={
+            itemData.id == "" ? "Add Category" : "Edit Category"
+         }
+      >
          <div className={styles.addSectionBlock}>
 
             <form className={styles.addSectionForm} onSubmit={createNewSection}>

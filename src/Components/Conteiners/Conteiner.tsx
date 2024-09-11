@@ -10,15 +10,18 @@ export interface IcontainerProps {
 function Conteiner(
    { children, newPadding, hasMaxWidth = true }: IcontainerProps
 ): JSX.Element {
+   console.log(newPadding);
+
    return (
       <div
          className={styles.conteiner}
          style={{
+            padding: newPadding?.all,
             paddingTop: newPadding?.t,
             paddingBottom: newPadding?.b,
             paddingLeft: newPadding?.l,
             paddingRight: newPadding?.r,
-            padding: newPadding?.all,
+
 
             maxWidth: hasMaxWidth ? 1250 : "auto",
          }}

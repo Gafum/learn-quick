@@ -20,12 +20,12 @@ function Header(): JSX.Element {
          }>
             <Conteiner hasMaxWidth={false}>
                <div className={styles.headerInner}>
-                  Lern quick
+                  <Link to={"/"}>Lern quick</Link>
                </div>
             </Conteiner>
          </header >
          <header>
-            <Conteiner hasMaxWidth={false} newPadding={{ t: 34, }}>
+            <Conteiner hasMaxWidth={false}>
                <div className={
                   createClasses(
                      [styles.headerContent, isSectionScreen && styles.sectionScreen]
