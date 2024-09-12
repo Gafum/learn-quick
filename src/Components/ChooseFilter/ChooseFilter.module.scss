@@ -8,6 +8,11 @@
    padding-bottom: 10px;
    border-bottom: 1px solid var(--main-bg-color);
    margin-bottom: 10px;
+   span {
+      @media (max-width: 300px) {
+         font-size: 15px;
+      }
+   }
    .radioContainer {
       width: 100%;
       display: flex;

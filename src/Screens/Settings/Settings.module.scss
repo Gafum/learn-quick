@@ -6,11 +6,29 @@
    align-content: center;
    gap: 10px;
 
-   svg {
-      position: relative;
-      top: 1px;
-      margin-left: 3px;
-      width: 15px;
+   @media (max-width: 300px) {
+      & {
+         span {
+            font-size: 15px;
+         }
+         .chengerBtn {
+            font-size: 15px;
+            svg {
+               width: 12px;
+            }
+         }
+      }
+   }
+   .chengerBtn {
+      word-break: keep-all;
+      white-space: nowrap;
+
+      svg {
+         position: relative;
+         top: 1px;
+         margin-left: 3px;
+         width: 15px;
+      }
    }
 }
 
@@ -26,9 +44,11 @@
    .parameterSelector {
       padding-bottom: 10px;
       border-bottom: 1px solid var(--main-bg-color);
-      .chengerBtn {
-         word-break: keep-all;
-         white-space: nowrap;
+
+      @media (max-width: 300px) {
+         & {
+            padding-bottom: 4px;
+         }
       }
    }
 
