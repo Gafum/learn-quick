@@ -74,8 +74,7 @@ header {
 }
 
 .testsPosition {
-   bottom: 0;
-   transform: translateY(50%);
+   top: 73%;
    position: absolute;
    width: 100%;
 
@@ -93,6 +92,12 @@ header {
       font-size: 15px;
       color: #222;
       gap: 10px;
+      @media (max-width: 340px) {
+         & {
+            padding: 13px 15px;
+            border-radius: 13px;
+         }
+      }
    }
 }
 

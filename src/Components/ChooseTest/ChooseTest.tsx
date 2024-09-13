@@ -39,24 +39,37 @@ function ChooseTest(): JSX.Element {
       },
       [alltopicsData, sectionId])
 
-   return (
-      <ul className={styles.chooseTest} style={{ gridTemplateColumns: `repeat(${testTypes.length}, 1fr)` }}>
-         {testTypes.map(({ text, link }) => {
-            return (
+   function toggleChoose(event: React.MouseEvent) {
+      event.preventDefault()
+      event.currentTarget.closest("." + styles.chooseTest)?.classList.toggle(styles.show)
+   }
 
-               <li
-                  onClick={() => { if (!listIsEmpty) navigate(`/${link}/${sectionId}`) }}
-                  className={createClasses([
-                     styles.testType,
-                     listIsEmpty ? styles.disabled : styles.hasElements
-                  ])}
-                  key={link.toString()} >
-                  {text}
-               </li>
-            )
-         })}
+   return <div className={styles.chooseTest}>
+      <button className={styles.openListBtn} onClick={toggleChoose}>
+         <div className={styles.animateComponent}>
+            <span></span>
+         </div>
+      </button>
+      <ul className={styles.chooseTestList}>
+         {
+            testTypes.map(({ text, link }) => {
+               return (
+
+                  <li
+                     onClick={() => { if (!listIsEmpty) navigate(`/${link}/${sectionId}`) }}
+                     className={createClasses([
+                        styles.testType,
+                        listIsEmpty ? styles.disabled : styles.hasElements
+                     ])}
+                     key={link.toString()} >
+                     {text}
+                  </li>
+               )
+            })
+         }
       </ul >
-   );
+   </div >
+
 }
 
 export default ChooseTest;

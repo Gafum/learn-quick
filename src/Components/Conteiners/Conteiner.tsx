@@ -10,7 +10,6 @@ export interface IcontainerProps {
 function Conteiner(
    { children, newPadding, hasMaxWidth = true }: IcontainerProps
 ): JSX.Element {
-   console.log(newPadding);
 
    return (
       <div

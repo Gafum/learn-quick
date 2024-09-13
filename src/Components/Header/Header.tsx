@@ -44,7 +44,13 @@ function Header(): JSX.Element {
                   {isSectionScreen && <div className={
                      createClasses([styles.testsPosition])
                   }>
-                     <Conteiner hasMaxWidth={false} newPadding={{ t: 0, b: 0 }}>
+                     <Conteiner
+                        hasMaxWidth={false}
+                        newPadding={{
+                           t: 0,
+                           b: 0,
+                        }}
+                     >
                         <div className={styles.testsBlock}>
                            <ChooseTest />
                         </div>
@@ -54,7 +60,7 @@ function Header(): JSX.Element {
 
                </div>
             </Conteiner>
-         </header>
+         </header >
       </>
    );
 }
