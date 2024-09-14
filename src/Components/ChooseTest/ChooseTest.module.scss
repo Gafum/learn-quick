@@ -27,14 +27,17 @@
    }
 
    .chooseTestList {
-      transition: max-height 0.4s;
+      transition: max-height 0.3s;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
       justify-content: center;
       align-items: center;
       align-content: center;
       width: 100%;
       gap: 10px;
+      .invisibleBlock {
+         display: none;
+         height: 0;
+      }
    }
 
    .openListBtn {
@@ -99,10 +102,13 @@
 @media (max-width: 480px) {
    .chooseTest {
       .chooseTestList {
-         grid-template-columns: 1fr;
-         grid-template-rows: repeat(3, 1fr);
+         display: flex;
+         flex-direction: column;
          max-height: 0px;
          overflow: hidden;
+         .invisibleBlock {
+            display: block;
+         }
       }
       &.show {
          .chooseTestList {

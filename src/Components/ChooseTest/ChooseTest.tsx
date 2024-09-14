@@ -50,7 +50,8 @@ function ChooseTest(): JSX.Element {
             <span></span>
          </div>
       </button>
-      <ul className={styles.chooseTestList}>
+      <ul className={styles.chooseTestList} style={{ gridTemplateColumns: `repeat(${testTypes.length}, 1fr)` }}>
+         <div className={styles.invisibleBlock} />
          {
             testTypes.map(({ text, link }) => {
                return (
