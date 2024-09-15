@@ -8,6 +8,7 @@
    flex-direction: column;
    gap: 10px;
    text-align: center;
+   padding: 0px 10px;
 
    > button {
       width: 200px;
@@ -66,8 +67,28 @@
    }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 620px) {
    .questionComponent h3 {
       font-size: 18px;
+   }
+   .answerList button {
+      padding: 8px;
+   }
+}
+
+@media (max-width: 340px) {
+   .questionComponent h3 {
+      font-size: 18px;
+   }
+   .testScreen {
+      padding: 0 5px;
+      .answerList {
+         display: flex;
+         flex-direction: column;
+         button {
+            font-size: 15px;
+            padding: 3px 8px 5px;
+         }
+      }
    }
 }
