@@ -19,6 +19,11 @@
       flex-direction: column;
       button {
          width: 100%;
+         @media (max-width: 400px) {
+            & {
+               font-size: 15px;
+            }
+         }
       }
    }
    .writingDialog {
@@ -37,10 +42,26 @@
          margin-bottom: 20px;
          span {
             color: inherit;
+            font-size: inherit;
          }
       }
       button {
          width: 100%;
+      }
+      @media (max-width: 400px) {
+         & {
+            width: 80vw;
+            max-width: 80vw;
+         }
+         h3 {
+            font-size: 17px;
+         }
+         button {
+            font-size: 18px;
+         }
+         p {
+            font-size: 17px;
+         }
       }
    }
 }

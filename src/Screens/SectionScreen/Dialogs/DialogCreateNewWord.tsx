@@ -1,7 +1,7 @@
 import CustomDialog, { ICustomDialogProps } from "../../../UI/CustomDialog/CustomDialog";
 import CustomInput, { useCustomInput } from "../../../UI/CustomInput/CustomInput";
 
-import styles from "../SectionScreen.module.scss";
+import styles from "./DialogCreateNewWord.module.scss";
 import { useSetAtom } from "jotai";
 import { topicsData } from "../../../jotaiData/jotaiData";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
@@ -9,6 +9,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { NumStr, topicData, wordData } from "../../../types/interfaces";
 import { findIndexOfELement } from "../../../function/findElementByID";
 import { generateUnicID } from "../../../function/GenerateUnicID";
+import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 
 interface IdialogWordDataProps extends Omit<ICustomDialogProps, "title"> {
    sectionId: NumStr;
@@ -156,11 +157,19 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
                {showDropdown && (
                   <div className={styles.imageSelector}>
                      <div className={styles.imageSelectorInputs}>
-                        <input
-                           type="file"
-                           accept=".jpg, .jpeg, .png"
-                           onChange={getImage}
-                        />
+                        <div className={styles.inputSelectImg}>
+                           <label htmlFor="files">
+                              <ImgTag src="/file.svg" />
+                              <span>{image ? image : "Browse image"}</span>
+                           </label>
+                           <input
+                              id="files"
+                              style={{ display: "none" }}
+                              type="file"
+                              accept=".jpg, .jpeg, .png"
+                              onChange={getImage}
+                           />
+                        </div>
                         <CustomInput
                            hint="Write link to the image"
                            value={image}

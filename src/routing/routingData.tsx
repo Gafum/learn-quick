@@ -30,6 +30,10 @@ const router = createBrowserRouter([
             path: "/section/:sectionId",
             element: <SectionScreen />,
          },
+         {
+            path: "/writing/:sectionId",
+            element: <WritingScreen />,
+         },
       ],
    },
    {
@@ -45,10 +49,7 @@ const router = createBrowserRouter([
             path: "/test/:sectionId",
             element: <TestScreen />,
          },
-         {
-            path: "/writing/:sectionId",
-            element: <WritingScreen />,
-         },
+
       ],
    },
 ]);

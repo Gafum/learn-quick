@@ -1,0 +1,114 @@
+.addWordBlock {
+   min-width: 40vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   flex-direction: column;
+   gap: 10px;
+
+   .addWordForm {
+      width: 100%;
+
+      > div > input {
+         margin: 0 0 15px;
+      }
+
+      button {
+         width: 100%;
+         margin-top: 5px;
+         &.addImgBtn {
+            background-color: var(--main-contrast-color);
+         }
+
+         &.deleteBtn {
+            background-color: var(--main-red-color);
+            @media (hover: hover) {
+               &:hover {
+                  filter: brightness(1.13);
+               }
+            }
+         }
+      }
+
+      .imageSelector {
+         display: flex;
+         justify-content: flex-start;
+         align-items: center;
+         align-content: center;
+         max-width: 100%;
+         gap: 10px;
+         padding: 7px 0;
+         max-width: 85vw;
+
+         .imageSelectorInputs {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            align-content: center;
+            flex-direction: column;
+            gap: 17px;
+            max-width: 60%;
+            width: 100%;
+            .inputSelectImg {
+               width: 100%;
+               > label {
+                  padding: 3px 8px;
+                  cursor: pointer;
+                  border: 1px solid var(--main-text-color);
+                  border-radius: 7px;
+                  display: flex;
+                  justify-content: flex-start;
+                  align-items: center;
+                  gap: 4px;
+                  max-width: 100%;
+                  overflow: hidden;
+                  text-overflow: ellipsis;
+                  word-break: keep-all;
+                  white-space: nowrap;
+                  transition: box-shadow 0.2s;
+                  > img {
+                     width: 20px;
+                  }
+                  @media (hover: hover) {
+                     &:hover {
+                        box-shadow: 0px 0px 3px var(--main-text-color);
+                     }
+                  }
+               }
+            }
+         }
+
+         .selectedImg {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+
+            img {
+               width: 50px;
+               max-height: 100px;
+               border-radius: 4px;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 600px) {
+   .addWordBlock {
+      min-width: 80vw;
+      max-width: 85vw;
+      width: 80vw;
+   }
+}
+
+@media (max-width: 440px) {
+   .addWordBlock .addWordForm .imageSelector {
+      flex-direction: column;
+      .imageSelectorInputs {
+         max-width: 100%;
+      }
+   }
+}

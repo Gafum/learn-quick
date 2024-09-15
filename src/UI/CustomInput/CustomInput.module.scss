@@ -21,9 +21,14 @@
          transform: translateX(-5%) translateY(-82%) scale(0.75);
          padding-left: 5px;
          padding-right: 5px;
+         @media (max-width: 400px) {
+            transform: translateX(-14%) translateY(-82%) scale(0.75);
+         }
       }
    }
    label {
+      white-space: nowrap;
+      word-break: break-all;
       pointer-events: none;
       cursor: text;
       transition-duration: 0.2s;
