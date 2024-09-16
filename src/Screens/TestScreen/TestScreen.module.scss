@@ -59,6 +59,7 @@
       border-radius: 10px;
    }
    h3 {
+      word-break: break-all;
       color: var(--main-bg-color);
       font-size: 24px;
       &:nth-child(2) {
