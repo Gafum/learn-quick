@@ -15,7 +15,7 @@ function Conteiner(
       <div
          className={styles.conteiner}
          style={{
-            padding: newPadding?.all,
+            // padding: newPadding?.all,
             paddingTop: newPadding?.t,
             paddingBottom: newPadding?.b,
             paddingLeft: newPadding?.l,

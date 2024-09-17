@@ -21,5 +21,23 @@ export const sliderSettings = {
             centerPadding: "30px",
          },
       },
+      {
+         breakpoint: 400,
+         settings: {
+            arrows: false,
+            centerMode: true,
+            slidesToShow: 1,
+            centerPadding: "20px",
+         },
+      },
+      {
+         breakpoint: 320,
+         settings: {
+            arrows: false,
+            centerMode: true,
+            slidesToShow: 1,
+            centerPadding: "10px",
+         },
+      },
    ],
 };
