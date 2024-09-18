@@ -38,7 +38,7 @@ const router = createBrowserRouter([
    },
    {
       path: "/",
-      element: <RouterComponent newPadding={{ all: 0 }} />,
+      element: <RouterComponent newPadding={{ t: 0, b: 40, l: 0, r: 0 }} />,
       errorElement: <ErrorComponent />,
       children: [
          {
@@ -57,13 +57,13 @@ const router = createBrowserRouter([
 
 function RouterComponent(conteinerData?: IRouterComponentProps): JSX.Element {
    return (
-      <div>
+      <>
          <Header></Header>
          <Conteiner {...conteinerData}>
             <Outlet />
          </Conteiner>
 
-      </div>
+      </>
    );
 }
 

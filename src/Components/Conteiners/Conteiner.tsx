@@ -3,7 +3,7 @@ import styles from "./Conteiner.module.scss";
 
 export interface IcontainerProps {
    children: React.ReactNode;
-   newPadding?: { l?: NumStr, r?: NumStr, t?: NumStr, b?: NumStr, all?: NumStr };
+   newPadding?: { l?: NumStr, r?: NumStr, t?: NumStr, b?: NumStr };
    hasMaxWidth?: boolean;
 }
 
@@ -15,7 +15,6 @@ function Conteiner(
       <div
          className={styles.conteiner}
          style={{
-            // padding: newPadding?.all,
             paddingTop: newPadding?.t,
             paddingBottom: newPadding?.b,
             paddingLeft: newPadding?.l,

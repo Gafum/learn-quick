@@ -84,6 +84,23 @@
       }
    }
 
+   @media (max-width: 300px) {
+      & {
+         h4 {
+            padding: 5px 2px;
+         }
+         .tipCard {
+            h4 {
+               font-size: 16px;
+            }
+            img {
+               width: 16px;
+               min-width: 16px;
+            }
+         }
+      }
+   }
+
    @media (hover: hover) {
       ::-webkit-scrollbar-thumb {
          background-color: var(--main-bg-color);
@@ -163,6 +180,7 @@
                width: 100%;
                display: flex;
                flex-direction: column;
+               justify-content: flex-start;
                > h4 {
                   text-align: center;
                   width: 100%;
