@@ -121,6 +121,12 @@ header {
    header {
       border-bottom-left-radius: 18px;
       border-bottom-right-radius: 18px;
+      &.sectionScreen.staticHader {
+         margin-bottom: 50px;
+      }
+      .sectionScreen.headerContent {
+         padding-bottom: 15px;
+      }
       &.staticHader {
          margin-bottom: 15px;
       }
