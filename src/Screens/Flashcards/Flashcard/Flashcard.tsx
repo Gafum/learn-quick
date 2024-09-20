@@ -1,10 +1,10 @@
 import { MouseEvent, useRef } from "react";
-import { realWordData } from "../../../Types/interfaces";
+import { realWordData } from "../../../Types_temp/interfaces";
 import styles from "./Flashcard.module.scss";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
-import { createClasses } from "../../../Function/createClasses";
+import { createClasses } from "../../../Function_temp/createClasses";
 import { useAtomValue } from "jotai";
-import { settingsDataConst } from "../../../JotaiData/jotaiData";
+import { settingsDataConst } from "../../../JotaiData_temp/jotaiData";
 
 interface flashCard extends realWordData {
    hardWordFunk: (event: MouseEvent) => void;

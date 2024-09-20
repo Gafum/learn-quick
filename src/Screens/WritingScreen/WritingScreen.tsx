@@ -5,10 +5,10 @@ import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import styles from "./WritingScreen.module.scss";
 import styles1 from "../TestScreen/TestScreen.module.scss";
 import { useAtomValue } from "jotai";
-import { settingsDataConst } from "../../JotaiData/jotaiData";
+import { settingsDataConst } from "../../JotaiData_temp/jotaiData";
 import CustomDialog from "../../UI/CustomDialog/CustomDialog";
 import ImgTag from "../../UI/CustomImage/CustomImageTag";
-import { oneStyleString } from "../../Function/oneStyleString";
+import { oneStyleString } from "../../Function_temp/oneStyleString";
 
 
 function WritingScreen(): JSX.Element {

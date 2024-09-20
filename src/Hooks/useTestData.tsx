@@ -1,11 +1,11 @@
 import { useAtom } from "jotai";
 import useChangeParamsInList, { IchangeParamsProps } from "./useChangeParamInList";
 import useGetParams from "./useGetParams";
-import { NumStr, topicData, wordData } from "../Types/interfaces";
-import { findElemByID } from "../Function/findElementByID";
-import { shuffleArray } from "../Function/shufleArray";
+import { NumStr, topicData, wordData } from "../Types_temp/interfaces";
+import { findElemByID } from "../Function_temp/findElementByID";
+import { shuffleArray } from "../Function_temp/shufleArray";
 import { SetStateAction, useState } from "react";
-import { topicsData } from "../JotaiData/jotaiData";
+import { topicsData } from "../JotaiData_temp/jotaiData";
 
 interface ItestData {
    topicData: topicData[];

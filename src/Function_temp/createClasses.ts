@@ -1,4 +1,4 @@
-import { NumStr } from "../Types/interfaces";
+import { NumStr } from "../Types_temp/interfaces";
 
 export function createClasses(classList: (NumStr | boolean)[]): string {
    let res = classList

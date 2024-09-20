@@ -1,4 +1,4 @@
-import { sortTypeNames, topicData } from "../../../Types/interfaces";
+import { sortTypeNames, topicData } from "../../../Types_temp/interfaces";
 
 interface IfilterListParams {
    parameter: sortTypeNames

@@ -1,10 +1,10 @@
-import { IsettingsData } from "../../Types/interfaces";
+import { IsettingsData } from "../../Types_temp/interfaces";
 import styles from "./Settings.module.scss";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import { RESET } from "jotai/utils";
 import { SettingsListGenerator } from "./SimpleSelector/SettingsListGenerator";
 
-import { settingsDataConst } from "../../JotaiData/jotaiData";
+import { settingsDataConst } from "../../JotaiData_temp/jotaiData";
 import { useAtom } from "jotai";
 
 export interface paramInSettings {
