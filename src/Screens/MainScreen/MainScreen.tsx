@@ -1,7 +1,7 @@
 import Card from "./Card/Card";
 import styles from "./MainScreen.module.scss";
 import ImgTag from "../../UI/CustomImage/CustomImageTag";
-import { settingsDataConst, topicsData } from "../../jotaiData/jotaiData";
+import { settingsDataConst, topicsData } from "../../JotaiData/jotaiData";
 import { useAtom, useAtomValue } from "jotai";
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
 import DialogCreateNewSection from "./Dialogs/DialogCreateNewSection";
@@ -9,7 +9,7 @@ import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import { filterList } from "./MyFunction/sortFilter";
 import DialogFilter from "./Dialogs/DialogFilter";
 import { MouseEvent, useState } from "react";
-import { topicData } from "../../types/interfaces";
+import { topicData } from "../../Types/interfaces";
 
 function MainScreen(): JSX.Element {
    const [topicList] = useAtom(topicsData)
@@ -36,8 +36,27 @@ function MainScreen(): JSX.Element {
 
    return (<>
       {topicList.length == 0 ?
-         (<div>
-            Empty List
+         (<div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 15,
+            textAlign: "center",
+            width: 300,
+            margin: "auto"
+         }}>
+            You have no categories
+            <CustomBtn
+               onClick={() => {
+                  setNewComponentData({
+                     id: "",
+                     data: [],
+                     name: "",
+                     icon: "language"
+                  })
+                  setShowAddSection(true)
+               }}>
+               Create new Category
+            </CustomBtn>
          </div>) :
          (<>
             <div className={styles.sectionName}>

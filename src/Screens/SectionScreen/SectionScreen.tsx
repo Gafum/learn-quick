@@ -1,4 +1,4 @@
-import { topicsData } from "../../jotaiData/jotaiData";
+import { topicsData } from "../../JotaiData/jotaiData";
 import { useAtomValue } from "jotai";
 import WordCard from "./WordCard/WordCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
@@ -6,11 +6,12 @@ import ImgTag from "../../UI/CustomImage/CustomImageTag";
 import MianScreenStyles from "../MainScreen/MainScreen.module.scss"
 import styles from "./SectionScreen.module.scss";
 
-import { NumStr, wordData } from "../../types/interfaces";
-import { findElemByID } from "../../function/findElementByID";
+import { NumStr, wordData } from "../../Types/interfaces";
+import { findElemByID } from "../../Function/findElementByID";
 import DialogCreateNewWord from "./Dialogs/DialogCreateNewWord";
 import useGetParams from "../../Hooks/useGetParams";
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
+import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 
 
 function SectionScreen(): JSX.Element {
@@ -55,6 +56,22 @@ function SectionScreen(): JSX.Element {
 
    return (<>
       {/* Main List */}
+      {myIterableList.length == 0 ?
+         <div style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 15,
+            textAlign: "center",
+            width: 300,
+            margin: "auto"
+         }} >
+            You have no Cards
+            <CustomBtn onClick={openDialog}>
+               Create Card
+            </CustomBtn >
+         </div >
+         : ""
+      }
       <ResponsiveMasonry
          columnsCountBreakPoints={{ 0: 1, 300: 2, 450: 3, 600: 4, 800: 5, 1000: 6, 1300: 7 }}
       >

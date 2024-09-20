@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { NumStr, wordData } from "../../../types/interfaces";
+import { NumStr, wordData } from "../../../Types/interfaces";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import styles from "./WordCard.module.scss";
 

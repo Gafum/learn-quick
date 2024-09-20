@@ -1,10 +1,10 @@
-import { wordData } from "../../types/interfaces";
+import { wordData } from "../../Types/interfaces";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import styles from "./TestScreen.module.scss";
 import createAnswer from "./MyFunctions/CreateAnswer";
 import OneTest from "./OneTest/OneTest";
 import { useAtomValue } from "jotai";
-import { settingsDataConst } from "../../jotaiData/jotaiData";
+import { settingsDataConst } from "../../JotaiData/jotaiData";
 
 
 

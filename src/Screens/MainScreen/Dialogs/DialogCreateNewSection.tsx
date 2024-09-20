@@ -4,13 +4,13 @@ import CustomInput, { useCustomInput } from "../../../UI/CustomInput/CustomInput
 
 import styles from "../MainScreen.module.scss";
 import { useSetAtom } from "jotai";
-import { topicsData } from "../../../jotaiData/jotaiData";
-import { generateUnicID } from "../../../function/GenerateUnicID";
-import { topicData } from "../../../types/interfaces";
+import { topicsData } from "../../../JotaiData/jotaiData";
+import { generateUnicID } from "../../../Function/GenerateUnicID";
+import { topicData } from "../../../Types/interfaces";
 import Slider from "react-slick";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
-import { findIndexOfELement } from "../../../function/findElementByID";
+import { findIndexOfELement } from "../../../Function/findElementByID";
 
 const allImg = ["language", "science", "mathematics", "literature"];
 

@@ -56,7 +56,8 @@
       .dialogContent {
          padding: 15px 10px 10px;
          overflow: auto;
-         height: calc(100% - 50px);
+         height: 84%;
+         height: calc(100% - 40px);
          @media (max-width: 400px) {
             & {
                padding: 12px 8px;

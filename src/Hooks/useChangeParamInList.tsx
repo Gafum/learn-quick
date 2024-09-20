@@ -1,7 +1,7 @@
 import { useSetAtom } from "jotai";
-import { NumStr, topicData } from "../types/interfaces";
-import { topicsData } from "../jotaiData/jotaiData";
-import { findIndexOfELement } from "../function/findElementByID";
+import { NumStr, topicData } from "../Types/interfaces";
+import { topicsData } from "../JotaiData/jotaiData";
+import { findIndexOfELement } from "../Function/findElementByID";
 
 export interface IchangeParamsProps {
    sectionId: NumStr;

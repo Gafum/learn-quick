@@ -1,5 +1,5 @@
-import { createClasses } from "../../../function/createClasses";
-import { IsettingsData } from "../../../types/interfaces";
+import { createClasses } from "../../../Function/createClasses";
+import { IsettingsData } from "../../../Types/interfaces";
 import styles from "../Settings.module.scss";
 import ChooseFilter from "../../../Components/ChooseFilter/ChooseFilter";
 import { SimpleSelector } from "./SimpleSelector";

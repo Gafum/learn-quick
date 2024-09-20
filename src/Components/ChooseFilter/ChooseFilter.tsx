@@ -1,8 +1,8 @@
 import { ChangeEvent } from "react";
 import styles from "./ChooseFilter.module.scss";
 import { useAtom } from "jotai";
-import { settingsDataConst } from "../../jotaiData/jotaiData";
-import { IsettingsData, sortTypeNames } from "../../types/interfaces";
+import { settingsDataConst } from "../../JotaiData/jotaiData";
+import { IsettingsData, sortTypeNames } from "../../Types/interfaces";
 import { SimpleSelector } from "../../Screens/Settings/SimpleSelector/SimpleSelector";
 
 export const filterList: { name: string; sortType: sortTypeNames }[] = [

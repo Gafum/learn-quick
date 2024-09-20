@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { findIndexOfELement } from "../function/findElementByID";
+import { findIndexOfELement } from "../Function/findElementByID";
 
-import { NumStr, topicData } from "../types/interfaces";
+import { NumStr, topicData } from "../Types/interfaces";
 
 function useGetParams(topicData: topicData[]): NumStr {
    const { sectionId } = useParams()

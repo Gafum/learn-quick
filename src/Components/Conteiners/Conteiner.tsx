@@ -1,4 +1,4 @@
-import { NumStr } from "../../types/interfaces";
+import { NumStr } from "../../Types/interfaces";
 import styles from "./Conteiner.module.scss";
 
 export interface IcontainerProps {

@@ -1,4 +1,4 @@
-import { IsettingsData } from "../../../types/interfaces";
+import { IsettingsData } from "../../../Types/interfaces";
 import { paramInSettings } from "../Setting";
 import { ISettingsListGenerator } from "./SettingsListGenerator";
 import styles from "../Settings.module.scss";

@@ -1,6 +1,6 @@
 import { Dispatch, MouseEvent, SetStateAction, useEffect, useState } from "react";
 import styles from "./CustomDialog.module.scss";
-import { createClasses } from "../../function/createClasses";
+import { createClasses } from "../../Function/createClasses";
 
 
 export interface ICustomDialogProps {

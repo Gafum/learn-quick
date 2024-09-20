@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { topicData } from "../../../types/interfaces";
+import { topicData } from "../../../Types/interfaces";
 import styles from "./Card.module.scss"
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import React from "react";

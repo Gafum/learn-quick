@@ -3,12 +3,12 @@ import CustomInput, { useCustomInput } from "../../../UI/CustomInput/CustomInput
 
 import styles from "./DialogCreateNewWord.module.scss";
 import { useSetAtom } from "jotai";
-import { topicsData } from "../../../jotaiData/jotaiData";
+import { topicsData } from "../../../JotaiData/jotaiData";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { NumStr, topicData, wordData } from "../../../types/interfaces";
-import { findIndexOfELement } from "../../../function/findElementByID";
-import { generateUnicID } from "../../../function/GenerateUnicID";
+import { NumStr, topicData, wordData } from "../../../Types/interfaces";
+import { findIndexOfELement } from "../../../Function/findElementByID";
+import { generateUnicID } from "../../../Function/GenerateUnicID";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 
 interface IdialogWordDataProps extends Omit<ICustomDialogProps, "title"> {
@@ -92,10 +92,15 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
       })
    }
 
-   function getImage(event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+   function getImage(event: ChangeEvent<HTMLInputElement>) {
       const file = (event.target as HTMLInputElement).files
       if (!file || !file[0]) return;
-      setImage(URL.createObjectURL(file[0]));
+      const reader = new FileReader();
+      reader.onload = function (event: ProgressEvent<FileReader>) {
+         const base64String = (event.target?.result as string).split(',')[1];
+         setImage(`data:${file[0].name};base64,${base64String}`);
+      };
+      reader.readAsDataURL(file[0]);
    }
 
    function deleteWord(event: React.MouseEvent) {

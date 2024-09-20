@@ -1,6 +1,6 @@
 import { MouseEvent, ReactNode } from "react";
 import styles from "./CustomBtn.module.scss";
-import { createClasses } from "../../function/createClasses";
+import { createClasses } from "../../Function/createClasses";
 
 interface IbtnProps {
    children: ReactNode | string;

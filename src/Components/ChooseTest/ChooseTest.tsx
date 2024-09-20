@@ -1,10 +1,10 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styles from "./ChooseTest.module.scss";
 import { useAtomValue } from "jotai/react";
-import { topicsData } from "../../jotaiData/jotaiData";
-import { createClasses } from "../../function/createClasses";
+import { topicsData } from "../../JotaiData/jotaiData";
+import { createClasses } from "../../Function/createClasses";
 import { useMemo } from "react";
-import { findElemByID } from "../../function/findElementByID";
+import { findElemByID } from "../../Function/findElementByID";
 
 const testTypes: { text: string, link: string }[] = [
    {

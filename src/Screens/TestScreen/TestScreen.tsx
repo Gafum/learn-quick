@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { shuffleArray } from "../../function/shufleArray";
+import { shuffleArray } from "../../Function/shufleArray";
 import useTestData from "../../Hooks/useTestData";
 import TestScreenComponent from "./TestScreenComponent";
-import { findElemByID } from "../../function/findElementByID";
+import { findElemByID } from "../../Function/findElementByID";
 
 
 function TestScreen(): JSX.Element {
