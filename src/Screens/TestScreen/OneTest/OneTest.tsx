@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { wordData } from "../../../Types_temp/interfaces";
+import { wordData } from "../../../Types/interfaces";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 
 interface IOneTextProps {
@@ -9,9 +9,9 @@ interface IOneTextProps {
 }
 
 import styles from "../TestScreen.module.scss";
-import { shuffleArray } from "../../../Function_temp/shufleArray";
+import { shuffleArray } from "../../../Function/shufleArray";
 import { useAtomValue } from "jotai";
-import { settingsDataConst } from "../../../JotaiData_temp/jotaiData";
+import { settingsDataConst } from "../../../JotaiData/jotaiData";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 
 function OneTest({ wordData, nextTest, createdList }: IOneTextProps): JSX.Element {

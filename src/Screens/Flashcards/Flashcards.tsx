@@ -1,7 +1,7 @@
 import Flashcard from "./Flashcard/Flashcard";
 import Slider from "react-slick";
 import { MouseEvent, useState } from "react";
-import { wordData } from "../../Types_temp/interfaces";
+import { wordData } from "../../Types/interfaces";
 import styles from "./Flashcards.module.scss";
 import "./Flashcard/SliderSettings.scss"
 import { sliderSettings } from "./SliderSetting";

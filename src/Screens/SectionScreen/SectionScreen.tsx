@@ -1,4 +1,4 @@
-import { topicsData } from "../../JotaiData_temp/jotaiData";
+import { topicsData } from "../../JotaiData/jotaiData";
 import { useAtomValue } from "jotai";
 import WordCard from "./WordCard/WordCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
@@ -6,8 +6,8 @@ import ImgTag from "../../UI/CustomImage/CustomImageTag";
 import MianScreenStyles from "../MainScreen/MainScreen.module.scss"
 import styles from "./SectionScreen.module.scss";
 
-import { NumStr, wordData } from "../../Types_temp/interfaces";
-import { findElemByID } from "../../Function_temp/findElementByID";
+import { NumStr, wordData } from "../../Types/interfaces";
+import { findElemByID } from "../../Function/findElementByID";
 import DialogCreateNewWord from "./Dialogs/DialogCreateNewWord";
 import useGetParams from "../../Hooks/useGetParams";
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";

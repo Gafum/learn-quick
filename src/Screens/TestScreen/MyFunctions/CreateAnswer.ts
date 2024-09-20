@@ -1,5 +1,5 @@
-import { shuffleArray } from "../../../Function_temp/shufleArray";
-import { NumStr, wordData } from "../../../Types_temp/interfaces";
+import { shuffleArray } from "../../../Function/shufleArray";
+import { NumStr, wordData } from "../../../Types/interfaces";
 
 function createAnswer(
    rightWord: NumStr,

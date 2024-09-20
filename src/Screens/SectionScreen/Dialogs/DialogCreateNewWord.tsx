@@ -3,12 +3,12 @@ import CustomInput, { useCustomInput } from "../../../UI/CustomInput/CustomInput
 
 import styles from "./DialogCreateNewWord.module.scss";
 import { useSetAtom } from "jotai";
-import { topicsData } from "../../../JotaiData_temp/jotaiData";
+import { topicsData } from "../../../JotaiData/jotaiData";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { NumStr, topicData, wordData } from "../../../Types_temp/interfaces";
-import { findIndexOfELement } from "../../../Function_temp/findElementByID";
-import { generateUnicID } from "../../../Function_temp/GenerateUnicID";
+import { NumStr, topicData, wordData } from "../../../Types/interfaces";
+import { findIndexOfELement } from "../../../Function/findElementByID";
+import { generateUnicID } from "../../../Function/GenerateUnicID";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 
 interface IdialogWordDataProps extends Omit<ICustomDialogProps, "title"> {

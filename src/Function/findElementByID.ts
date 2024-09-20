@@ -1,4 +1,4 @@
-import { NumStr } from "../Types_temp/interfaces";
+import { NumStr } from "../Types/interfaces";
 
 interface myType {
    id: NumStr;

@@ -1,7 +1,7 @@
 import Card from "./Card/Card";
 import styles from "./MainScreen.module.scss";
 import ImgTag from "../../UI/CustomImage/CustomImageTag";
-import { settingsDataConst, topicsData } from "../../JotaiData_temp/jotaiData";
+import { settingsDataConst, topicsData } from "../../JotaiData/jotaiData";
 import { useAtom, useAtomValue } from "jotai";
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
 import DialogCreateNewSection from "./Dialogs/DialogCreateNewSection";
@@ -9,7 +9,7 @@ import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import { filterList } from "./MyFunction/sortFilter";
 import DialogFilter from "./Dialogs/DialogFilter";
 import { MouseEvent, useState } from "react";
-import { topicData } from "../../Types_temp/interfaces";
+import { topicData } from "../../Types/interfaces";
 
 function MainScreen(): JSX.Element {
    const [topicList] = useAtom(topicsData)

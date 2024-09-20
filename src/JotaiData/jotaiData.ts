@@ -1,4 +1,4 @@
-import { topicData, IsettingsData } from "../Types_temp/interfaces";
+import { topicData, IsettingsData } from "../Types/interfaces";
 import { atomWithStorage } from "jotai/utils";
 // import { DEVTopicData } from "../DevData/TopicListConst";
 
