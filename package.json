@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,6 +12,7 @@
   },
   "dependencies": {
     "@react-spring/web": "^9.5.5",
+    "gh-pages": "^6.1.1",
     "jotai": "^2.9.2",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
