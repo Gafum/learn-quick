@@ -4,10 +4,11 @@ import useGetParams from "./useGetParams";
 import { NumStr, topicData, wordData } from "../Types/interfaces";
 import { findElemByID } from "../Function/findElementByID";
 import { shuffleArray } from "../Function/shufleArray";
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { topicsData } from "../JotaiData/jotaiData";
 
 interface ItestData {
+   isLoading: boolean;
    topicData: topicData[];
    setTopicData: (prev: (prev: topicData[]) => topicData[]) => void;
    setNewParamInTopicData: (data: IchangeParams) => void;
@@ -22,16 +23,26 @@ interface IchangeParams extends Omit<IchangeParamsProps, "sectionId"> { }
 
 function useTestData(): ItestData {
    const [topicData, setTopicData] = useAtom<topicData[]>(topicsData)
-   const { setNewParamInTopicData } = useChangeParamsInList();
-
+   const [isLoading, setIsLoading] = useState(true)
    const sectionId = useGetParams(topicData)
 
    const [myIterableList, setMyIterableList] = useState<wordData[]>(
-      shuffleArray(findElemByID<topicData>(topicData, sectionId).data).sort(
-         (a, b) => a.rate > b.rate ? -1 : 1)
+      []
    );
 
+   useEffect(() => {
+      if (topicData.length > 0) {
+         setMyIterableList(shuffleArray(findElemByID<topicData>
+            (topicData, sectionId).data)
+            .sort((a, b) => a.rate > b.rate ? -1 : 1))
+         setIsLoading(false)
+      }
+   }, [topicData])
+
+   const { setNewParamInTopicData } = useChangeParamsInList();
+
    return {
+      isLoading,
       topicData,
       setTopicData,
       setNewParamInTopicData: (data: IchangeParams) => {

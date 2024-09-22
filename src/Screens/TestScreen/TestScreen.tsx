@@ -7,6 +7,7 @@ import { findElemByID } from "../../Function/findElementByID";
 
 function TestScreen(): JSX.Element {
    const {
+      isLoading,
       topicData,
       setNewParamInTopicData,
       sectionId,
@@ -23,8 +24,10 @@ function TestScreen(): JSX.Element {
 
 
    useEffect(() => {
-      startTest();
-   }, [])
+      if (!isLoading) {
+         startTest();
+      }
+   }, [isLoading])
 
    function startTest() {
       setMyIterableList(() => {
@@ -58,6 +61,9 @@ function TestScreen(): JSX.Element {
       setTestNumber(prev => prev + 1)
    }
 
+   if (isLoading) {
+      return <h2 style={{ width: "100%", textAlign: "center" }}>Loading...</h2>
+   }
 
    return (
       <TestScreenComponent

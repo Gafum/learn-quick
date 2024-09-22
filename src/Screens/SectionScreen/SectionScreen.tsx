@@ -1,5 +1,3 @@
-import { topicsData } from "../../JotaiData/jotaiData";
-import { useAtomValue } from "jotai";
 import WordCard from "./WordCard/WordCard";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import ImgTag from "../../UI/CustomImage/CustomImageTag";
@@ -9,20 +7,15 @@ import styles from "./SectionScreen.module.scss";
 import { NumStr, wordData } from "../../Types/interfaces";
 import { findElemByID } from "../../Function/findElementByID";
 import DialogCreateNewWord from "./Dialogs/DialogCreateNewWord";
-import useGetParams from "../../Hooks/useGetParams";
+
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
+import useTestData from "../../Hooks/useTestData";
 
 
 function SectionScreen(): JSX.Element {
 
-   let backTopicList = useAtomValue(topicsData)
-
-   const sectionId = useGetParams(backTopicList)
-
-   //Create Main List
-   const myIterableList = findElemByID(backTopicList, sectionId).data as wordData[]
-   if (!myIterableList) throw new Error("Page not Found");
+   const { isLoading, sectionId, myIterableList } = useTestData()
 
    const {
       show: showModule,
@@ -38,6 +31,10 @@ function SectionScreen(): JSX.Element {
          rate: 0,
       });
 
+   if (isLoading) {
+      return <h2 style={{ width: "100%", textAlign: "center" }}>Loading...</h2>
+   }
+
    function editCard(id: NumStr) {
       setItemData(findElemByID(myIterableList, id))
       setShowModule(true)
@@ -52,6 +49,10 @@ function SectionScreen(): JSX.Element {
          rate: 0,
       })
       setShowModule(true);
+   }
+
+   if (isLoading) {
+      return <h2 style={{ width: "100%", textAlign: "center" }}>Loading...</h2>
    }
 
    return (<>

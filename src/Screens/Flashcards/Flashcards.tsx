@@ -11,6 +11,7 @@ import useTestData from "../../Hooks/useTestData";
 
 function Flashcards(): JSX.Element {
    const {
+      isLoading,
       setNewParamInTopicData,
       myIterableList,
       setMyIterableList,
@@ -64,6 +65,9 @@ function Flashcards(): JSX.Element {
       setMyIterableList(localWordList)
    }
 
+   if (isLoading) {
+      return <h2 style={{ width: "100%", textAlign: "center" }}>Loading...</h2>
+   }
 
    return (
       <div className={styles.flashcardsScreen}>

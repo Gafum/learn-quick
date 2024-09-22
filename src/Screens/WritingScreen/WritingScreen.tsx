@@ -13,6 +13,7 @@ import { oneStyleString } from "../../Function/oneStyleString";
 
 function WritingScreen(): JSX.Element {
    const {
+      isLoading,
       myIterableList,
       resetData,
       reduceRate,
@@ -68,13 +69,17 @@ function WritingScreen(): JSX.Element {
 
    //Reset Data when Module closed 
    useEffect(() => {
-      if (!showModule) {
+      if (!showModule && !isLoading) {
          resetData()
          setTestNumber(0)
          setScore(0)
          setValue("");
       }
-   }, [showModule])
+   }, [showModule, isLoading])
+
+   if (isLoading) {
+      return <h2  style={{ width: "100%", textAlign: "center" }}>Loading...</h2>
+   }
 
    return (
       <div className={styles.writingScreen}>

@@ -34,7 +34,9 @@ function ChooseTest(): JSX.Element {
    const listIsEmpty = useMemo(
       () => {
          if (!sectionId) { return true }
-
+         if (alltopicsData.length == 0) {
+            return true
+         }
          return findElemByID(alltopicsData, sectionId).data.length <= 0;
       },
       [alltopicsData, sectionId])
