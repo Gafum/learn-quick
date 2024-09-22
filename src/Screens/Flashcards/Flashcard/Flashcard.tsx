@@ -9,14 +9,15 @@ import { settingsDataConst } from "../../../JotaiData/jotaiData";
 interface flashCard extends realWordData {
    hardWordFunk: (event: MouseEvent) => void;
    isTipCard?: boolean;
+   isCurrentCard: boolean;
 }
-
 
 function Flashcards({
    word,
    meaning,
    img,
    rate = 0,
+   isCurrentCard = false,
    hardWordFunk,
    isTipCard = false,
 }: flashCard): JSX.Element {
@@ -28,6 +29,7 @@ function Flashcards({
 
    function flipCard() {
       if (!cardElement.current) return;
+      if (!isCurrentCard) return;
       cardElement.current.classList.toggle(styles.flipped);
    }
 

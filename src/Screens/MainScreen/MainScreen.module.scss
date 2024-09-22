@@ -133,8 +133,8 @@
    .cards {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      width: fit-content;
-      margin: 40px auto;
+      width: 100%;
+      margin: 40px 0;
    }
 }
 

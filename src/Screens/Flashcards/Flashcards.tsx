@@ -71,9 +71,10 @@ function Flashcards(): JSX.Element {
             <Slider afterChange={currentElementSetter} {...sliderSettings}>
                {myIterableList.map((element: wordData, index) =>
                   <Flashcard
-                     {...element}
-                     hardWordFunk={addHardWord}
                      key={element.id}
+                     {...element}
+                     isCurrentCard={currentCardIndex == index}
+                     hardWordFunk={addHardWord}
                      {...index == 0 && { isTipCard: true }}
                   />
                )}
