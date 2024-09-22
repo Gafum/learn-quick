@@ -23,6 +23,7 @@ interface IchangeParams extends Omit<IchangeParamsProps, "sectionId"> { }
 
 function useTestData(): ItestData {
    const [topicData, setTopicData] = useAtom<topicData[]>(topicsData)
+   const [isLoadedFromStorage, setIsLoadedFromStorage] = useState(false);
    const [isLoading, setIsLoading] = useState(true)
    const sectionId = useGetParams(topicData)
 
@@ -31,13 +32,21 @@ function useTestData(): ItestData {
    );
 
    useEffect(() => {
-      if (topicData.length > 0) {
+      if (!isLoadedFromStorage) {
+         setIsLoadedFromStorage(true);
+      } else {
+         setIsLoading(false);
+
+         if (topicData.length == 0) {
+            throw new Error("Can't find data. 400 error");
+         }
+
          setMyIterableList(shuffleArray(findElemByID<topicData>
             (topicData, sectionId).data)
             .sort((a, b) => a.rate > b.rate ? -1 : 1))
-         setIsLoading(false)
+
       }
-   }, [topicData])
+   }, [topicData, isLoadedFromStorage]);
 
    const { setNewParamInTopicData } = useChangeParamsInList();
 
