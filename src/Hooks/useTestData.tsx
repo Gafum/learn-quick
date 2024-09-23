@@ -21,7 +21,11 @@ interface ItestData {
 
 interface IchangeParams extends Omit<IchangeParamsProps, "sectionId"> { }
 
-function useTestData(): ItestData {
+interface IuseTestDataProps {
+   updateIterableList?: boolean
+}
+
+function useTestData({ updateIterableList = false }: IuseTestDataProps = {}): ItestData {
    const [topicData, setTopicData] = useAtom<topicData[]>(topicsData)
    const [isLoadedFromStorage, setIsLoadedFromStorage] = useState(false);
    const [isLoading, setIsLoading] = useState(true)
@@ -35,18 +39,25 @@ function useTestData(): ItestData {
       if (!isLoadedFromStorage) {
          setIsLoadedFromStorage(true);
       } else {
-         setIsLoading(false);
+         if (isLoading) {
+            setIsLoading(false);
 
-         if (topicData.length == 0) {
-            throw new Error("Can't find data. 400 error");
+            if (topicData.length == 0) {
+               throw new Error("Can't find data. 400 error");
+            }
+
+            setMyIterableList(shuffleArray(findElemByID<topicData>
+               (topicData, sectionId).data)
+               .sort((a, b) => a.rate > b.rate ? -1 : 1))
          }
 
-         setMyIterableList(shuffleArray(findElemByID<topicData>
-            (topicData, sectionId).data)
-            .sort((a, b) => a.rate > b.rate ? -1 : 1))
-
+         if (updateIterableList) {
+            setMyIterableList(shuffleArray(findElemByID<topicData>
+               (topicData, sectionId).data)
+               .sort((a, b) => a.rate > b.rate ? -1 : 1))
+         }
       }
-   }, [topicData, isLoadedFromStorage]);
+   }, [topicData, isLoadedFromStorage, isLoading]);
 
    const { setNewParamInTopicData } = useChangeParamsInList();
 

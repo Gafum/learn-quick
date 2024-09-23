@@ -115,8 +115,6 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
                itemData.id)
             , 1)
 
-         console.log(localList);
-
          return localList;
       })
 
@@ -165,7 +163,7 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
                         <div className={styles.inputSelectImg}>
                            <label htmlFor="files">
                               <ImgTag src="/file.svg" />
-                              <span>{image ? image : "Browse image"}</span>
+                              <span>{image ? image.slice(0, 25) : "Browse image"}</span>
                            </label>
                            <input
                               id="files"
@@ -177,7 +175,7 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
                         </div>
                         <CustomInput
                            hint="Write link to the image"
-                           value={image}
+                           value={image.slice(0, 25)}
                            setValue={setImage}
                            required={false}
                         />

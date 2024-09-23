@@ -15,7 +15,7 @@ import useTestData from "../../Hooks/useTestData";
 
 function SectionScreen(): JSX.Element {
 
-   const { isLoading, sectionId, myIterableList } = useTestData()
+   const { isLoading, sectionId, myIterableList } = useTestData({ updateIterableList: true })
 
    const {
       show: showModule,
@@ -78,7 +78,7 @@ function SectionScreen(): JSX.Element {
       >
          <Masonry className={styles.sectionScreen} gutter="10px">
 
-            {myIterableList.map((e: wordData) => <WordCard editElement={editCard} {...e} key={e.id} />)}
+            {myIterableList.sort((a, b) => a.id > b.id ? 1 : -1).map((e: wordData) => <WordCard editElement={editCard} {...e} key={e.id} />)}
          </Masonry>
       </ResponsiveMasonry>
 

@@ -11,8 +11,10 @@
          box-shadow: 0px 0px 10px 0 rgba(1, 25, 54, 0.25);
       }
    }
-   &:focus {
-      filter: brightness(1.25);
-      box-shadow: 0px 0px 10px 0 rgba(1, 25, 54, 0.25);
+   @media (hover: hover) {
+      &:focus {
+         filter: brightness(1.25);
+         box-shadow: 0px 0px 10px 0 rgba(1, 25, 54, 0.25);
+      }
    }
 }
