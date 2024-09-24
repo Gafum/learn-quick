@@ -1,30 +1,27 @@
-# React + TypeScript + Vite
+# Learn Quick
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**LINK:** [Learn Quick](https://learn-quick-mu.vercel.app/)
 
-Currently, two official plugins are available:
+**Learn Quick** is a web application designed for studying vocabulary through flashcards, quizzes, and other exercises. Built with **React.js** on **Vite** using **TypeScript**, it provides an intuitive way to create and manage categories, where users can add custom flashcards to help them focus on specific topics of interest.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+-  **Custom Categories**: Create categories based on your learning criteria, making it easy to focus on topics you're interested in.
+-  **Flashcards**: Each category can contain flashcards with a front side for the word and a back side for its definition or image to aid visual learning.
+-  **Quizzes & Tasks**: Engage in various tasks and quizzes to reinforce learning.
+-  **Customizable Settings**: Adjust settings to make managing tasks in quizzes more convenient.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
 
-- Configure the top-level `parserOptions` property like this:
+-  React.js
+-  Vite
+-  TypeScript
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## Start Project
+
+You should simply install this project and at the console write
+
+```bash
+npm install
+npm run dev
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
