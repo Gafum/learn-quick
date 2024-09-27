@@ -11,19 +11,21 @@
       width: 100%;
       height: 100%;
 
-      > div > input {
+      >div>input {
          margin: 0 0 15px;
       }
 
-      button {
+      >button {
          width: 100%;
          margin-top: 5px;
+
          &.addImgBtn {
             background-color: var(--main-contrast-color);
          }
 
          &.deleteBtn {
             background-color: var(--main-red-color);
+
             @media (hover: hover) {
                &:hover {
                   filter: brightness(1.13);
@@ -51,9 +53,11 @@
             gap: 17px;
             max-width: 60%;
             width: 100%;
+
             .inputSelectImg {
                width: 100%;
-               > label {
+
+               >label {
                   padding: 3px 8px;
                   cursor: pointer;
                   border: 1px solid var(--main-text-color);
@@ -68,9 +72,11 @@
                   word-break: keep-all;
                   white-space: nowrap;
                   transition: box-shadow 0.2s;
-                  > img {
+
+                  >img {
                      width: 20px;
                   }
+
                   @media (hover: hover) {
                      &:hover {
                         box-shadow: 0px 0px 3px var(--main-text-color);
@@ -82,15 +88,33 @@
 
          .selectedImg {
             width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             align-content: center;
+            position: relative;
 
             img {
                width: 50px;
                max-height: 100px;
                border-radius: 4px;
+            }
+
+            >button.deleteImgBtn {
+               width: fit-content;
+               height: 40px;
+               width: 40px;
+               position: absolute;
+               right: 0;
+               top: 0;
+               display: block;
+
+               svg {
+                  margin: 0;
+                  width: 20px;
+               }
+
             }
          }
       }
@@ -108,6 +132,7 @@
 @media (max-width: 440px) {
    .addWordBlock .addWordForm .imageSelector {
       flex-direction: column;
+
       .imageSelectorInputs {
          max-width: 100%;
       }
