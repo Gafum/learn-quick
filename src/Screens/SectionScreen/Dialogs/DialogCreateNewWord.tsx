@@ -175,7 +175,7 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
                         </div>
                         <CustomInput
                            hint="Write link to the image"
-                           value={image}
+                           value={image.slice(0, 200)}
                            setValue={setImage}
                            required={false}
                         />
