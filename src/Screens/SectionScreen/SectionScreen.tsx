@@ -58,14 +58,15 @@ function SectionScreen(): JSX.Element {
    return (<>
       {/* Main List */}
       {myIterableList.length == 0 ?
-         <div style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 15,
-            textAlign: "center",
-            width: 300,
-            margin: "auto"
-         }} >
+         <div
+            style={{
+               display: "flex",
+               flexDirection: "column",
+               gap: 15,
+               textAlign: "center",
+               width: 300,
+               margin: "auto"
+            }} >
             You have no Cards
             <CustomBtn onClick={openDialog}>
                Create Card
@@ -73,12 +74,21 @@ function SectionScreen(): JSX.Element {
          </div >
          : ""
       }
+
       <ResponsiveMasonry
          columnsCountBreakPoints={{ 0: 1, 300: 2, 450: 3, 600: 4, 800: 5, 1000: 6, 1300: 7 }}
       >
          <Masonry className={styles.sectionScreen} gutter="10px">
 
-            {myIterableList.sort((a, b) => a.id > b.id ? 1 : -1).map((e: wordData) => <WordCard editElement={editCard} {...e} key={e.id} />)}
+            {myIterableList.sort(
+               (a, b) => a.id > b.id ? 1 : -1).map(
+                  (e: wordData) =>
+                     <WordCard
+                        editElement={editCard}
+                        {...e}
+                        key={e.id}
+                     />
+               )}
          </Masonry>
       </ResponsiveMasonry>
 
