@@ -11,11 +11,12 @@ import DialogCreateNewWord from "./Dialogs/DialogCreateNewWord";
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import useTestData from "../../Hooks/useTestData";
+import React from "react";
 
 
 function SectionScreen(): JSX.Element {
 
-   const { isLoading, sectionId, myIterableList } = useTestData({ updateIterableList: true })
+   const { isLoading, sectionId, myIterableList, setNewParamInTopicData } = useTestData({ updateIterableList: true })
 
    const {
       show: showModule,
@@ -38,6 +39,18 @@ function SectionScreen(): JSX.Element {
    function editCard(id: NumStr) {
       setItemData(findElemByID(myIterableList, id))
       setShowModule(true)
+   }
+
+   function toggleFavorites(event:React.MouseEvent, id: NumStr) {
+      event?.preventDefault()
+      event?.stopPropagation()
+      setNewParamInTopicData(
+         {
+            id: id,
+            param: "rate",
+            newData: findElemByID(myIterableList, id).rate <= 0 ? 10 : 0,
+         }
+      )
    }
 
    function openDialog() {
@@ -85,6 +98,7 @@ function SectionScreen(): JSX.Element {
                   (e: wordData) =>
                      <WordCard
                         editElement={editCard}
+                        toggleFavorites={toggleFavorites}
                         {...e}
                         key={e.id}
                      />
