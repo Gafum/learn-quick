@@ -89,18 +89,17 @@
 
    .favoriteBtn {
       position: absolute;
-      top: 1px;
-      left: 3px;
+      top: 3px;
+      right: 5px;
       z-index: 4;
       width: 20px;
       height: 20px;
-      >svg{
-         stroke: #ffffff;
-         // fill: transparent;
-         transition: all 0.2s;
+      > svg {
+         stroke: var(--main-bg-color);
+         fill: #fff;
+         filter: drop-shadow(0px 0px 5px #fff);
       }
    }
-
 }
 
 @media (max-width: 300px) {
