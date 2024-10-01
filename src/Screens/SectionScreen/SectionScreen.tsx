@@ -9,9 +9,9 @@ import { findElemByID } from "../../Function/findElementByID";
 import DialogCreateNewWord from "./Dialogs/DialogCreateNewWord";
 
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
-import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import useTestData from "../../Hooks/useTestData";
 import React from "react";
+import DataNotFound from "../../Components/DataNotFound/DataNotFound";
 
 
 function SectionScreen(): JSX.Element {
@@ -41,7 +41,7 @@ function SectionScreen(): JSX.Element {
       setShowModule(true)
    }
 
-   function toggleFavorites(event:React.MouseEvent, id: NumStr) {
+   function toggleFavorites(event: React.MouseEvent, id: NumStr) {
       event?.preventDefault()
       event?.stopPropagation()
       setNewParamInTopicData(
@@ -71,20 +71,7 @@ function SectionScreen(): JSX.Element {
    return (<>
       {/* Main List */}
       {myIterableList.length == 0 ?
-         <div
-            style={{
-               display: "flex",
-               flexDirection: "column",
-               gap: 15,
-               textAlign: "center",
-               width: 300,
-               margin: "auto"
-            }} >
-            You have no Cards
-            <CustomBtn onClick={openDialog}>
-               Create Card
-            </CustomBtn >
-         </div >
+         <DataNotFound text="You have no Cards" btnText="Create Card" callback={openDialog} />
          : ""
       }
 

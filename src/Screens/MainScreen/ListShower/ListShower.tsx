@@ -5,6 +5,7 @@ import styles from "../MainScreen.module.scss";
 import { useAtom, useAtomValue } from "jotai";
 import { settingsDataConst, topicsData } from "../../../JotaiData/jotaiData";
 import { topicData } from "../../../Types/interfaces";
+import DataNotFound from "../../../Components/DataNotFound/DataNotFound";
 
 interface IListShowerProps {
    setNewComponentData: React.Dispatch<React.SetStateAction<topicData>>;
@@ -23,28 +24,23 @@ function ListShower({
    const { filterParams } = useAtomValue(settingsDataConst)
 
    if (topicList.length == 0) {
-      return <div style={{
-         display: "flex",
-         flexDirection: "column",
-         gap: 15,
-         textAlign: "center",
-         width: 300,
-         margin: "auto"
-      }}>
-         You have no categories
-         <CustomBtn
-            onClick={() => {
-               setNewComponentData({
-                  id: "",
-                  data: [],
-                  name: "",
-                  icon: "language"
-               })
-               setShowAddSection(true)
-            }}>
-            Create new Category
-         </CustomBtn>
-      </div>
+      return (
+         <>
+            <DataNotFound
+               text={"You have no categories"}
+               btnText={"Create new Category"}
+               callback={() => {
+                  setNewComponentData({
+                     id: "",
+                     data: [],
+                     name: "",
+                     icon: "language"
+                  })
+                  setShowAddSection(true)
+               }}
+            />
+         </>
+      )
 
    } else {
       return <>
