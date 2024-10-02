@@ -58,10 +58,11 @@ header {
       align-content: center;
       gap: 20px;
 
+      //Link Component
       a {
          font-size: 25px;
          color: white;
-         font-weight: bold;
+         font-weight: 500;
          text-wrap: nowrap;
          transition: text-shadow 0.2s;
          @media (hover: hover) {
