@@ -1,4 +1,4 @@
-import { MouseEvent, useRef } from "react";
+import { MouseEvent, useCallback, useEffect, useRef } from "react";
 import { realWordData } from "../../../Types/interfaces";
 import styles from "./Flashcard.module.scss";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
@@ -26,6 +26,20 @@ function Flashcards({
    //Settings Data
    const { flashcards: flashCardSettigs } = useAtomValue(settingsDataConst)
    const whereIsImage = flashCardSettigs.whereIsImage.data;
+
+   const handleKeyDownFlipCard = useCallback((event: KeyboardEvent) => {
+      if (event.key == " ") {
+         flipCard()
+      }
+   }, [flipCard, cardElement, isCurrentCard]);
+
+   // add and remove keybord event handler
+   useEffect(() => {
+      window.addEventListener('keydown', handleKeyDownFlipCard);
+      return () => {
+         window.removeEventListener('keydown', handleKeyDownFlipCard);
+      };
+   }, [handleKeyDownFlipCard]);
 
    function flipCard() {
       if (!cardElement.current) return;

@@ -1,6 +1,6 @@
 import Flashcard from "./Flashcard/Flashcard";
 import Slider from "react-slick";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
 import { wordData } from "../../Types/interfaces";
 import styles from "./Flashcards.module.scss";
 import "./Flashcard/SliderSettings.scss"
@@ -19,6 +19,52 @@ function Flashcards(): JSX.Element {
    } = useTestData()
 
    const [currentCardIndex, setCurrentCardIndex] = useState<number>(0)
+
+   const flaschcardsSlider = useRef<Slider>(null);
+
+   // keybord Events
+   const handleKeyDown = useCallback((event: KeyboardEvent) => {
+      if (!flaschcardsSlider.current) return;
+
+      if (event.key === "ArrowRight" || event.key == "Enter") {
+         setCurrentCardIndex((prev) => {
+            if (prev <= 0) {
+               return 1;
+            }
+
+            if (prev >= myIterableList.length - 1) {
+               return myIterableList.length - 1;
+            }
+
+            return prev + 1;
+         })
+      } else if (event.key === "ArrowLeft") {
+         setCurrentCardIndex((prev) => {
+            if (prev == 0) {
+               return 0;
+            }
+
+            return prev - 1;
+         })
+      }
+
+   }, [flaschcardsSlider, myIterableList]);
+
+   // add and remove keybord event handler
+   useEffect(() => {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+         window.removeEventListener('keydown', handleKeyDown);
+      };
+   }, [handleKeyDown]);
+
+   // change cards when card index changes
+   useEffect(() => {
+      if (!flaschcardsSlider.current) return;
+
+      flaschcardsSlider.current.slickGoTo(currentCardIndex, true)
+   }, [currentCardIndex])
+
 
    function currentElementSetter(index: number) {
       setCurrentCardIndex(index)
@@ -72,7 +118,10 @@ function Flashcards(): JSX.Element {
    return (
       <div className={styles.flashcardsScreen}>
          <div className={styles.flashcards} >
-            <Slider afterChange={currentElementSetter} {...sliderSettings}>
+            <Slider
+               ref={flaschcardsSlider}
+               afterChange={currentElementSetter}
+               {...sliderSettings}>
                {myIterableList.map((element: wordData, index) =>
                   <Flashcard
                      key={element.id}
