@@ -20,35 +20,19 @@ function Flashcards(): JSX.Element {
 
    const [currentCardIndex, setCurrentCardIndex] = useState<number>(0)
 
-   const flaschcardsSlider = useRef<Slider>(null);
+   const refFlaschcardsSlider = useRef<Slider>(null);
 
    // keybord Events
    const handleKeyDown = useCallback((event: KeyboardEvent) => {
-      if (!flaschcardsSlider.current) return;
+      if (!refFlaschcardsSlider.current) return;
 
       if (event.key === "ArrowRight" || event.key == "Enter") {
-         setCurrentCardIndex((prev) => {
-            if (prev <= 0) {
-               return 1;
-            }
-
-            if (prev >= myIterableList.length - 1) {
-               return myIterableList.length - 1;
-            }
-
-            return prev + 1;
-         })
+         refFlaschcardsSlider.current.slickNext()
       } else if (event.key === "ArrowLeft") {
-         setCurrentCardIndex((prev) => {
-            if (prev == 0) {
-               return 0;
-            }
-
-            return prev - 1;
-         })
+         refFlaschcardsSlider.current.slickPrev()
       }
 
-   }, [flaschcardsSlider, myIterableList]);
+   }, [refFlaschcardsSlider, myIterableList]);
 
    // add and remove keybord event handler
    useEffect(() => {
@@ -57,14 +41,6 @@ function Flashcards(): JSX.Element {
          window.removeEventListener('keydown', handleKeyDown);
       };
    }, [handleKeyDown]);
-
-   // change cards when card index changes
-   useEffect(() => {
-      if (!flaschcardsSlider.current) return;
-
-      flaschcardsSlider.current.slickGoTo(currentCardIndex, true)
-   }, [currentCardIndex])
-
 
    function currentElementSetter(index: number) {
       setCurrentCardIndex(index)
@@ -119,7 +95,7 @@ function Flashcards(): JSX.Element {
       <div className={styles.flashcardsScreen}>
          <div className={styles.flashcards} >
             <Slider
-               ref={flaschcardsSlider}
+               ref={refFlaschcardsSlider}
                afterChange={currentElementSetter}
                {...sliderSettings}>
                {myIterableList.map((element: wordData, index) =>
