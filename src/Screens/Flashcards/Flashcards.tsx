@@ -6,7 +6,7 @@ import styles from "./Flashcards.module.scss";
 import "./Flashcard/SliderSettings.scss"
 import { sliderSettings } from "./SliderSetting";
 import useTestData from "../../Hooks/useTestData";
-
+import { m, LazyMotion, domAnimation } from "framer-motion";
 
 
 function Flashcards(): JSX.Element {
@@ -93,22 +93,30 @@ function Flashcards(): JSX.Element {
 
    return (
       <div className={styles.flashcardsScreen}>
-         <div className={styles.flashcards} >
-            <Slider
-               ref={refFlaschcardsSlider}
-               afterChange={currentElementSetter}
-               {...sliderSettings}>
-               {myIterableList.map((element: wordData, index) =>
-                  <Flashcard
-                     key={element.id}
-                     {...element}
-                     isCurrentCard={currentCardIndex == index}
-                     hardWordFunk={addHardWord}
-                     {...index == 0 && { isTipCard: true }}
-                  />
-               )}
-            </Slider>
-         </div>
+         <LazyMotion features={domAnimation}>
+            <m.div
+               style={{ height: "100%" }}
+               initial={{ opacity: 0, }}
+               animate={{ opacity: 1, }}
+               transition={{ duration: 0.3 }}
+               className={styles.flashcards}
+            >
+               <Slider
+                  ref={refFlaschcardsSlider}
+                  afterChange={currentElementSetter}
+                  {...sliderSettings}>
+                  {myIterableList.map((element: wordData, index) =>
+                     <Flashcard
+                        key={element.id}
+                        {...element}
+                        isCurrentCard={currentCardIndex == index}
+                        hardWordFunk={addHardWord}
+                        {...index == 0 && { isTipCard: true }}
+                     />
+                  )}
+               </Slider>
+            </m.div>
+         </LazyMotion>
       </div >
    );
 }

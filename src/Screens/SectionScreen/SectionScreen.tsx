@@ -12,6 +12,7 @@ import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
 import useTestData from "../../Hooks/useTestData";
 import React from "react";
 import DataNotFound from "../../Components/DataNotFound/DataNotFound";
+import { domAnimation, LazyMotion, m } from "framer-motion";
 
 
 function SectionScreen(): JSX.Element {
@@ -68,31 +69,38 @@ function SectionScreen(): JSX.Element {
       return <h2 style={{ width: "100%", textAlign: "center" }}>Loading...</h2>
    }
 
-   return (<>
-      {/* Main List */}
-      {myIterableList.length == 0 ?
-         <DataNotFound text="You have no Cards" btnText="Create Card" callback={openDialog} />
-         : ""
-      }
-
-      <ResponsiveMasonry
-         columnsCountBreakPoints={{ 0: 1, 300: 2, 450: 3, 600: 4, 800: 5, 1000: 6, 1300: 7 }}
+   return (<LazyMotion features={domAnimation}>
+      <m.div
+         style={{ height: "100%" }}
+         initial={{ opacity: 0, }}
+         animate={{ opacity: 1, }}
+         transition={{ duration: 0.3 }}
       >
-         <Masonry className={styles.sectionScreen} gutter="10px">
+         {/* Main List */}
+         {myIterableList.length == 0 ?
+            <DataNotFound text="You have no Cards" btnText="Create Card" callback={openDialog} />
+            : ""
+         }
 
-            {myIterableList.sort(
-               (a, b) => a.id > b.id ? 1 : -1).map(
-                  (e: wordData) =>
-                     <WordCard
-                        editElement={editCard}
-                        toggleFavorites={toggleFavorites}
-                        {...e}
-                        key={e.id}
-                     />
-               )}
-         </Masonry>
-      </ResponsiveMasonry>
+         <ResponsiveMasonry
+            columnsCountBreakPoints={{ 0: 1, 300: 2, 450: 3, 600: 4, 800: 5, 1000: 6, 1300: 7 }}
+         >
+            <Masonry className={styles.sectionScreen} gutter="10px">
 
+               {myIterableList.sort(
+                  (a, b) => a.id > b.id ? 1 : -1).map(
+                     (e: wordData) =>
+                        <WordCard
+                           editElement={editCard}
+                           toggleFavorites={toggleFavorites}
+                           {...e}
+                           key={e.id}
+                        />
+                  )}
+            </Masonry>
+         </ResponsiveMasonry>
+
+      </m.div>
       {/* Float Btn */}
       <button className={MianScreenStyles.floatBtn} onClick={openDialog} >
          <ImgTag src="/plus.svg" alt="+" style={{
@@ -107,7 +115,7 @@ function SectionScreen(): JSX.Element {
          sectionId={sectionId}
          itemData={itemData}
       />
-   </>
+   </LazyMotion>
    );
 }
 

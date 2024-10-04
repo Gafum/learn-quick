@@ -14,6 +14,7 @@
    right: 0;
    bottom: 0;
    padding: 5px;
+   animation: showDialog 0.2s;
    &.hide {
       display: none;
    }
@@ -74,5 +75,14 @@
          max-width: 90vw;
          min-width: 100px;
       }
+   }
+}
+
+@keyframes showDialog {
+   0% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
    }
 }

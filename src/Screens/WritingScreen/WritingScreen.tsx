@@ -9,6 +9,7 @@ import { settingsDataConst } from "../../JotaiData/jotaiData";
 import CustomDialog from "../../UI/CustomDialog/CustomDialog";
 import ImgTag from "../../UI/CustomImage/CustomImageTag";
 import { oneStyleString } from "../../Function/oneStyleString";
+import { m, LazyMotion, domAnimation } from "framer-motion";
 
 
 function WritingScreen(): JSX.Element {
@@ -78,11 +79,15 @@ function WritingScreen(): JSX.Element {
    }, [showModule, isLoading])
 
    if (isLoading) {
-      return <h2  style={{ width: "100%", textAlign: "center" }}>Loading...</h2>
+      return <h2 style={{ width: "100%", textAlign: "center" }}>Loading...</h2>
    }
 
-   return (
-      <div className={styles.writingScreen}>
+   return (<LazyMotion features={domAnimation}>
+      <m.div
+         style={{ height: "100%" }}
+         initial={{ opacity: 0, }}
+         animate={{ opacity: 1, }}
+         transition={{ duration: 0.3 }} className={styles.writingScreen}>
 
          <div className={styles1.questionComponent}>
             {showQuestion && <ImgTag src={myIterableList[testNumber].img} />}
@@ -115,7 +120,8 @@ function WritingScreen(): JSX.Element {
                </CustomBtn>
             </div>
          </CustomDialog>
-      </div>
+      </m.div>
+   </LazyMotion>
    );
 }
 

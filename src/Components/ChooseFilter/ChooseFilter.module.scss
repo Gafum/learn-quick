@@ -32,6 +32,7 @@
             + span {
                transition: color 0.2s;
                cursor: pointer;
+               transition: all 0.2s;
             }
             &:checked + span {
                color: var(--main-red-color);

@@ -5,6 +5,7 @@ import createAnswer from "./MyFunctions/CreateAnswer";
 import OneTest from "./OneTest/OneTest";
 import { useAtomValue } from "jotai";
 import { settingsDataConst } from "../../JotaiData/jotaiData";
+import { m, LazyMotion, domAnimation } from "framer-motion";
 
 
 
@@ -48,8 +49,12 @@ function TestScreenComponent({
       )
    }
 
-   return (
-      <div className={styles.testScreen}>
+   return (<LazyMotion features={domAnimation}>
+      <m.div
+         style={{ height: "100%" }}
+         initial={{ opacity: 0, }}
+         animate={{ opacity: 1, }}
+         transition={{ duration: 0.3 }} className={styles.testScreen}>
          <OneTest
             wordData={myIterableList[testNumber]}
             nextTest={nextTest}
@@ -61,7 +66,8 @@ function TestScreenComponent({
                )
             }
          />
-      </div>
+      </m.div>
+   </LazyMotion>
    );
 }
 

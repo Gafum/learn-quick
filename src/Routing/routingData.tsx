@@ -66,7 +66,6 @@ function RouterComponent(conteinerData?: IRouterComponentProps): JSX.Element {
          <Conteiner {...conteinerData}>
             <Outlet />
          </Conteiner>
-
       </>
    );
 }

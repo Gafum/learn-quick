@@ -32,7 +32,11 @@ export function SimpleSelector({
    return (<>
       <div className={styles.parameterSelector}>
          <span>{data.question}</span>
-         <button onClick={(event) => invertParameter(event, listName, parameterName)} className={styles.chengerBtn}>
+         <button
+            onClick={
+               (event) => invertParameter(event, listName, parameterName)
+            }
+            className={styles.chengerBtn}>
             {data.data ? data.answes[0] : data.answes[1]}
 
             <svg viewBox="0 0 73 60" fill="none" xmlns="http://www.w3.org/2000/svg">
