@@ -10,6 +10,7 @@ import CustomDialog from "../../UI/CustomDialog/CustomDialog";
 import ImgTag from "../../UI/CustomImage/CustomImageTag";
 import { oneStyleString } from "../../Function/oneStyleString";
 import { m, LazyMotion, domAnimation } from "framer-motion";
+import { ScreensAnimation } from "../../CustomData/animation";
 
 
 function WritingScreen(): JSX.Element {
@@ -85,9 +86,9 @@ function WritingScreen(): JSX.Element {
    return (<LazyMotion features={domAnimation}>
       <m.div
          style={{ height: "100%" }}
-         initial={{ opacity: 0, }}
-         animate={{ opacity: 1, }}
-         transition={{ duration: 0.3 }} className={styles.writingScreen}>
+         className={styles.writingScreen}
+         {...ScreensAnimation}
+      >
 
          <div className={styles1.questionComponent}>
             {showQuestion && <ImgTag src={myIterableList[testNumber].img} />}

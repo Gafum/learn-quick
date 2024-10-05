@@ -8,6 +8,7 @@ header {
    left: 0;
    z-index: 5;
    margin-bottom: 30px;
+   transition: padding-bottom 0.4s;
 
    &.staticHader {
       position: static;
@@ -21,7 +22,7 @@ header {
       justify-content: center;
       align-items: center;
       align-content: center;
-      transition: padding-bottom 0.2s;
+      transition: padding-bottom 0.4s;
 
       .btnSection {
          min-height: 100%;
@@ -111,7 +112,7 @@ header {
 
 .sectionScreen {
    &.staticHader {
-      margin-bottom: 75px;
+      padding-bottom: 75px;
    }
    &.headerContent {
       padding-bottom: 30px;

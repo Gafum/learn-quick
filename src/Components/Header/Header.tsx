@@ -41,21 +41,22 @@ function Header(): JSX.Element {
                      </Link>
                   </div>
 
-                  {isSectionScreen && <div className={
-                     createClasses([styles.testsPosition])
-                  }>
-                     <Conteiner
-                        hasMaxWidth={false}
-                        newPadding={{
-                           t: 0,
-                           b: 0,
-                        }}
-                     >
-                        <div className={styles.testsBlock}>
-                           <ChooseTest />
-                        </div>
-                     </Conteiner>
-                  </div>}
+                  {isSectionScreen &&
+                     <div className={
+                        createClasses([styles.testsPosition])
+                     }>
+                        <Conteiner
+                           hasMaxWidth={false}
+                           newPadding={{
+                              t: 0,
+                              b: 0,
+                           }}
+                        >
+                           <div className={styles.testsBlock}>
+                              <ChooseTest sectionId={pathname.split("/")[2]} />
+                           </div>
+                        </Conteiner>
+                     </div>}
 
 
                </div>

@@ -7,6 +7,7 @@ import { useState } from "react";
 import { topicData } from "../../Types/interfaces";
 import ListShower from "./ListShower/ListShower";
 import { m, LazyMotion, domAnimation } from "framer-motion";
+import { ScreensAnimation } from "../../CustomData/animation";
 
 function MainScreen(): JSX.Element {
 
@@ -31,9 +32,7 @@ function MainScreen(): JSX.Element {
       <LazyMotion features={domAnimation}>
          <m.div
             style={{ height: "100%" }}
-            initial={{ opacity: 0, }}
-            animate={{ opacity: 1, }}
-            transition={{ duration: 0.3 }}
+            {...ScreensAnimation}
          >
             <ListShower
                setNewComponentData={setNewComponentData}

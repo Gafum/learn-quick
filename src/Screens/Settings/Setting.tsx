@@ -7,6 +7,7 @@ import { SettingsListGenerator } from "./SimpleSelector/SettingsListGenerator";
 import { settingsDataConst } from "../../JotaiData/jotaiData";
 import { useAtom } from "jotai";
 import { m, LazyMotion, domAnimation } from "framer-motion";
+import { ScreensAnimation } from "../../CustomData/animation";
 
 export interface paramInSettings {
    question: string;
@@ -22,10 +23,8 @@ function Settings(): JSX.Element {
       <LazyMotion features={domAnimation}>
          <m.div
             style={{ height: "100%" }}
-            initial={{ opacity: 0, }}
-            animate={{ opacity: 1, }}
-            transition={{ duration: 0.3 }}
             className={styles.settingsScreen}
+            {...ScreensAnimation}
          >
             {(Object.keys(settingsData) as (keyof IsettingsData)[])
                .map((elem: keyof IsettingsData) => {
@@ -44,7 +43,7 @@ function Settings(): JSX.Element {
                Reset Settings
             </CustomBtn>
          </m.div>
-      </LazyMotion>
+      </LazyMotion >
    );
 }
 

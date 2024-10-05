@@ -13,6 +13,7 @@ import useTestData from "../../Hooks/useTestData";
 import React from "react";
 import DataNotFound from "../../Components/DataNotFound/DataNotFound";
 import { domAnimation, LazyMotion, m } from "framer-motion";
+import { ScreensAnimation } from "../../CustomData/animation";
 
 
 function SectionScreen(): JSX.Element {
@@ -72,9 +73,7 @@ function SectionScreen(): JSX.Element {
    return (<LazyMotion features={domAnimation}>
       <m.div
          style={{ height: "100%" }}
-         initial={{ opacity: 0, }}
-         animate={{ opacity: 1, }}
-         transition={{ duration: 0.3 }}
+         {...ScreensAnimation}
       >
          {/* Main List */}
          {myIterableList.length == 0 ?

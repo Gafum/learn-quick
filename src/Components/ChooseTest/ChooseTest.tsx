@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./ChooseTest.module.scss";
 import { useAtomValue } from "jotai/react";
 import { topicsData } from "../../JotaiData/jotaiData";
@@ -25,8 +25,7 @@ const testTypes: { text: string, link: string }[] = [
    // },
 ]
 
-function ChooseTest(): JSX.Element {
-   let { sectionId } = useParams();
+function ChooseTest({ sectionId }: { sectionId: string | undefined }): JSX.Element {
    const navigate = useNavigate();
 
    const alltopicsData = useAtomValue(topicsData)
@@ -46,32 +45,34 @@ function ChooseTest(): JSX.Element {
       event.currentTarget.closest("." + styles.chooseTest)?.classList.toggle(styles.show)
    }
 
-   return <div className={styles.chooseTest}>
-      <button className={styles.openListBtn} onClick={toggleChoose}>
-         <div className={styles.animateComponent}>
-            <span></span>
-         </div>
-      </button>
-      <ul className={styles.chooseTestList} style={{ gridTemplateColumns: `repeat(${testTypes.length}, 1fr)` }}>
-         <div className={styles.invisibleBlock} />
-         {
-            testTypes.map(({ text, link }) => {
-               return (
+   return (
+      <div className={styles.chooseTest}>
+         <button className={styles.openListBtn} onClick={toggleChoose}>
+            <div className={styles.animateComponent}>
+               <span></span>
+            </div>
+         </button>
+         <ul className={styles.chooseTestList} style={{ gridTemplateColumns: `repeat(${testTypes.length}, 1fr)` }}>
+            <div className={styles.invisibleBlock} />
+            {
+               testTypes.map(({ text, link }) => {
+                  return (
 
-                  <li
-                     onClick={() => { if (!listIsEmpty) navigate(`/${link}/${sectionId}`) }}
-                     className={createClasses([
-                        styles.testType,
-                        listIsEmpty ? styles.disabled : styles.hasElements
-                     ])}
-                     key={link.toString()} >
-                     {text}
-                  </li>
-               )
-            })
-         }
-      </ul >
-   </div >
+                     <li
+                        onClick={() => { if (!listIsEmpty) navigate(`/${link}/${sectionId}`) }}
+                        className={createClasses([
+                           styles.testType,
+                           listIsEmpty ? styles.disabled : styles.hasElements
+                        ])}
+                        key={link.toString()} >
+                        {text}
+                     </li>
+                  )
+               })
+            }
+         </ul >
+      </div >
+   )
 
 }
 
