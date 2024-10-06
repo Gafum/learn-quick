@@ -7,7 +7,6 @@ header {
    top: 0;
    left: 0;
    z-index: 5;
-   margin-bottom: 30px;
    transition: padding-bottom 0.4s;
 
    &.staticHader {
@@ -112,7 +111,7 @@ header {
 
 .sectionScreen {
    &.staticHader {
-      padding-bottom: 75px;
+      padding-bottom: 65px;
    }
    &.headerContent {
       padding-bottom: 30px;
@@ -124,13 +123,13 @@ header {
       border-bottom-left-radius: 18px;
       border-bottom-right-radius: 18px;
       &.sectionScreen.staticHader {
-         margin-bottom: 50px;
+         padding-bottom: 45px;
       }
       .sectionScreen.headerContent {
          padding-bottom: 15px;
       }
       &.staticHader {
-         margin-bottom: 15px;
+         padding-bottom: 0;
       }
    }
 }

@@ -101,27 +101,28 @@ function WritingScreen(): JSX.Element {
             <CustomInput hint={"Write Answer"} value={value} setValue={setValue} />
             <CustomBtn>Check</CustomBtn>
          </form>
-         <CustomDialog show={showModule}
-            setShow={setShowModule}
-            title="Mistake"
-         >
-            <div className={styles.writingDialog}>
-               <h3>
-                  <span className={styles.wordTitle}>
-                     {myIterableList[testNumber].word}
-                  </span>
-                  <br /> = <br />
-                  <span className={styles.meaningTitle}>
-                     {myIterableList[testNumber].meaning}
-                  </span>
-               </h3>
-               <p>Your Score is {score} right answers</p>
-               <CustomBtn onClick={() => setShowModule(false)}>
-                  Repeat
-               </CustomBtn>
-            </div>
-         </CustomDialog>
+
       </m.div>
+      <CustomDialog show={showModule}
+         setShow={setShowModule}
+         title="Mistake"
+      >
+         <div className={styles.writingDialog}>
+            <h3>
+               <span className={styles.wordTitle}>
+                  {myIterableList[testNumber].word}
+               </span>
+               <br /> = <br />
+               <span className={styles.meaningTitle}>
+                  {myIterableList[testNumber].meaning}
+               </span>
+            </h3>
+            <p>Your Score is {score} right answers</p>
+            <CustomBtn onClick={() => setShowModule(false)}>
+               Repeat
+            </CustomBtn>
+         </div>
+      </CustomDialog>
    </LazyMotion>
    );
 }

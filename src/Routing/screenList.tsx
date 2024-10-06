@@ -46,6 +46,6 @@ export const screenList: IscreenParam[] =
          path: "/flashcards",
          component: <Flashcards />,
          hasSectionId: true,
-         whichConteiner: { newPadding: { t: 0, b: 40, l: 0, r: 0 } },
+         whichConteiner: { newPadding: { t: 15, b: 40, l: 0, r: 0 } },
       },
    ];
