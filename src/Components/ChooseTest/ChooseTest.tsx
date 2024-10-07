@@ -71,7 +71,7 @@ function ChooseTest({ sectionId }: { sectionId: string | undefined }): JSX.Eleme
                })
             }
          </ul >
-      </div >
+      </div>
    )
 
 }
