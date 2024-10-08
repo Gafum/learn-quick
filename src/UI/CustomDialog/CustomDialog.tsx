@@ -29,10 +29,13 @@ export function useCustomDialog<T>(data: T): ICustomHookDialogReturn<T> {
 }
 
 function CustomDialog({ children, show, setShow, title }: ICustomDialogProps): JSX.Element {
+   const [wasOpened, setwasOpened] = useState(true)
+
 
    useEffect(() => {
       if (show) {
          document.querySelector("body")!.style.overflow = "hidden";
+         setwasOpened(false)
       } else {
          document.querySelector("body")!.style.overflow = "auto";
       }
@@ -40,7 +43,15 @@ function CustomDialog({ children, show, setShow, title }: ICustomDialogProps): J
       , [show])
 
    return (
-      <div className={createClasses([styles.dialog, show ? "" : styles.hide])}
+      <div
+         className={
+            createClasses(
+               [
+                  styles.dialog,
+                  wasOpened ? styles.hidden : "",
+                  show ? "" : styles.hide
+               ])
+         }
          onClick={() => setShow(false)}
       >
 
