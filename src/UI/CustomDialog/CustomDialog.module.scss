@@ -14,10 +14,8 @@
    right: 0;
    bottom: 0;
    padding: 5px;
-   animation: showDialog 0.3s;
    &.hide {
-      animation: hideDialog 0.3s;
-      animation-fill-mode: forwards;
+      display: none;
    }
 
    .dialogConteiner {
@@ -76,32 +74,5 @@
          max-width: 90vw;
          min-width: 100px;
       }
-   }
-}
-
-.hidden {
-   display: none;
-}
-
-// Animation =======>
-@keyframes showDialog {
-   0% {
-      opacity: 0;
-   }
-   100% {
-      opacity: 1;
-   }
-}
-
-@keyframes hideDialog {
-   0% {
-      opacity: 1;
-   }
-   99% {
-      opacity: 0;
-      display: flex;
-   }
-   100% {
-      display: none;
    }
 }
