@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import { wordData } from "../../../Types/interfaces";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
+import styles from "../TestScreen.module.scss";
+import { shuffleArray } from "../../../Function/shufleArray";
+import { useAtomValue } from "jotai";
+import { settingsDataConst } from "../../../JotaiData/jotaiData";
+import ImgTag from "../../../UI/CustomImage/CustomImageTag";
+import { createClasses } from "../../../Function/createClasses";
+
+
 
 interface IOneTextProps {
    wordData: wordData;
    nextTest: (isRignt: boolean) => void;
    createdList: string[];
 }
-
-import styles from "../TestScreen.module.scss";
-import { shuffleArray } from "../../../Function/shufleArray";
-import { useAtomValue } from "jotai";
-import { settingsDataConst } from "../../../JotaiData/jotaiData";
-import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 
 function OneTest({ wordData, nextTest, createdList }: IOneTextProps): JSX.Element {
    const [isFalseAnswer, setFalseAnswer] = useState(false);
@@ -53,7 +55,9 @@ function OneTest({ wordData, nextTest, createdList }: IOneTextProps): JSX.Elemen
       <>
 
          <div className={styles.questionComponent}>
-            {showQuestion && <ImgTag src={wordData.img} />}
+            {
+               showQuestion && <ImgTag src={wordData.img} />
+            }
             <h3> {showBack ? wordData.meaning : wordData.word}</h3>
          </div>
 
@@ -67,9 +71,14 @@ function OneTest({ wordData, nextTest, createdList }: IOneTextProps): JSX.Elemen
                         key={"hiloghraas"[index]}
                         onClick={() => checkAnswer(isRight)}
                         className={
-                           isFalseAnswer ?
-                              isRight ? styles.greenBtn : styles.redBtn
-                              : ""
+                           createClasses(
+                              [
+                                 styles.answerBtn,
+                                 isFalseAnswer ?
+                                    isRight ? styles.greenBtn : styles.redBtn
+                                    : ""
+                              ]
+                           )
                         }
                      >
                         {element}
@@ -80,12 +89,13 @@ function OneTest({ wordData, nextTest, createdList }: IOneTextProps): JSX.Elemen
          </div>
 
          {
-            isFalseAnswer ?
-               <CustomBtn onClick={() => nextTest(false)}>
-                  Next
-               </CustomBtn >
-               :
-               <></>
+            isFalseAnswer &&
+            <CustomBtn
+               className={styles.repeateTest}
+               onClick={() => nextTest(false)}
+            >
+               Next
+            </CustomBtn>
          }
       </>
    );

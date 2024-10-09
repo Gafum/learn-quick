@@ -7,6 +7,7 @@ import { useAtomValue } from "jotai";
 import { settingsDataConst } from "../../JotaiData/jotaiData";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
+import { createClasses } from "../../Function/createClasses";
 
 
 
@@ -41,7 +42,7 @@ function TestScreenComponent({
 
    if (isFinished) {
       return (
-         <div className={styles.testScreen}>
+         <div className={createClasses([styles.testScreen, styles.resultInTest])}>
             <h3>Yor score: {score}/{testNumber + 1}</h3>
             <CustomBtn onClick={startTest}>
                Repeat

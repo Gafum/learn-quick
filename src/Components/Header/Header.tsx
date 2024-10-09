@@ -44,7 +44,8 @@ function Header(): JSX.Element {
 
                   <AnimatePresence mode="wait">
                      <LazyMotion features={domAnimation}>
-                        {isSectionScreen &&
+                        {
+                           isSectionScreen &&
                            <m.div
                               initial={{ opacity: 0, y: -15 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -65,7 +66,8 @@ function Header(): JSX.Element {
                                     <ChooseTest sectionId={pathname.split("/")[2]} />
                                  </div>
                               </Conteiner>
-                           </m.div>}
+                           </m.div>
+                        }
                      </LazyMotion>
                   </AnimatePresence>
 
