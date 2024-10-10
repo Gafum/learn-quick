@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useTestData from "../../Hooks/useTestData";
 import CustomInput, { useCustomInput } from "../../UI/CustomInput/CustomInput";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
@@ -35,8 +35,9 @@ function WritingScreen(): JSX.Element {
    const [score, setScore] = useState(0)
    const [testNumber, setTestNumber] = useState(0)
 
-   function checkAnswer() {
 
+   //Is answer right?
+   function checkAnswer() {
       let text2 = oneStyleString(whatAsk ? myIterableList[testNumber].meaning : myIterableList[testNumber].word)
 
       return oneStyleString(value) == text2
@@ -78,6 +79,28 @@ function WritingScreen(): JSX.Element {
          setValue("");
       }
    }, [showModule, isLoading])
+
+   // keybord Events
+   const handleKeyDown = useCallback((event: KeyboardEvent) => {
+      if (!showModule) return;
+      if (event.key === "Enter" || event.key === " ") {
+         resetData()
+         setTestNumber(0)
+         setScore(0)
+         setValue("");
+         setShowModule(false)
+      }
+
+   }, [showModule, setShowModule]);
+
+   // add and remove keybord event handler
+   useEffect(() => {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+         window.removeEventListener('keydown', handleKeyDown);
+      };
+   }, [handleKeyDown]);
+
 
    if (isLoading) {
       return <h2 style={{ width: "100%", textAlign: "center" }}>Loading...</h2>
