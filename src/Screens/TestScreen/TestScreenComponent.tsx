@@ -8,6 +8,7 @@ import { settingsDataConst } from "../../JotaiData/jotaiData";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
 import { createClasses } from "../../Function/createClasses";
+import { useCallback, useEffect } from "react";
 
 
 
@@ -40,6 +41,26 @@ function TestScreenComponent({
       )
    }
 
+   // keybord Events 
+   const handleKeyDown = useCallback((event: KeyboardEvent) => {
+
+      // Close score page with Enter
+      if (!isFinished) return;
+      if (event.key === "Enter") {
+         startTest()
+      }
+
+   }, [isFinished]);
+
+   // add and remove keybord event handler
+   useEffect(() => {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+         window.removeEventListener('keydown', handleKeyDown);
+      };
+   }, [handleKeyDown]);
+
+
    if (isFinished) {
       return (
          <div className={createClasses([styles.testScreen, styles.resultInTest])}>
@@ -59,7 +80,7 @@ function TestScreenComponent({
          <OneTest
             wordData={myIterableList[testNumber]}
             nextTest={nextTest}
-            createdList={
+            createdWrongListList={
                createAnswer(
                   myIterableList[testNumber].id,
                   myIterableList,

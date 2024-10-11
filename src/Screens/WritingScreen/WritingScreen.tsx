@@ -38,8 +38,10 @@ function WritingScreen(): JSX.Element {
 
    //Is answer right?
    function checkAnswer() {
+      //find right answer
       let text2 = oneStyleString(whatAsk ? myIterableList[testNumber].meaning : myIterableList[testNumber].word)
 
+      //check user Answer
       return oneStyleString(value) == text2
    }
 
@@ -84,10 +86,13 @@ function WritingScreen(): JSX.Element {
    const handleKeyDown = useCallback((event: KeyboardEvent) => {
       if (!showModule) return;
       if (event.key === "Enter" || event.key === " ") {
+         event.preventDefault(); // Enter will not work with input
+         
+         //Reset Data in Writing Screen
          resetData()
          setTestNumber(0)
          setScore(0)
-         setValue("");
+         setValue("")
          setShowModule(false)
       }
 
@@ -120,8 +125,8 @@ function WritingScreen(): JSX.Element {
             </h3>
          </div>
 
-         <form onSubmit={nextQuestion}>
-            <CustomInput hint={"Write Answer"} value={value} setValue={setValue} />
+         <form onSubmit={showModule ? () => { } : nextQuestion}>
+            <CustomInput hint={"Write Answer"} value={value} setValue={setValue} updateFocuseData={showModule} />
             <CustomBtn>Check</CustomBtn>
          </form>
 

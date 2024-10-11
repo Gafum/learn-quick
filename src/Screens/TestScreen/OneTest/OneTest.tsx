@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { wordData } from "../../../Types/interfaces";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 import styles from "../TestScreen.module.scss";
@@ -13,13 +13,12 @@ import { createClasses } from "../../../Function/createClasses";
 interface IOneTextProps {
    wordData: wordData;
    nextTest: (isRignt: boolean) => void;
-   createdList: string[];
+   createdWrongListList: string[];
 }
 
-function OneTest({ wordData, nextTest, createdList }: IOneTextProps): JSX.Element {
+function OneTest({ wordData, nextTest, createdWrongListList }: IOneTextProps): JSX.Element {
    const [isFalseAnswer, setFalseAnswer] = useState(false);
-   const [answerArray, setAnswerArray] = useState<string[]>(createdList);
-
+   const [answerArray, setAnswerArray] = useState<string[]>(createdWrongListList);
 
    //Settings Data
    const { tests: testsSettings } = useAtomValue(settingsDataConst)
@@ -37,6 +36,38 @@ function OneTest({ wordData, nextTest, createdList }: IOneTextProps): JSX.Elemen
       }
    }
 
+   // keybord Events
+   const handleKeyDown = useCallback((event: KeyboardEvent) => {
+      // Get Right answers Index local varible
+      let rightIndex = answerArray.findIndex(
+         (element) => (showBack ? wordData.word : wordData.meaning) == element
+      );
+
+      //Cheking wich key was pressed
+      if (event.key === "1") {
+         checkAnswer(rightIndex == 0)
+      } else if (event.key === "2") {
+         checkAnswer(rightIndex == 1)
+      } else if (event.key === "3") {
+         checkAnswer(rightIndex == 2)
+      } else if (event.key === "4") {
+         checkAnswer(rightIndex == 3)
+      } else if (event.key === "Enter") {
+         if (isFalseAnswer) {
+            nextTest(false)
+         }
+      }
+
+   }, [checkAnswer, wordData]);
+
+   // add and remove keybord event handler
+   useEffect(() => {
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+         window.removeEventListener('keydown', handleKeyDown);
+      };
+   }, [handleKeyDown]);
+
    //Generete answerArray when word Change
    useEffect(
       () => {
@@ -45,11 +76,12 @@ function OneTest({ wordData, nextTest, createdList }: IOneTextProps): JSX.Elemen
             shuffleArray(
                [
                   (showBack ? wordData.word : wordData.meaning),
-                  ...createdList
+                  ...createdWrongListList
                ]
             ).slice(0, 4))
       },
       [wordData])
+
 
    return (
       <>
