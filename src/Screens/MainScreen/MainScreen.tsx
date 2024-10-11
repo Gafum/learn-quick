@@ -42,19 +42,23 @@ function MainScreen(): JSX.Element {
          </m.div>
 
          {/* Float Btn */}
-         <button className={styles.floatBtn} onClick={() => {
-            setNewComponentData({
-               id: "",
-               data: [],
-               name: "",
-               icon: "language"
-            })
-            setShowAddSection(true)
-         }}>
+         <m.button
+            {...ScreensAnimation}
+            className={styles.floatBtn}
+            onClick={() => {
+               setNewComponentData({
+                  id: "",
+                  data: [],
+                  name: "",
+                  icon: "language"
+               })
+               setShowAddSection(true)
+            }}
+         >
             <ImgTag src="/plus.svg" style={{
                filter: "invert(1)"
             }} />
-         </button >
+         </m.button >
 
          {/* Dialogs */}
          <DialogCreateNewSection

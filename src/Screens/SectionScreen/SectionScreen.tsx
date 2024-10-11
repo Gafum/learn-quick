@@ -101,11 +101,15 @@ function SectionScreen(): JSX.Element {
 
       </m.div>
       {/* Float Btn */}
-      <button className={MianScreenStyles.floatBtn} onClick={openDialog} >
+      <m.button
+         {...ScreensAnimation}
+         className={MianScreenStyles.floatBtn}
+         onClick={openDialog}
+      >
          <ImgTag src="/plus.svg" alt="+" style={{
             filter: "invert(1)"
          }} />
-      </button >
+      </m.button>
 
       {/* Dialogs */}
       <DialogCreateNewWord
