@@ -1,5 +1,6 @@
 .addWordBlock {
-   min-width: 40vw;
+   min-width: 200px;
+   min-width: min(40vw, 680px);
    display: flex;
    justify-content: center;
    align-items: center;
@@ -11,11 +12,11 @@
       width: 100%;
       height: 100%;
 
-      >div>input {
+      > div > input {
          margin: 0 0 15px;
       }
 
-      >button {
+      > button {
          width: 100%;
          margin-top: 5px;
 
@@ -58,7 +59,7 @@
             .inputSelectImg {
                width: 100%;
 
-               >label {
+               > label {
                   padding: 3px 8px;
                   cursor: pointer;
                   border: 1px solid var(--main-text-color);
@@ -74,7 +75,7 @@
                   white-space: nowrap;
                   transition: box-shadow 0.2s;
 
-                  >img {
+                  > img {
                      width: 20px;
                   }
 
@@ -115,7 +116,6 @@
                svg {
                   width: 20px;
                }
-
             }
          }
       }
@@ -137,7 +137,7 @@
       .imageSelectorInputs {
          max-width: 100%;
       }
-      .selectedImg{
+      .selectedImg {
          position: relative;
          .deleteImgBtn {
             height: 20px;

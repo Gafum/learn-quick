@@ -1,6 +1,6 @@
 # Learn Quick
 
-**LINK:** [Learn Quick](https://learn-quick-mu.vercel.app/)
+**Link:** [Learn Quick](https://learn-quick-mu.vercel.app/)
 
 **Learn Quick** is a web application designed for studying vocabulary through flashcards, quizzes, and other exercises. Built with **React.js** on **Vite** using **TypeScript**, it provides an intuitive way to create and manage categories, where users can add custom flashcards to help them focus on specific topics of interest.
 

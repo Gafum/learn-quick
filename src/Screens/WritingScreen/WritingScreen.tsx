@@ -6,11 +6,11 @@ import styles from "./WritingScreen.module.scss";
 import styles1 from "../TestScreen/TestScreen.module.scss";
 import { useAtomValue } from "jotai";
 import { settingsDataConst } from "../../JotaiData/jotaiData";
-import CustomDialog from "../../UI/CustomDialog/CustomDialog";
 import ImgTag from "../../UI/CustomImage/CustomImageTag";
 import { oneStyleString } from "../../Function/oneStyleString";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
+import MistakeDialog from "./Dialogs/MistakeDialog";
 
 
 function WritingScreen(): JSX.Element {
@@ -87,7 +87,7 @@ function WritingScreen(): JSX.Element {
       if (!showModule) return;
       if (event.key === "Enter" || event.key === " ") {
          event.preventDefault(); // Enter will not work with input
-         
+
          //Reset Data in Writing Screen
          resetData()
          setTestNumber(0)
@@ -131,26 +131,16 @@ function WritingScreen(): JSX.Element {
          </form>
 
       </m.div>
-      <CustomDialog show={showModule}
-         setShow={setShowModule}
+
+      <MistakeDialog
          title="Mistake"
-      >
-         <div className={styles.writingDialog}>
-            <h3>
-               <span className={styles.wordTitle}>
-                  {myIterableList[testNumber].word}
-               </span>
-               <br /> = <br />
-               <span className={styles.meaningTitle}>
-                  {myIterableList[testNumber].meaning}
-               </span>
-            </h3>
-            <p>Your Score is {score} right answers</p>
-            <CustomBtn onClick={() => setShowModule(false)}>
-               Repeat
-            </CustomBtn>
-         </div>
-      </CustomDialog>
+         show={showModule}
+         setShow={setShowModule}
+         score={score}
+         word={myIterableList[testNumber].word}
+         meaning={myIterableList[testNumber].meaning}
+      />
+
    </LazyMotion>
    );
 }

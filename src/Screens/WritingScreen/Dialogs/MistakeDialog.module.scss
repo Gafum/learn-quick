@@ -1,0 +1,41 @@
+.writingDialog {
+   max-width: 680px;
+   max-width: max(50vw, 680px);
+   width: 100%;
+   min-width: auto;
+   min-width: min(40vw, 650px);
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+   gap: 15px;
+   flex-direction: column;
+   text-align: center;
+   h3 {
+      font-size: 20px;
+      color: var(--main-red-color);
+      margin-bottom: 20px;
+      span {
+         color: inherit;
+         font-size: inherit;
+      }
+   }
+   button {
+      width: 100%;
+   }
+   @media (max-width: 400px) {
+      & {
+         width: 80vw;
+         max-width: 80vw;
+      }
+      h3 {
+         font-size: 17px;
+      }
+      button {
+         font-size: 18px;
+      }
+      p {
+         font-size: 17px;
+      }
+   }
+}

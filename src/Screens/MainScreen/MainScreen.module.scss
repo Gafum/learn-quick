@@ -59,6 +59,7 @@
    text-align: center;
    flex-direction: column;
    gap: 20px;
+   max-width: 700px;
    h3 {
       color: var(--main-bg-color);
       font-size: 24px;
@@ -71,7 +72,8 @@
       align-content: center;
       flex-direction: column;
       gap: 6px;
-      min-width: 40vw;
+      min-width: 200px;
+      min-width: min(680px, 40vw);
       .selectImg {
          width: 150px;
          margin-bottom: 10px;
