@@ -4,7 +4,7 @@ import Conteiner from "../Conteiners/Conteiner";
 import ChooseTest from "../ChooseTest/ChooseTest";
 import { createClasses } from "../../Function/createClasses";
 import { useMemo } from "react";
-import { AnimatePresence, domAnimation, LazyMotion, m } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 function Header(): JSX.Element {
    const { pathname } = useLocation()
@@ -24,7 +24,7 @@ function Header(): JSX.Element {
                   <Link to={"/"}>Lern quick</Link>
                </div>
             </Conteiner>
-         </header >
+         </header>
          <header>
             <Conteiner hasMaxWidth={false}>
                <div className={
@@ -41,40 +41,37 @@ function Header(): JSX.Element {
                         <img src="/settings.svg" alt="settings" />
                      </Link>
                   </div>
-
                   <AnimatePresence mode="wait">
-                     <LazyMotion features={domAnimation}>
-                        {
-                           isSectionScreen &&
-                           <m.div
-                              initial={{ opacity: 0, y: -15 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              transition={{ duration: 0.4 }}
-                              exit={{ opacity: 0, transition: { duration: 0.4 } }}
-                              className={
-                                 createClasses([styles.testsPosition])
-                              }
+                     {
+                        isSectionScreen &&
+                        <motion.div
+                           initial={{ opacity: 0, y: -25 }}
+                           animate={{ opacity: 1, y: 0 }}
+                           transition={{ duration: 0.4 }}
+                           exit={{ opacity: 0, transition: { duration: 0.4 } }}
+                           className={
+                              styles.testsPosition
+                           }
+                        >
+
+                           <Conteiner
+                              hasMaxWidth={false}
+                              newPadding={{
+                                 t: 0,
+                                 b: 0,
+                              }}
                            >
-                              <Conteiner
-                                 hasMaxWidth={false}
-                                 newPadding={{
-                                    t: 0,
-                                    b: 0,
-                                 }}
-                              >
-                                 <div className={styles.testsBlock}>
-                                    <ChooseTest sectionId={pathname.split("/")[2]} />
-                                 </div>
-                              </Conteiner>
-                           </m.div>
-                        }
-                     </LazyMotion>
+                              <div className={styles.testsBlock}>
+                                 <ChooseTest sectionId={pathname.split("/")[2]} />
+                              </div>
+                           </Conteiner>
+
+                        </motion.div>
+                     }
                   </AnimatePresence>
-
-
                </div>
             </Conteiner>
-         </header >
+         </header>
       </>
    );
 }
