@@ -1,0 +1,26 @@
+.shortcutsBlock {
+   width: 100%;
+   .shortcutsList {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      padding-bottom: 20px;
+      li {
+         width: 100%;
+         display: flex;
+         justify-content: flex-start;
+         align-items: center;
+         align-content: center;
+         .line {
+            margin-left: 10px;
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: var(--main-bg-color);
+         }
+         > strong {
+            font-weight: 500;
+         }
+      }
+   }
+}

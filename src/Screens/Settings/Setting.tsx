@@ -8,6 +8,7 @@ import { settingsDataConst } from "../../JotaiData/jotaiData";
 import { useAtom } from "jotai";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
+import KeyboardShortcuts from "./KeyboardShortcuts/KeyboardShortcuts";
 
 export interface paramInSettings {
    question: string;
@@ -38,6 +39,8 @@ function Settings(): JSX.Element {
                   )
                })
             }
+
+            <KeyboardShortcuts />
 
             <CustomBtn className={styles.resetBtn} onClick={() => setSettingsData(RESET)}>
                Reset Settings
