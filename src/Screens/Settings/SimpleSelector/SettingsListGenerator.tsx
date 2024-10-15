@@ -19,7 +19,7 @@ export function SettingsListGenerator({
 
    if (listName == "filterParams") {
       return <div
-         className={createClasses([styles.section, styles.settingsScreen])}
+         className={createClasses([styles.section, styles.blockOfTest])}
       >
          <h3>Main Screen</h3>
          <ChooseFilter />
@@ -28,7 +28,7 @@ export function SettingsListGenerator({
 
    return (
       <div
-         className={createClasses([styles.section, styles.settingsScreen])}
+         className={createClasses([styles.section, styles.blockOfTest])}
          key={listName.toString()}
       >
          <h3>{listName}</h3>

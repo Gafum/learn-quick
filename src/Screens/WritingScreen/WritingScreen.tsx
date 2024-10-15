@@ -126,7 +126,16 @@ function WritingScreen(): JSX.Element {
          </div>
 
          <form onSubmit={showModule ? () => { } : nextQuestion}>
-            <CustomInput hint={"Write Answer"} value={value} setValue={setValue} updateFocuseData={showModule} />
+            <CustomInput
+               hint={"Write Answer"}
+               value={value}
+               setValue={
+                  (event) => {
+                     if (showModule) return;
+                     setValue(event)
+                  }
+               }
+               updateFocuseData={showModule} />
             <CustomBtn>Check</CustomBtn>
          </form>
 

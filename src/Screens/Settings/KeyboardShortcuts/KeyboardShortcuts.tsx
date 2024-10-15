@@ -7,7 +7,8 @@ const KeyboardShortcuts = () => {
    const [isOpen, setIsOpen] = useState(false);
 
    const toggleMenu = () => {
-      setIsOpen(!isOpen);
+
+      setIsOpen((prev) => !prev);
    };
 
    return (
@@ -22,26 +23,32 @@ const KeyboardShortcuts = () => {
                <motion.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
-                  transition={{ duration: 0.4 }}
-                  exit={{ opacity: 0, height: 0, transition: { duration: 0.4 } }}
+                  transition={{ duration: 0.2 }}
+                  exit={{ opacity: 0, height: 0, transition: { duration: 0.2 } }}
                >
                   <ul className={styles.shortcutsList}>
-                     <li><strong>Flashcards</strong> <span className={styles.line} /></li>
+                     <li><h3>Flashcards</h3> <span className={styles.line} /></li>
                      <li>
-                        <strong>Enter</strong> or <strong>→ (Right Arrow)</strong>: Go to the next card in Flashcards.
+                        <p>
+                           <strong>Enter</strong> or <strong>Right Arrow</strong>: Go to the next card in Flashcards.
+                        </p>
+
                      </li>
                      <li>
-                        <strong>← (Left Arrow)</strong>: Go to the previous card in Flashcards.
+                        <p>
+                           <strong>Left Arrow</strong>: Go to the previous card in Flashcards.
+                        </p>
                      </li>
                      <li>
-                        <strong>Spacebar</strong>: Flip the current card.
-                     </li>
-                     <li><strong>Test</strong><span className={styles.line} /></li>
-                     <li>
-                        <strong>1, 2, 3, 4</strong>: Select corresponding answers in tests.
+                        <p><strong>Spacebar</strong>: Flip the current card.</p>
                      </li>
                      <li>
-                        <strong>Enter</strong>: Repeat test in Writing and Standard Test.
+                        <h3>Test</h3><span className={styles.line} /></li>
+                     <li>
+                        <p><strong>1, 2, 3, 4</strong>: Select corresponding answers in tests.</p>
+                     </li>
+                     <li>
+                        <p><strong>Enter</strong>: Repeat test in Writing and Standard Test.</p>
                      </li>
                   </ul>
                </motion.div>

@@ -1,16 +1,25 @@
 .shortcutsBlock {
    width: 100%;
+   > button {
+      width: 100%;
+   }
    .shortcutsList {
       display: flex;
       flex-direction: column;
       gap: 5px;
-      padding-bottom: 20px;
+      padding: 10px 0 20px;
+      h3 {
+         font-weight: 500;
+      }
       li {
          width: 100%;
          display: flex;
          justify-content: flex-start;
          align-items: center;
          align-content: center;
+         &:not(:has(.line)) {
+            padding-left: 10px;
+         }
          .line {
             margin-left: 10px;
             display: block;
@@ -18,8 +27,29 @@
             height: 1px;
             background-color: var(--main-bg-color);
          }
-         > strong {
-            font-weight: 500;
+         p {
+            font-size: inherit;
+            > strong {
+               font-size: inherit;
+               font-weight: 500;
+               word-break: keep-all;
+               white-space: nowrap;
+            }
+         }
+      }
+   }
+}
+
+@media (max-width: 400px) {
+   .shortcutsBlock .shortcutsList {
+      h3 {
+         font-size: 18px;
+         font-weight: 400;
+      }
+      li {
+         font-size: 14px;
+         &:not(:has(.line)) {
+            padding-left: 6px;
          }
       }
    }

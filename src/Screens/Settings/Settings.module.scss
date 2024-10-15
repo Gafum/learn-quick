@@ -33,6 +33,11 @@
 }
 
 .settingsScreen {
+   padding-bottom: 250px;
+}
+
+.settingsScreen,
+.blockOfTest {
    width: 100%;
    display: flex;
    justify-content: center;
@@ -65,6 +70,12 @@
 
    > .resetBtn {
       width: 100%;
+      background-color: var(--main-red-color);
+      @media (hover: hover) {
+         &:hover {
+            filter: brightness(1.15);
+         }
+      }
    }
 }
 
