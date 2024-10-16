@@ -1,6 +1,6 @@
-import { paramInSettings } from "../Screens/Settings/Setting";
+import { IparamInSettings } from "../Screens/Settings/Setting";
 
-export interface wordData {
+export interface IWordData {
    readonly id: NumStr;
    word: string;
    meaning: string;
@@ -8,36 +8,32 @@ export interface wordData {
    img?: string;
 }
 
-export interface realWordData extends Omit<wordData, "rate"> {
-   rate?: number;
-}
-
-export interface topicData {
+export interface ITopicData {
    readonly id: NumStr;
    icon: string;
    name: string;
-   data: wordData[];
+   data: IWordData[];
 }
-
-export type NumStr = string | number;
 
 export interface IsettingsData {
    flashcards: {
-      showBack: paramInSettings;
-      whereIsImage: paramInSettings;
+      showBack: IparamInSettings;
+      whereIsImage: IparamInSettings;
    };
    tests: {
-      whatAsk: paramInSettings;
-      showQuestion: paramInSettings;
+      whatAsk: IparamInSettings;
+      showQuestion: IparamInSettings;
    };
    writing: {
-      whatAsk: paramInSettings;
-      showQuestion: paramInSettings;
+      whatAsk: IparamInSettings;
+      showQuestion: IparamInSettings;
    };
    filterParams: {
       selectedSortType: sortTypeNames;
-      reverseList: paramInSettings;
+      reverseList: IparamInSettings;
    };
 }
 
 export type sortTypeNames = "name" | "length" | "id" | "icon";
+
+export type NumStr = string | number;

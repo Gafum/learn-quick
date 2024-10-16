@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useTestData from "../../Hooks/useTestData";
 import CustomInput, { useCustomInput } from "../../UI/CustomInput/CustomInput";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
@@ -11,6 +11,7 @@ import { oneStyleString } from "../../Function/oneStyleString";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
 import MistakeDialog from "./Dialogs/MistakeDialog";
+import useHandleKeyDown from "../../Hooks/useHandleKeyDown";
 
 
 function WritingScreen(): JSX.Element {
@@ -35,6 +36,32 @@ function WritingScreen(): JSX.Element {
    const [score, setScore] = useState(0)
    const [testNumber, setTestNumber] = useState(0)
 
+   useHandleKeyDown({
+      callback: (event: KeyboardEvent) => {
+         if (!showModule) return;
+         if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault(); // Enter will not work with input
+
+            //Reset Data in Writing Screen
+            resetData()
+            setTestNumber(0)
+            setScore(0)
+            setValue("")
+            setShowModule(false)
+         }
+      },
+      dependencyList: [showModule, setShowModule]
+   })
+
+   //Reset Data when Module closed 
+   useEffect(() => {
+      if (!showModule && !isLoading) {
+         resetData()
+         setTestNumber(0)
+         setScore(0)
+         setValue("");
+      }
+   }, [showModule, isLoading])
 
    //Is answer right?
    function checkAnswer() {
@@ -71,41 +98,6 @@ function WritingScreen(): JSX.Element {
          setShowModule(true)
       }
    }
-
-   //Reset Data when Module closed 
-   useEffect(() => {
-      if (!showModule && !isLoading) {
-         resetData()
-         setTestNumber(0)
-         setScore(0)
-         setValue("");
-      }
-   }, [showModule, isLoading])
-
-   // keybord Events
-   const handleKeyDown = useCallback((event: KeyboardEvent) => {
-      if (!showModule) return;
-      if (event.key === "Enter" || event.key === " ") {
-         event.preventDefault(); // Enter will not work with input
-
-         //Reset Data in Writing Screen
-         resetData()
-         setTestNumber(0)
-         setScore(0)
-         setValue("")
-         setShowModule(false)
-      }
-
-   }, [showModule, setShowModule]);
-
-   // add and remove keybord event handler
-   useEffect(() => {
-      window.addEventListener('keydown', handleKeyDown);
-      return () => {
-         window.removeEventListener('keydown', handleKeyDown);
-      };
-   }, [handleKeyDown]);
-
 
    if (isLoading) {
       return <h2 style={{ width: "100%", textAlign: "center" }}>Loading...</h2>

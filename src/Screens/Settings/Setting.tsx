@@ -10,7 +10,7 @@ import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
 import KeyboardShortcuts from "./KeyboardShortcuts/KeyboardShortcuts";
 
-export interface paramInSettings {
+export interface IparamInSettings {
    question: string;
    answes: string[];
    data: boolean;

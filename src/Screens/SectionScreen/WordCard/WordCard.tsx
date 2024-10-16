@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from "react";
-import { NumStr, wordData } from "../../../Types/interfaces";
+import { NumStr, IWordData } from "../../../Types/interfaces";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import styles from "./WordCard.module.scss";
 
-interface IwordCardProps extends wordData {
+interface IwordCardProps extends IWordData {
    editElement: (id: NumStr) => void;
    toggleFavorites: (event: React.MouseEvent, id: NumStr) => void;
 }

@@ -1,13 +1,14 @@
 import Flashcard from "./Flashcard/Flashcard";
 import Slider from "react-slick";
-import { MouseEvent, useCallback, useEffect, useRef, useState } from "react";
-import { wordData } from "../../Types/interfaces";
+import { MouseEvent, useRef, useState } from "react";
+import { IWordData } from "../../Types/interfaces";
 import styles from "./Flashcards.module.scss";
 import "./Flashcard/SliderSettings.scss"
 import { sliderSettings } from "./SliderSetting";
 import useTestData from "../../Hooks/useTestData";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
+import useHandleKeyDown from "../../Hooks/useHandleKeyDown";
 
 
 function Flashcards(): JSX.Element {
@@ -23,25 +24,21 @@ function Flashcards(): JSX.Element {
 
    const refFlaschcardsSlider = useRef<Slider>(null);
 
-   // keybord Events
-   const handleKeyDown = useCallback((event: KeyboardEvent) => {
-      if (!refFlaschcardsSlider.current) return;
+   useHandleKeyDown({
+      callback: (event: KeyboardEvent) => {
+         if (!refFlaschcardsSlider.current) return;
 
-      if (event.key === "ArrowRight" || event.key == "Enter") {
-         refFlaschcardsSlider.current.slickNext()
-      } else if (event.key === "ArrowLeft") {
-         refFlaschcardsSlider.current.slickPrev()
-      }
+         if (event.key === "ArrowRight" || event.key == "Enter") {
+            refFlaschcardsSlider.current.slickNext()
+         } else if (event.key === "ArrowLeft") {
+            refFlaschcardsSlider.current.slickPrev()
+         }
 
-   }, [refFlaschcardsSlider, myIterableList]);
+      },
 
-   // add and remove keybord event handler
-   useEffect(() => {
-      window.addEventListener('keydown', handleKeyDown);
-      return () => {
-         window.removeEventListener('keydown', handleKeyDown);
-      };
-   }, [handleKeyDown]);
+      dependencyList: [refFlaschcardsSlider, myIterableList]
+   })
+
 
    function currentElementSetter(index: number) {
       setCurrentCardIndex(index)
@@ -52,7 +49,7 @@ function Flashcards(): JSX.Element {
       event?.stopPropagation()
 
       // local data
-      let localWordList: wordData[] = JSON.parse(JSON.stringify(myIterableList))
+      let localWordList: IWordData[] = JSON.parse(JSON.stringify(myIterableList))
 
       function toggleFavorite(newRate: number, currentCardIndex: number): void {
 
@@ -74,7 +71,7 @@ function Flashcards(): JSX.Element {
          toggleFavorite(10, currentCardIndex);
 
          //create new Element
-         let newElement: wordData = myIterableList[currentCardIndex]
+         let newElement: IWordData = myIterableList[currentCardIndex]
          newElement.rate = 1
 
          if (myIterableList[myIterableList.length - 1].word
@@ -104,7 +101,7 @@ function Flashcards(): JSX.Element {
                   ref={refFlaschcardsSlider}
                   afterChange={currentElementSetter}
                   {...sliderSettings}>
-                  {myIterableList.map((element: wordData, index) =>
+                  {myIterableList.map((element: IWordData, index) =>
                      <Flashcard
                         key={element.id}
                         {...element}

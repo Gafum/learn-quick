@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react";
-import { wordData } from "../../../Types/interfaces";
+import { useEffect, useState } from "react";
+import { IWordData } from "../../../Types/interfaces";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 import styles from "../TestScreen.module.scss";
 import { shuffleArray } from "../../../Function/shufleArray";
@@ -7,16 +7,17 @@ import { useAtomValue } from "jotai";
 import { settingsDataConst } from "../../../JotaiData/jotaiData";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import { createClasses } from "../../../Function/createClasses";
+import useHandleKeyDown from "../../../Hooks/useHandleKeyDown";
 
 
 
 interface IOneTextProps {
-   wordData: wordData;
+   oneWordData: IWordData;
    nextTest: (isRignt: boolean) => void;
    createdWrongListList: string[];
 }
 
-function OneTest({ wordData, nextTest, createdWrongListList }: IOneTextProps): JSX.Element {
+function OneTest({ oneWordData, nextTest, createdWrongListList }: IOneTextProps): JSX.Element {
    const [isFalseAnswer, setFalseAnswer] = useState(false);
    const [answerArray, setAnswerArray] = useState<string[]>(createdWrongListList);
 
@@ -36,37 +37,31 @@ function OneTest({ wordData, nextTest, createdWrongListList }: IOneTextProps): J
       }
    }
 
-   // keybord Events
-   const handleKeyDown = useCallback((event: KeyboardEvent) => {
-      // Get Right answers Index local varible
-      let rightIndex = answerArray.findIndex(
-         (element) => (showBack ? wordData.word : wordData.meaning) == element
-      );
+   useHandleKeyDown({
+      callback: (event: KeyboardEvent) => {
+         // Get Right answers Index local varible
+         let rightIndex = answerArray.findIndex(
+            (element) => (showBack ? oneWordData.word : oneWordData.meaning) == element
+         );
 
-      //Cheking wich key was pressed
-      if (event.key === "1") {
-         checkAnswer(rightIndex == 0)
-      } else if (event.key === "2") {
-         checkAnswer(rightIndex == 1)
-      } else if (event.key === "3") {
-         checkAnswer(rightIndex == 2)
-      } else if (event.key === "4") {
-         checkAnswer(rightIndex == 3)
-      } else if (event.key === "Enter") {
-         if (isFalseAnswer) {
-            nextTest(false)
+         //Cheking wich key was pressed
+         if (event.key === "1") {
+            checkAnswer(rightIndex == 0)
+         } else if (event.key === "2") {
+            checkAnswer(rightIndex == 1)
+         } else if (event.key === "3") {
+            checkAnswer(rightIndex == 2)
+         } else if (event.key === "4") {
+            checkAnswer(rightIndex == 3)
+         } else if (event.key === "Enter") {
+            if (isFalseAnswer) {
+               nextTest(false)
+            }
          }
-      }
+      },
+      dependencyList: [checkAnswer, oneWordData]
+   })
 
-   }, [checkAnswer, wordData]);
-
-   // add and remove keybord event handler
-   useEffect(() => {
-      window.addEventListener('keydown', handleKeyDown);
-      return () => {
-         window.removeEventListener('keydown', handleKeyDown);
-      };
-   }, [handleKeyDown]);
 
    //Generete answerArray when word Change
    useEffect(
@@ -75,12 +70,12 @@ function OneTest({ wordData, nextTest, createdWrongListList }: IOneTextProps): J
          setAnswerArray(
             shuffleArray(
                [
-                  (showBack ? wordData.word : wordData.meaning),
+                  (showBack ? oneWordData.word : oneWordData.meaning),
                   ...createdWrongListList
                ]
             ).slice(0, 4))
       },
-      [wordData])
+      [oneWordData])
 
 
    return (
@@ -88,15 +83,15 @@ function OneTest({ wordData, nextTest, createdWrongListList }: IOneTextProps): J
 
          <div className={styles.questionComponent}>
             {
-               showQuestion && <ImgTag src={wordData.img} />
+               showQuestion && <ImgTag src={oneWordData.img} />
             }
-            <h3> {showBack ? wordData.meaning : wordData.word}</h3>
+            <h3> {showBack ? oneWordData.meaning : oneWordData.word}</h3>
          </div>
 
          <div className={styles.answerList}>
             {
                answerArray.map((element, index) => {
-                  let isRight = (showBack ? wordData.word : wordData.meaning) == element;
+                  let isRight = (showBack ? oneWordData.word : oneWordData.meaning) == element;
 
                   return (
                      <CustomBtn

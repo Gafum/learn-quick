@@ -1,10 +1,10 @@
 import { NumStr } from "../Types/interfaces";
 
-interface myType {
+interface ImyType {
    id: NumStr;
 }
 
-export function findElemByID<T extends myType>(list: T[], myId: NumStr): T {
+export function findElemByID<T extends ImyType>(list: T[], myId: NumStr): T {
    if (list.length == 0) throw Error("Can`t find element");
    let res = list.find((element) => element?.id == myId);
    if (!res) return list[0];
@@ -12,7 +12,7 @@ export function findElemByID<T extends myType>(list: T[], myId: NumStr): T {
    return JSON.parse(JSON.stringify(res));
 }
 
-export function findIndexOfELement<T extends myType>(
+export function findIndexOfELement<T extends ImyType>(
    list: T[],
    myId: NumStr
 ): number {

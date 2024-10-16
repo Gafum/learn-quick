@@ -1,37 +1,37 @@
 import { useAtom } from "jotai";
 import useChangeParamsInList, { IchangeParamsProps } from "./useChangeParamInList";
 import useGetParams from "./useGetParams";
-import { NumStr, topicData, wordData } from "../Types/interfaces";
+import { NumStr, ITopicData, IWordData } from "../Types/interfaces";
 import { findElemByID } from "../Function/findElementByID";
 import { shuffleArray } from "../Function/shufleArray";
 import { SetStateAction, useEffect, useState } from "react";
 import { topicsData } from "../JotaiData/jotaiData";
 
+interface IchangeParams extends Omit<IchangeParamsProps, "sectionId"> { }
+
 interface ItestData {
    isLoading: boolean;
-   topicData: topicData[];
-   setTopicData: (prev: (prev: topicData[]) => topicData[]) => void;
+   topicData: ITopicData[];
+   setTopicData: (prev: (prev: ITopicData[]) => ITopicData[]) => void;
    setNewParamInTopicData: (data: IchangeParams) => void;
    sectionId: NumStr;
-   myIterableList: wordData[];
-   setMyIterableList: React.Dispatch<SetStateAction<wordData[]>>;
+   myIterableList: IWordData[];
+   setMyIterableList: React.Dispatch<SetStateAction<IWordData[]>>;
    reduceRate: (id: NumStr) => void;
    resetData: () => void;
 }
-
-interface IchangeParams extends Omit<IchangeParamsProps, "sectionId"> { }
 
 interface IuseTestDataProps {
    updateIterableList?: boolean
 }
 
 function useTestData({ updateIterableList = false }: IuseTestDataProps = {}): ItestData {
-   const [topicData, setTopicData] = useAtom<topicData[]>(topicsData)
+   const [topicData, setTopicData] = useAtom<ITopicData[]>(topicsData)
    const [isLoadedFromStorage, setIsLoadedFromStorage] = useState(false);
    const [isLoading, setIsLoading] = useState(true)
    const sectionId = useGetParams(topicData)
 
-   const [myIterableList, setMyIterableList] = useState<wordData[]>(
+   const [myIterableList, setMyIterableList] = useState<IWordData[]>(
       []
    );
 
@@ -46,13 +46,13 @@ function useTestData({ updateIterableList = false }: IuseTestDataProps = {}): It
                throw new Error("Can't find data. 400 error");
             }
 
-            setMyIterableList(shuffleArray(findElemByID<topicData>
+            setMyIterableList(shuffleArray(findElemByID<ITopicData>
                (topicData, sectionId).data)
                .sort((a, b) => a.rate > b.rate ? -1 : 1))
          }
 
          if (updateIterableList) {
-            setMyIterableList(shuffleArray(findElemByID<topicData>
+            setMyIterableList(shuffleArray(findElemByID<ITopicData>
                (topicData, sectionId).data)
                .sort((a, b) => a.rate > b.rate ? -1 : 1))
          }
@@ -85,7 +85,7 @@ function useTestData({ updateIterableList = false }: IuseTestDataProps = {}): It
       },
       resetData: () => {
          setMyIterableList(
-            shuffleArray(findElemByID<topicData>(topicData, sectionId).data).sort(
+            shuffleArray(findElemByID<ITopicData>(topicData, sectionId).data).sort(
                (a, b) => a.rate > b.rate ? -1 : 1)
          )
       }

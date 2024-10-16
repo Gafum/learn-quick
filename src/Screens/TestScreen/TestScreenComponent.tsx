@@ -1,4 +1,4 @@
-import { wordData } from "../../Types/interfaces";
+import { IWordData } from "../../Types/interfaces";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import styles from "./TestScreen.module.scss";
 import createAnswer from "./MyFunctions/CreateAnswer";
@@ -8,12 +8,11 @@ import { settingsDataConst } from "../../JotaiData/jotaiData";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
 import { createClasses } from "../../Function/createClasses";
-import { useCallback, useEffect } from "react";
-
+import useHandleKeyDown from "../../Hooks/useHandleKeyDown";
 
 
 interface ItestScreenComponenprops {
-   myIterableList: wordData[];
+   myIterableList: IWordData[];
    isFinished: boolean;
    score: number;
    testNumber: number;
@@ -32,6 +31,19 @@ function TestScreenComponent({
 
    const { tests: testsSettings } = useAtomValue(settingsDataConst);
 
+   useHandleKeyDown({
+      callback: (event: KeyboardEvent) => {
+
+         // Close score page with Enter
+         if (!isFinished || myIterableList.length == 0) return;
+         if (event.key === "Enter") {
+            startTest()
+         }
+
+      },
+      dependencyList: [isFinished]
+   })
+
    //Loading
    if (myIterableList.length == 0) {
       return (
@@ -40,26 +52,6 @@ function TestScreenComponent({
          </div>
       )
    }
-
-   // keybord Events 
-   const handleKeyDown = useCallback((event: KeyboardEvent) => {
-
-      // Close score page with Enter
-      if (!isFinished) return;
-      if (event.key === "Enter") {
-         startTest()
-      }
-
-   }, [isFinished]);
-
-   // add and remove keybord event handler
-   useEffect(() => {
-      window.addEventListener('keydown', handleKeyDown);
-      return () => {
-         window.removeEventListener('keydown', handleKeyDown);
-      };
-   }, [handleKeyDown]);
-
 
    if (isFinished) {
       return (
@@ -78,7 +70,7 @@ function TestScreenComponent({
          className={styles.testScreen}
          {...ScreensAnimation}>
          <OneTest
-            wordData={myIterableList[testNumber]}
+            oneWordData={myIterableList[testNumber]}
             nextTest={nextTest}
             createdWrongListList={
                createAnswer(

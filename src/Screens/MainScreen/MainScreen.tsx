@@ -4,7 +4,7 @@ import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
 import DialogCreateNewSection from "./Dialogs/DialogCreateNewSection";
 import DialogFilter from "./Dialogs/DialogFilter";
 import { useState } from "react";
-import { topicData } from "../../Types/interfaces";
+import { ITopicData } from "../../Types/interfaces";
 import ListShower from "./ListShower/ListShower";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
@@ -17,7 +17,7 @@ function MainScreen(): JSX.Element {
       setShow: setShowAddSection,
       myData: newComponentData,
       setMyData: setNewComponentData,
-   } = useCustomDialog<topicData>({
+   } = useCustomDialog<ITopicData>({
       id: "",
       data: [],
       name: "",

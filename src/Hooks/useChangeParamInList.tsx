@@ -1,5 +1,5 @@
 import { useSetAtom } from "jotai";
-import { NumStr, topicData } from "../Types/interfaces";
+import { NumStr, ITopicData } from "../Types/interfaces";
 import { topicsData } from "../JotaiData/jotaiData";
 import { findIndexOfELement } from "../Function/findElementByID";
 
@@ -12,7 +12,7 @@ export interface IchangeParamsProps {
 }
 
 interface IsetParamsInList extends IchangeParamsProps {
-   setTopicData: (prev: (prev: topicData[]) => topicData[]) => void;
+   setTopicData: (prev: (prev: ITopicData[]) => ITopicData[]) => void;
 }
 
 // Change Parameter in TopicData list. Parameters: sectionId - id of current list, id - id of element, param - param that should e change, newData - data that will be inside Parameter
@@ -24,7 +24,7 @@ function setParamsInList({
    changeBy = false,
    setTopicData,
 }: IsetParamsInList) {
-   setTopicData((prev: topicData[]) => {
+   setTopicData((prev: ITopicData[]) => {
       const localList = JSON.parse(JSON.stringify(prev));
       const currentListIndex = findIndexOfELement(localList, sectionId);
       if (currentListIndex === -1) return prev; // Section not found

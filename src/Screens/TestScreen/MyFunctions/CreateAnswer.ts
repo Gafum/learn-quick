@@ -1,12 +1,12 @@
 import { shuffleArray } from "../../../Function/shufleArray";
-import { NumStr, wordData } from "../../../Types/interfaces";
+import { NumStr, IWordData } from "../../../Types/interfaces";
 
 function createAnswer(
    rightWord: NumStr,
-   wordData: wordData[],
+   oneWordData: IWordData[],
    showBack: boolean
 ): string[] {
-   let currentList: wordData[] = JSON.parse(JSON.stringify(wordData));
+   let currentList: IWordData[] = JSON.parse(JSON.stringify(oneWordData));
    let result: string[] = currentList.reduce((prev: string[], cur) => {
       if (cur.id !== rightWord) {
          prev.push(showBack ? cur.word : cur.meaning);

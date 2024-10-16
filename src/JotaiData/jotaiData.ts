@@ -1,8 +1,8 @@
-import { topicData, IsettingsData } from "../Types/interfaces";
+import { ITopicData, IsettingsData } from "../Types/interfaces";
 import { atomWithStorage } from "jotai/utils";
 // import { DEVTopicData } from "../DevData/TopicListConst";
 
-export const topicsData = atomWithStorage<topicData[]>("topicData", []);
+export const topicsData = atomWithStorage<ITopicData[]>("topicData", []);
 
 export const settingsDataConst = atomWithStorage<IsettingsData>(
    "settingsData",

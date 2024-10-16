@@ -6,14 +6,14 @@ import { useSetAtom } from "jotai";
 import { topicsData } from "../../../JotaiData/jotaiData";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { NumStr, topicData, wordData } from "../../../Types/interfaces";
+import { NumStr, ITopicData, IWordData } from "../../../Types/interfaces";
 import { findIndexOfELement } from "../../../Function/findElementByID";
 import { generateUnicID } from "../../../Function/GenerateUnicID";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 
 interface IdialogWordDataProps extends Omit<ICustomDialogProps, "title"> {
    sectionId: NumStr;
-   itemData: wordData;
+   itemData: IWordData;
 }
 
 function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWordDataProps): JSX.Element {
@@ -59,12 +59,12 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
       setShow(false)
    }
 
-   function editWord(word: wordData) {
+   function editWord(word: IWordData) {
       setTopicList((prev) => {
          let sectionIndex = findIndexOfELement(prev, sectionId);
          if (!(sectionIndex + 1)) return prev;
 
-         let localList: topicData[] = JSON.parse(JSON.stringify(prev));
+         let localList: ITopicData[] = JSON.parse(JSON.stringify(prev));
 
 
          let wordIndex = findIndexOfELement(localList[sectionIndex].data, word.id)
@@ -80,12 +80,12 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
       })
    }
 
-   function createNewWords(newWord: wordData) {
+   function createNewWords(newWord: IWordData) {
       setTopicList((prev) => {
          let sectionIndex = findIndexOfELement(prev, sectionId);
          if (!(sectionIndex + 1)) return prev;
 
-         let localList: topicData[] = JSON.parse(JSON.stringify(prev));
+         let localList: ITopicData[] = JSON.parse(JSON.stringify(prev));
 
          localList[sectionIndex].data.push(newWord);
          return localList;
@@ -107,7 +107,7 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
       event.stopPropagation()
       event.preventDefault()
       setTopicList((prev) => {
-         let localList: topicData[] = JSON.parse(JSON.stringify(prev))
+         let localList: ITopicData[] = JSON.parse(JSON.stringify(prev))
          localList[findIndexOfELement(localList, sectionId)].data.splice(
             findIndexOfELement(
                localList[findIndexOfELement(localList, sectionId)]
@@ -184,8 +184,8 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
                         {
                            image.length > 0
                               ? <>
-                              <div><img alt="preview image" src={image} /></div>
-                                 
+                                 <div><img alt="preview image" src={image} /></div>
+
                                  <button className={styles.deleteImgBtn} onClick={() => setImage("")}>
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="5 5 40 40">
                                        <path d="M12 38c0 2.21 1.79 4 4 4h16c2.21 0 4-1.79 4-4V14H12v24zM38 8h-7l-2-2H19l-2 2h-7v4h28V8z">

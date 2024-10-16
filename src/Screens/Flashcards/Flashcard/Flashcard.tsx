@@ -1,12 +1,13 @@
-import { MouseEvent, useCallback, useEffect, useRef } from "react";
-import { realWordData } from "../../../Types/interfaces";
+import { MouseEvent, useRef } from "react";
+import { IWordData } from "../../../Types/interfaces";
 import styles from "./Flashcard.module.scss";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import { createClasses } from "../../../Function/createClasses";
 import { useAtomValue } from "jotai";
 import { settingsDataConst } from "../../../JotaiData/jotaiData";
+import useHandleKeyDown from "../../../Hooks/useHandleKeyDown";
 
-interface flashCard extends realWordData {
+interface IFlashCardProps extends IWordData {
    hardWordFunk: (event: MouseEvent) => void;
    isTipCard?: boolean;
    isCurrentCard: boolean;
@@ -20,26 +21,22 @@ function Flashcards({
    isCurrentCard = false,
    hardWordFunk,
    isTipCard = false,
-}: flashCard): JSX.Element {
+}: IFlashCardProps): JSX.Element {
    const cardElement = useRef<HTMLDivElement>(null)
 
    //Settings Data
    const { flashcards: flashCardSettigs } = useAtomValue(settingsDataConst)
    const whereIsImage = flashCardSettigs.whereIsImage.data;
 
-   const handleKeyDownFlipCard = useCallback((event: KeyboardEvent) => {
-      if (event.key == " ") {
-         flipCard()
-      }
-   }, [flipCard, cardElement, isCurrentCard]);
+   useHandleKeyDown({
+      callback: (event: KeyboardEvent) => {
+         if (event.key == " ") {
+            flipCard()
+         }
+      },
+      dependencyList: [flipCard, cardElement, isCurrentCard]
+   })
 
-   // add and remove keybord event handler
-   useEffect(() => {
-      window.addEventListener('keydown', handleKeyDownFlipCard);
-      return () => {
-         window.removeEventListener('keydown', handleKeyDownFlipCard);
-      };
-   }, [handleKeyDownFlipCard]);
 
    function flipCard() {
       if (!cardElement.current) return;

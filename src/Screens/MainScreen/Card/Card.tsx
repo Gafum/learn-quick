@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { topicData } from "../../../Types/interfaces";
+import { ITopicData } from "../../../Types/interfaces";
 import styles from "./Card.module.scss"
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import React from "react";
 
 interface ICardProps {
-   data: topicData;
+   data: ITopicData;
    editCard: (event: React.MouseEvent) => void
 }
 

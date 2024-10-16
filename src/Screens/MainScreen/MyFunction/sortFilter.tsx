@@ -1,22 +1,22 @@
-import { sortTypeNames, topicData } from "../../../Types/interfaces";
+import { sortTypeNames, ITopicData } from "../../../Types/interfaces";
 
-interface IfilterListParams {
+interface IfilterListProps {
    parameter: sortTypeNames
    reverse?: boolean;
 }
 
 export function filterList(
-   list: topicData[],
+   list: ITopicData[],
    {
       parameter,
       reverse = false
-   }: IfilterListParams
-): topicData[] {
-   let localList = list.sort((a: topicData, b: topicData) => {
+   }: IfilterListProps
+): ITopicData[] {
+   let localList = list.sort((a: ITopicData, b: ITopicData) => {
 
       let result = 0;
 
-      function standartSorter(parameter: keyof topicData) {
+      function standartSorter(parameter: keyof ITopicData) {
          if (!a[parameter] || !b[parameter]) return 0;
          if (a[parameter] == b[parameter]) return 0;
          return a[parameter] > b[parameter] ? 1 : -1

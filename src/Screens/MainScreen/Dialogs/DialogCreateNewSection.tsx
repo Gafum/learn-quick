@@ -6,7 +6,7 @@ import styles from "../MainScreen.module.scss";
 import { useSetAtom } from "jotai";
 import { topicsData } from "../../../JotaiData/jotaiData";
 import { generateUnicID } from "../../../Function/GenerateUnicID";
-import { topicData } from "../../../Types/interfaces";
+import { ITopicData } from "../../../Types/interfaces";
 import Slider from "react-slick";
 import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
@@ -15,7 +15,7 @@ import { findIndexOfELement } from "../../../Function/findElementByID";
 const allImg = ["language", "science", "mathematics", "literature"];
 
 interface IdialogCreateNewSection extends ICustomDialogProps {
-   itemData: topicData;
+   itemData: ITopicData;
 }
 
 function DialogCreateNewSection({ show, setShow, itemData }: IdialogCreateNewSection): JSX.Element {
@@ -43,7 +43,7 @@ function DialogCreateNewSection({ show, setShow, itemData }: IdialogCreateNewSec
 
       if (itemData.id == "") {
          setTopicList(
-            (data: topicData[]) => {
+            (data: ITopicData[]) => {
                return [...data,
                {
                   icon: allImg[slideIndex],
@@ -55,8 +55,8 @@ function DialogCreateNewSection({ show, setShow, itemData }: IdialogCreateNewSec
          )
       } else {
          setTopicList(
-            (prev: topicData[]) => {
-               let localList: topicData[] = JSON.parse(JSON.stringify(prev))
+            (prev: ITopicData[]) => {
+               let localList: ITopicData[] = JSON.parse(JSON.stringify(prev))
                localList[findIndexOfELement(localList, itemData.id)].name = value;
                localList[findIndexOfELement(localList, itemData.id)].icon = allImg[slideIndex];
                return localList;
@@ -71,8 +71,8 @@ function DialogCreateNewSection({ show, setShow, itemData }: IdialogCreateNewSec
       event.preventDefault()
       event.stopPropagation()
       setTopicList(
-         (prev: topicData[]) => {
-            let localList: topicData[] = JSON.parse(JSON.stringify(prev))
+         (prev: ITopicData[]) => {
+            let localList: ITopicData[] = JSON.parse(JSON.stringify(prev))
             localList.splice(findIndexOfELement(localList, itemData.id), 1)
             return localList;
          }

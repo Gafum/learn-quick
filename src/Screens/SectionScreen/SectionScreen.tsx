@@ -4,7 +4,7 @@ import ImgTag from "../../UI/CustomImage/CustomImageTag";
 import MianScreenStyles from "../MainScreen/MainScreen.module.scss"
 import styles from "./SectionScreen.module.scss";
 
-import { NumStr, wordData } from "../../Types/interfaces";
+import { NumStr, IWordData } from "../../Types/interfaces";
 import { findElemByID } from "../../Function/findElementByID";
 import DialogCreateNewWord from "./Dialogs/DialogCreateNewWord";
 
@@ -26,7 +26,7 @@ function SectionScreen(): JSX.Element {
       myData: itemData,
       setMyData: setItemData
    } =
-      useCustomDialog<wordData>({
+      useCustomDialog<IWordData>({
          id: "",
          word: "",
          meaning: "",
@@ -88,7 +88,7 @@ function SectionScreen(): JSX.Element {
 
                {myIterableList.sort(
                   (a, b) => a.id > b.id ? 1 : -1).map(
-                     (e: wordData) =>
+                     (e: IWordData) =>
                         <WordCard
                            editElement={editCard}
                            toggleFavorites={toggleFavorites}

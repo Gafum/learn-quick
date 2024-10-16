@@ -2,7 +2,7 @@ import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 import CustomDialog, { ICustomDialogProps } from "../../../UI/CustomDialog/CustomDialog";
 import styles from "./MistakeDialog.module.scss";
 
-interface MistakeDialog extends ICustomDialogProps {
+interface IMistakeDialogProps extends ICustomDialogProps {
    score: number;
    meaning: string;
    word: string
@@ -16,8 +16,8 @@ function MistakeDialog(
       score,
       word,
       meaning,
-   }:
-      MistakeDialog): JSX.Element {
+   }: IMistakeDialogProps)
+   : JSX.Element {
 
    return (
       <CustomDialog show={showModule}

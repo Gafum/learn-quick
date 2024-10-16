@@ -1,5 +1,5 @@
 import { IsettingsData } from "../../../Types/interfaces";
-import { paramInSettings } from "../Setting";
+import { IparamInSettings } from "../Setting";
 import { ISettingsListGenerator } from "./SettingsListGenerator";
 import styles from "../Settings.module.scss";
 
@@ -24,7 +24,7 @@ export function SimpleSelector({
       })
    }
 
-   let data: paramInSettings = settingsData[listName][
+   let data: IparamInSettings = settingsData[listName][
       (parameterName as keyof IsettingsData[typeof listName])
    ]
 

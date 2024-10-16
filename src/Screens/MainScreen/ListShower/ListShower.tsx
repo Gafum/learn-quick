@@ -4,11 +4,11 @@ import { filterList } from "../MyFunction/sortFilter";
 import styles from "../MainScreen.module.scss";
 import { useAtom, useAtomValue } from "jotai";
 import { settingsDataConst, topicsData } from "../../../JotaiData/jotaiData";
-import { topicData } from "../../../Types/interfaces";
+import { ITopicData } from "../../../Types/interfaces";
 import DataNotFound from "../../../Components/DataNotFound/DataNotFound";
 
 interface IListShowerProps {
-   setNewComponentData: React.Dispatch<React.SetStateAction<topicData>>;
+   setNewComponentData: React.Dispatch<React.SetStateAction<ITopicData>>;
    setShowAddSection: React.Dispatch<React.SetStateAction<boolean>>;
    setShowFilterModule: React.Dispatch<React.SetStateAction<boolean>>;
 }
