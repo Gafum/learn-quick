@@ -38,11 +38,11 @@
          min-width: 100%;
          width: 100%;
          word-break: break-all;
-         transition-property: border, background-color, filter;
+         transition-property: background-color, filter;
          transition-duration: 0.4s;
          &.greenBtn {
             background-color: #359427;
-            border: 2px solid black;
+            box-shadow: 0 0 10px #359427;
          }
          &.redBtn {
             background-color: var(--main-red-color);

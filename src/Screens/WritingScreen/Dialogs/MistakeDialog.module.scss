@@ -18,6 +18,7 @@
       span {
          color: inherit;
          font-size: inherit;
+         word-break: break-all;
       }
    }
    button {
@@ -30,6 +31,7 @@
       }
       h3 {
          font-size: 17px;
+         margin-bottom: 0;
       }
       button {
          font-size: 18px;
