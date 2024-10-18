@@ -34,6 +34,11 @@
       align-content: center;
       width: 100%;
       gap: 10px;
+      @media (max-width: 600px) {
+         & {
+            gap: 5px;
+         }
+      }
       .invisibleBlock {
          display: none;
          height: 0;
@@ -99,13 +104,13 @@
    }
 }
 
-@media (max-width: 480px) {
-   .chooseTest {
+@media (max-width: 500px) {
+   .chooseTest { 
       .chooseTestList {
          display: flex;
          flex-direction: column;
          max-height: 0px;
-         overflow: hidden;
+         overflow: hidden; gap: 10px;
          .invisibleBlock {
             display: block;
          }

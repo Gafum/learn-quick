@@ -19,10 +19,10 @@ const testTypes: { text: string, link: string }[] = [
       text: "Writing",
       link: "writing",
    },
-   // {
-   //    text: "Combining",
-   //    link: "combining",
-   // },
+   {
+      text: "Combining",
+      link: "combining",
+   },
 ]
 
 function ChooseTest({ sectionId }: { sectionId: string | undefined }): JSX.Element {

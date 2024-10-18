@@ -1,7 +1,7 @@
 import { IsettingsData } from "../../../Types/interfaces";
-import { IparamInSettings } from "../Setting";
+import { IparamInSettings } from "../SettingScreen";
 import { ISettingsListGenerator } from "./SettingsListGenerator";
-import styles from "../Settings.module.scss";
+import styles from "../SettingsScreen.module.scss";
 
 interface ISimpleSelectorProps extends ISettingsListGenerator {
    parameterName: string

@@ -1,11 +1,12 @@
 import Flashcards from "../Screens/Flashcards/Flashcards";
 import MainScreen from "../Screens/MainScreen/MainScreen";
 import SectionScreen from "../Screens/SectionScreen/SectionScreen";
-import Settings from "../Screens/Settings/Setting";
+import Settings from "../Screens/SettingsScreen/SettingScreen";
 import TestScreen from "../Screens/TestScreen/TestScreen";
 import WritingScreen from "../Screens/WritingScreen/WritingScreen";
 
 import { IcontainerProps } from "../Components/Conteiners/Conteiner";
+import CombiningScreen from "../Screens/CombiningScreen/CombiningScreen";
 interface IRouterComponentProps extends Omit<IcontainerProps, "children"> { }
 
 export interface IscreenParam {
@@ -40,6 +41,11 @@ export const screenList: IscreenParam[] =
       {
          path: "/test",
          component: <TestScreen />,
+         hasSectionId: true,
+      },
+      {
+         path: "/combining",
+         component: <CombiningScreen />,
          hasSectionId: true,
       },
       {

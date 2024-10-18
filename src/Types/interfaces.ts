@@ -1,4 +1,4 @@
-import { IparamInSettings } from "../Screens/Settings/Setting";
+import { IparamInSettings } from "../Screens/SettingsScreen/SettingScreen";
 
 export interface IWordData {
    readonly id: NumStr;

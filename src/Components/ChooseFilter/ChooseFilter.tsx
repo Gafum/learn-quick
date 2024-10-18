@@ -3,7 +3,7 @@ import styles from "./ChooseFilter.module.scss";
 import { useAtom } from "jotai";
 import { settingsDataConst } from "../../JotaiData/jotaiData";
 import { IsettingsData, sortTypeNames } from "../../Types/interfaces";
-import { SimpleSelector } from "../../Screens/Settings/SimpleSelector/SimpleSelector";
+import { SimpleSelector } from "../../Screens/SettingsScreen/SimpleSelector/SimpleSelector";
 
 export const filterList: { name: string; sortType: sortTypeNames }[] = [
    { name: "Name", sortType: "name" },
