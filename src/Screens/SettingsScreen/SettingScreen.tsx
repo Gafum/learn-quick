@@ -1,5 +1,5 @@
 import { IsettingsData } from "../../Types/interfaces";
-import styles from "./Settings.module.scss";
+import styles from "./SettingsScreen.module.scss";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
 import { RESET } from "jotai/utils";
 import { SettingsListGenerator } from "./SimpleSelector/SettingsListGenerator";

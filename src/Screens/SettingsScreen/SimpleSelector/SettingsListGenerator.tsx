@@ -1,6 +1,6 @@
 import { createClasses } from "../../../Function/createClasses";
 import { IsettingsData } from "../../../Types/interfaces";
-import styles from "../Settings.module.scss";
+import styles from "../SettingsScreen.module.scss";
 import ChooseFilter from "../../../Components/ChooseFilter/ChooseFilter";
 import { SimpleSelector } from "./SimpleSelector";
 import { RESET } from "jotai/utils";

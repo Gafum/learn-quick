@@ -8,11 +8,13 @@ header {
    left: 0;
    z-index: 5;
    transition: padding-bottom 0.4s;
+   box-shadow: 0 0 10px black;
 
    &.staticHader {
       position: static;
       visibility: hidden;
       opacity: 0;
+      box-shadow: none;
    }
 
    .headerContent {
