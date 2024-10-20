@@ -6,7 +6,7 @@ import { shuffleArray } from "../../Function/shufleArray";
 import { createClasses } from "../../Function/createClasses";
 import { findIndexOfELement } from "../../Function/findElementByID";
 import CustomBtn from "../../UI/CustomBtn/CustomBtn";
-import { m, LazyMotion, domAnimation } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { ScreensAnimation } from "../../CustomData/animation";
 
 interface IWordDataCombiningScreen extends IWordData {
@@ -88,52 +88,75 @@ function CombiningScreen(): JSX.Element {
    }
 
    return (
-      <LazyMotion features={domAnimation}>
-         <m.div
-            {...ScreensAnimation}
-            className={styles.combiningScreen}
-         >
-            <div className={styles.leftSide}>
-               {
-                  leftSideList.map((elem) => {
-                     return (
-                        <button
-                           onClick={() => selectFirstElem(elem.id)}
-                           key={elem.id + "left"}
-                           className={
-                              createClasses([
-                                 styles.oneBlock,
-                                 selectedElement == elem.id && styles.selectedElement
-                              ])}>
-                           {elem.word}
-                        </button>
-                     )
-                  })
-               }
-            </div>
+      <motion.div
+         {...ScreensAnimation}
+         className={styles.combiningScreen}
+      >
 
-            <div className={styles.rightSide}>
+         <div className={styles.leftSide}
+         >
+            <AnimatePresence initial={false}>
+               {
+                  leftSideList.map(
+                     (elem) => {
+                        return (
+                           <motion.div
+                              layout
+                              animate={{ opacity: 1 }}
+                              exit={{ opacity: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className={styles.animatedBock}
+                              key={elem.id + "left"}
+                           >
+                              <button
+                                 onClick={() => selectFirstElem(elem.id)}
+                                 className={
+                                    createClasses([
+                                       styles.oneBlock,
+                                       selectedElement == elem.id && styles.selectedElement
+                                    ])}>
+                                 {elem.word}
+                              </button>
+                           </motion.div>
+                        )
+                     }
+                  )
+               }
+            </AnimatePresence>
+         </div>
+
+         <div className={styles.rightSide}>
+            <AnimatePresence initial={false}>
                {
                   rightSideList.map((elem) => {
                      return (
-                        <button
+                        <motion.div
+                           layout
+                           animate={{ opacity: 1 }}
+                           exit={{ opacity: 0 }}
+                           transition={{ duration: 0.2 }}
+                           className={styles.animatedBock}
                            key={elem.id + "right"}
-                           className={
-                              createClasses([
-                                 styles.oneBlock,
-                                 elem.wrongAnswer ? styles.wrongAnswer : "",
-                              ])
-                           }
-                           onClick={() => checkAnswer(elem.id)}
                         >
-                           {elem.meaning}
-                        </button>
+                           <button
+                              className={
+                                 createClasses([
+                                    styles.oneBlock,
+                                    elem.wrongAnswer ? styles.wrongAnswer : "",
+                                 ])
+                              }
+                              onClick={() => checkAnswer(elem.id)}
+                           >
+                              {elem.meaning}
+                           </button>
+                        </motion.div>
                      )
                   })
                }
-            </div>
-         </m.div>
-      </LazyMotion>
+            </AnimatePresence>
+         </div>
+
+      </motion.div >
    );
 }
 
