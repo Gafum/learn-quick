@@ -6,6 +6,7 @@ import { useAtom, useAtomValue } from "jotai";
 import { settingsDataConst, topicsData } from "../../../JotaiData/jotaiData";
 import { ITopicData } from "../../../Types/interfaces";
 import DataNotFound from "../../../Components/DataNotFound/DataNotFound";
+import { AnimatePresence } from "framer-motion";
 
 interface IListShowerProps {
    setNewComponentData: React.Dispatch<React.SetStateAction<ITopicData>>;
@@ -50,23 +51,25 @@ function ListShower({
          </div>
 
          <div className={styles.cards}>
-            {
-               filterList(topicList, {
-                  parameter: filterParams.selectedSortType,
-                  reverse: filterParams.reverseList.data,
-               }).map((element) =>
-                  <Card
-                     key={element.id.toString()}
-                     editCard={
-                        (event: React.MouseEvent) => {
-                           event.stopPropagation()
-                           event.preventDefault()
-                           setNewComponentData({ ...element })
-                           setShowAddSection(true);
-                        }}
-                     data={element} />
-               )
-            }
+            <AnimatePresence>
+               {
+                  filterList(topicList, {
+                     parameter: filterParams.selectedSortType,
+                     reverse: filterParams.reverseList.data,
+                  }).map((element) =>
+                     <Card
+                        key={element.id.toString()}
+                        editCard={
+                           (event: React.MouseEvent) => {
+                              event.stopPropagation()
+                              event.preventDefault()
+                              setNewComponentData({ ...element })
+                              setShowAddSection(true);
+                           }}
+                        data={element} />
+                  )
+               }
+            </AnimatePresence>
          </div>
       </>
    }
