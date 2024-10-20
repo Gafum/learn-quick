@@ -49,6 +49,10 @@
       max-width: 100%;
       word-break: break-all;
       white-space: wrap;
+      &.selectedElement {
+         filter: brightness(1.5);
+         box-shadow: 0 0 7px black;
+      }
    }
 
    @media (max-width: 480px) {

@@ -22,7 +22,7 @@ interface ItestData {
 }
 
 interface IuseTestDataProps {
-   updateIterableList?: boolean
+   updateIterableList?: boolean; //update myIterableList when topicList changing
 }
 
 function useTestData({ updateIterableList = false }: IuseTestDataProps = {}): ItestData {
