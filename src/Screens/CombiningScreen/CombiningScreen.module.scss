@@ -31,6 +31,9 @@
    .rightSide {
       .oneBlock {
          background-color: var(--main-contrast-color);
+         &.wrongAnswer {
+            background-color: var(--main-red-color);
+         }
       }
    }
 
@@ -49,6 +52,7 @@
       max-width: 100%;
       word-break: break-all;
       white-space: wrap;
+      transition: all 0.4s;
       &.selectedElement {
          filter: brightness(1.5);
          box-shadow: 0 0 7px black;
