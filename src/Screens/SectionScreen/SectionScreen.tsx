@@ -85,17 +85,19 @@ function SectionScreen(): JSX.Element {
             columnsCountBreakPoints={{ 0: 1, 300: 2, 450: 3, 600: 4, 800: 5, 1000: 6, 1300: 7 }}
          >
             <Masonry className={styles.sectionScreen} gutter="10px">
-
-               {myIterableList.sort(
-                  (a, b) => a.id > b.id ? 1 : -1).map(
-                     (e: IWordData) =>
-                        <WordCard
-                           editElement={editCard}
-                           toggleFavorites={toggleFavorites}
-                           {...e}
-                           key={e.id}
-                        />
-                  )}
+               {
+                  myIterableList.sort(
+                     (a, b) => a.id > b.id ? 1 : -1).map(
+                        (e: IWordData) => (
+                           <WordCard
+                              editElement={editCard}
+                              toggleFavorites={toggleFavorites}
+                              {...e}
+                              key={e.id}
+                           />
+                        )
+                     )
+               }
             </Masonry>
          </ResponsiveMasonry>
 

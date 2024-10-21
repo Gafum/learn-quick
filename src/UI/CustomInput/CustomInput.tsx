@@ -9,7 +9,8 @@ interface Iinput {
    maxLength?: number;
    rows?: number;
    required?: boolean;
-   updateFocuseData?: any
+   updateFocuseData?: any;
+   timeToFocus?: number;
 }
 
 export function useCustomInput(text?: string): [string, Dispatch<SetStateAction<string>>] {
@@ -54,7 +55,8 @@ function CustomInput(
       maxLength,
       updateFocuseData,
       rows = 0,
-      required = true
+      required = true,
+      timeToFocus = 0,
    }: Iinput
 ): JSX.Element {
    const inp = useRef<HTMLInputElement | HTMLTextAreaElement>(null)
@@ -72,11 +74,13 @@ function CustomInput(
    }
 
    useEffect(() => {
-      if (!inp.current) return;
-      if (rows == 0) {
-         inp.current.focus()
-         inp.current.classList.remove(styles.incorrect)
-      }
+      setTimeout(() => {
+         if (!inp.current) return;
+         if (rows == 0) {
+            inp.current.focus()
+            inp.current.classList.remove(styles.incorrect)
+         }
+      }, timeToFocus)
    }, [updateFocuseData])
 
    return (

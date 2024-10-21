@@ -137,6 +137,7 @@ function DialogCreateNewWord({ show, setShow, sectionId, itemData }: IdialogWord
                   maxLength={50}
                   rows={0}
                   updateFocuseData={itemData}
+                  timeToFocus={405}
                />
 
                <CustomInput

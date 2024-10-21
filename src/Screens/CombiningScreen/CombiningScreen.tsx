@@ -25,10 +25,10 @@ function CombiningScreen(): JSX.Element {
 
    function startTest() {
       setRightSideList(
-         shuffleArray([...myIterableList])
+         shuffleArray([...myIterableList]).slice(0, 15)
       )
       setLeftSideList(
-         shuffleArray([...myIterableList])
+         shuffleArray([...myIterableList]).slice(0, 15)
       )
    }
 

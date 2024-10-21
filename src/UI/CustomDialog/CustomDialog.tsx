@@ -53,6 +53,7 @@ function CustomDialog({ children, show, setShow, title }: ICustomDialogProps): J
                   display: "none"
                }
             }}
+            transition={{ duration: 0.4 }}
             className={
                createClasses(
                   [

@@ -33,7 +33,7 @@ export function filterList(
          case "length": {
             if (!a.data || !b.data) result = 0;
             if (a.data!.length == b.data!.length) result = 0;
-            result = a.data!.length > b.data!.length ? 1 : -1
+            result = a.data!.length > b.data!.length ? -1 : 1
             break;
          }
       }
