@@ -28,6 +28,10 @@ export interface IsettingsData {
       whatAsk: IparamInSettings;
       showQuestion: IparamInSettings;
    };
+   combining: {
+      whatAsk: IparamInSettings;
+      showQuestion: IparamInSettings;
+   };
    filterParams: {
       selectedSortType: sortTypeNames;
       reverseList: IparamInSettings;

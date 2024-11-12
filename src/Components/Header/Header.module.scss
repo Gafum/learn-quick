@@ -10,7 +10,7 @@ header {
    transition: padding-bottom 0.4s;
    box-shadow: 0 0 10px black;
 
-   &.staticHader {
+   &.staticHeader {
       position: static;
       visibility: hidden;
       opacity: 0;
@@ -112,7 +112,7 @@ header {
 }
 
 .sectionScreen {
-   &.staticHader {
+   &.staticHeader {
       padding-bottom: 65px;
    }
    &.headerContent {
@@ -124,13 +124,13 @@ header {
    header {
       border-bottom-left-radius: 18px;
       border-bottom-right-radius: 18px;
-      &.sectionScreen.staticHader {
+      &.sectionScreen.staticHeader {
          padding-bottom: 45px;
       }
       .sectionScreen.headerContent {
          padding-bottom: 15px;
       }
-      &.staticHader {
+      &.staticHeader {
          padding-bottom: 0;
       }
    }

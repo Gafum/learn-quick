@@ -1,40 +1,42 @@
 import { Link, useLocation } from "react-router-dom";
 import styles from "./Header.module.scss";
-import Conteiner from "../Conteiners/Conteiner";
+import Container from "../Containers/Container";
 import ChooseTest from "../ChooseTest/ChooseTest";
 import { createClasses } from "../../Function/createClasses";
 import { useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 function Header(): JSX.Element {
-   const { pathname } = useLocation()
+   const { pathname } = useLocation();
 
    const isSectionScreen = useMemo(() => {
       return pathname.startsWith("/section");
-   },
-      [pathname])
+   }, [pathname]);
 
    return (
       <>
-         <header className={
-            createClasses([styles.staticHader, isSectionScreen && styles.sectionScreen])
-         }>
-            <Conteiner hasMaxWidth={false}>
+         <header
+            className={createClasses([
+               styles.staticHeader,
+               isSectionScreen && styles.sectionScreen,
+            ])}
+         >
+            <Container hasMaxWidth={false}>
                <div className={styles.headerInner}>
-                  <Link to={"/"}>Lern quick</Link>
+                  <Link to={"/"}>Learn quick</Link>
                </div>
-            </Conteiner>
+            </Container>
          </header>
          <header>
-            <Conteiner hasMaxWidth={false}>
-               <div className={
-                  createClasses(
-                     [styles.headerContent, isSectionScreen && styles.sectionScreen]
-                  )
-               }
+            <Container hasMaxWidth={false}>
+               <div
+                  className={createClasses([
+                     styles.headerContent,
+                     isSectionScreen && styles.sectionScreen,
+                  ])}
                >
                   <div className={styles.headerInner}>
-                     <Link to={"/"}>Lern quick</Link>
+                     <Link to={"/"}>Learn quick</Link>
                   </div>
                   <div className={styles.btnSection}>
                      <Link to={"/settings"}>
@@ -42,19 +44,15 @@ function Header(): JSX.Element {
                      </Link>
                   </div>
                   <AnimatePresence mode="wait">
-                     {
-                        isSectionScreen &&
+                     {isSectionScreen && (
                         <motion.div
                            initial={{ opacity: 0, y: -25 }}
                            animate={{ opacity: 1, y: 0 }}
                            transition={{ duration: 0.4 }}
                            exit={{ opacity: 0, transition: { duration: 0.4 } }}
-                           className={
-                              styles.testsPosition
-                           }
+                           className={styles.testsPosition}
                         >
-
-                           <Conteiner
+                           <Container
                               hasMaxWidth={false}
                               newPadding={{
                                  t: 0,
@@ -62,15 +60,16 @@ function Header(): JSX.Element {
                               }}
                            >
                               <div className={styles.testsBlock}>
-                                 <ChooseTest sectionId={pathname.split("/")[2]} />
+                                 <ChooseTest
+                                    sectionId={pathname.split("/")[2]}
+                                 />
                               </div>
-                           </Conteiner>
-
+                           </Container>
                         </motion.div>
-                     }
+                     )}
                   </AnimatePresence>
                </div>
-            </Conteiner>
+            </Container>
          </header>
       </>
    );

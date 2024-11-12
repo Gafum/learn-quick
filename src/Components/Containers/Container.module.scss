@@ -1,16 +1,16 @@
-.conteiner {
+.container {
    padding: 35px;
    margin: auto;
 }
 
 @media (max-width: 480px) {
-   .conteiner {
+   .container {
       padding: 25px;
    }
 }
 
 @media (max-width: 340px) {
-   .conteiner {
+   .container {
       padding: 10px 15px 15px;
    }
 }

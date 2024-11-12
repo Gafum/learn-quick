@@ -42,12 +42,30 @@
    cursor: pointer;
    border-radius: 6px;
    max-width: 100%;
-   word-break: break-all;
-   white-space: wrap;
    transition: all 0.4s;
    &.selectedElement {
       filter: brightness(1.5);
       box-shadow: 0 0 7px black;
+      &:has(img) {
+         filter: brightness(1.15);
+      }
+   }
+
+   > img {
+      border-radius: inherit;
+      max-width: 100%;
+   }
+
+   > span {
+      word-break: break-all;
+      white-space: wrap;
+      width: 100%;
+      text-align: center;
+      color: inherit;
+      font-size: inherit;
+      &:nth-child(2) {
+         display: none;
+      }
    }
 }
 

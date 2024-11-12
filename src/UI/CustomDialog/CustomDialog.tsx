@@ -64,7 +64,7 @@ function CustomDialog({ children, show, setShow, title }: ICustomDialogProps): J
             onClick={() => setShow(false)}
          >
 
-            <div className={styles.dialogConteiner} onClick={
+            <div className={styles.dialogContainer} onClick={
                (event: MouseEvent) => event.stopPropagation()
             }>
                <div className={styles.titleComponent}>

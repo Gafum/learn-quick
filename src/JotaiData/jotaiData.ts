@@ -43,6 +43,18 @@ export const settingsDataConst = atomWithStorage<IsettingsData>(
             data: false,
          },
       },
+      combining: {
+         whatAsk: {
+            question: "What will be in the left side",
+            answes: ["Word", "Meaning"],
+            data: false,
+         },
+         showQuestion: {
+            question: "What should be shown?",
+            answes: ["Image", "Word"],
+            data: false,
+         },
+      },
       filterParams: {
          selectedSortType: "id",
          reverseList: {

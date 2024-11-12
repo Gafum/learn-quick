@@ -1,25 +1,25 @@
 import { NumStr } from "../../Types/interfaces";
-import styles from "./Conteiner.module.scss";
+import styles from "./Container.module.scss";
 
-export interface IcontainerProps {
+export interface IContainerProps {
    children: React.ReactNode;
-   newPadding?: { l?: NumStr, r?: NumStr, t?: NumStr, b?: NumStr };
+   newPadding?: { l?: NumStr; r?: NumStr; t?: NumStr; b?: NumStr };
    hasMaxWidth?: boolean;
 }
 
-function Conteiner(
-   { children, newPadding, hasMaxWidth = true }: IcontainerProps
-): JSX.Element {
-
+function Container({
+   children,
+   newPadding,
+   hasMaxWidth = true,
+}: IContainerProps): JSX.Element {
    return (
       <div
-         className={styles.conteiner}
+         className={styles.container}
          style={{
             paddingTop: newPadding?.t,
             paddingBottom: newPadding?.b,
             paddingLeft: newPadding?.l,
             paddingRight: newPadding?.r,
-
 
             maxWidth: hasMaxWidth ? 1250 : "auto",
          }}
@@ -29,4 +29,4 @@ function Conteiner(
    );
 }
 
-export default Conteiner;
+export default Container;

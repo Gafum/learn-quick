@@ -2,39 +2,45 @@ import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import { AnimatePresence } from "framer-motion";
 import ErrorComponent from "../Components/Error/ErrorComponent";
-import Conteiner from "../Components/Conteiners/Conteiner";
+import Container from "../Components/Containers/Container";
 import { IscreenParam, screenList } from "./screenList";
 
-
 function Router(): JSX.Element {
-   const location = useLocation()
+   const location = useLocation();
    return (
       <AnimatePresence mode="wait" initial={false}>
          <Routes location={location} key={location.pathname}>
-            {screenList.map(({ component, path, hasSectionId, whichConteiner }: IscreenParam) => {
-               return (
-                  <Route
-                     key={path}
-                     path={path + (hasSectionId ? "/:sectionId" : "")}
-                     element={
-                        <Conteiner newPadding={{ b: "60px" }} {...whichConteiner}>
-                           {component}
-                        </Conteiner>
-                     }
-                  />
-               )
-            })}
+            {screenList.map(
+               ({
+                  component,
+                  path,
+                  hasSectionId,
+                  whichContainer,
+               }: IscreenParam) => {
+                  return (
+                     <Route
+                        key={path}
+                        path={path + (hasSectionId ? "/:sectionId" : "")}
+                        element={
+                           <Container
+                              newPadding={{ b: "60px" }}
+                              {...whichContainer}
+                           >
+                              {component}
+                           </Container>
+                        }
+                     />
+                  );
+               }
+            )}
 
             <Route path="*" element={<ErrorComponent />} />
          </Routes>
-      </AnimatePresence >
+      </AnimatePresence>
    );
 }
 
-
-
 function MainRouter(): JSX.Element {
-
    return (
       <BrowserRouter>
          <Header />
