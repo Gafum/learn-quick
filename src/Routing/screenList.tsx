@@ -10,6 +10,7 @@ import CombiningScreen from "../Screens/CombiningScreen/CombiningScreen";
 interface IRouterComponentProps extends Omit<IContainerProps, "children"> {}
 
 export interface IscreenParam {
+   name: string;
    path: string;
    component: JSX.Element;
    hasSectionId: boolean;
@@ -18,36 +19,43 @@ export interface IscreenParam {
 
 export const screenList: IscreenParam[] = [
    {
+      name: "Home",
       path: "/",
       component: <MainScreen />,
       hasSectionId: false,
    },
    {
+      name: "Settings",
       path: "/settings",
       component: <Settings />,
       hasSectionId: false,
    },
    {
+      name: "My words",
       path: "/section",
       component: <SectionScreen />,
       hasSectionId: true,
    },
    {
+      name: "Writing",
       path: "/writing",
       component: <WritingScreen />,
       hasSectionId: true,
    },
    {
+      name: "Test",
       path: "/test",
       component: <TestScreen />,
       hasSectionId: true,
    },
    {
+      name: "Combining",
       path: "/combining",
       component: <CombiningScreen />,
       hasSectionId: true,
    },
    {
+      name: "Flashcards",
       path: "/flashcards",
       component: <Flashcards />,
       hasSectionId: true,
