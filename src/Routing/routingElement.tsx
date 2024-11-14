@@ -1,10 +1,4 @@
-import {
-   BrowserRouter,
-   Route,
-   Routes,
-   useLocation,
-   useParams,
-} from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import { AnimatePresence } from "framer-motion";
 import ErrorComponent from "../Components/Error/ErrorComponent";

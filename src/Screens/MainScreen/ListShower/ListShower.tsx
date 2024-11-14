@@ -7,6 +7,8 @@ import { settingsDataConst, topicsData } from "../../../JotaiData/jotaiData";
 import { ITopicData } from "../../../Types/interfaces";
 import DataNotFound from "../../../Components/DataNotFound/DataNotFound";
 import { AnimatePresence } from "framer-motion";
+import { useEffect } from "react";
+import { checkFirstTime } from "../MyFunction/checkFirstTime";
 
 interface IListShowerProps {
    setNewComponentData: React.Dispatch<React.SetStateAction<ITopicData>>;
@@ -17,12 +19,16 @@ interface IListShowerProps {
 function ListShower({
    setNewComponentData,
    setShowAddSection,
-   setShowFilterModule
+   setShowFilterModule,
 }: IListShowerProps): JSX.Element {
-   const [topicList] = useAtom(topicsData)
+   const [topicList] = useAtom(topicsData);
 
    //Filter and sort settings
-   const { filterParams } = useAtomValue(settingsDataConst)
+   const { filterParams } = useAtomValue(settingsDataConst);
+
+   useEffect(() => {
+      checkFirstTime();
+   }, []);
 
    if (topicList.length == 0) {
       return (
@@ -35,43 +41,44 @@ function ListShower({
                      id: "",
                      data: [],
                      name: "",
-                     icon: "language"
-                  })
-                  setShowAddSection(true)
+                     icon: "language",
+                  });
+                  setShowAddSection(true);
                }}
             />
          </>
-      )
-
+      );
    } else {
-      return <>
-         <div className={styles.sectionName}>
-            <span>Categories</span>
-            <CustomBtn onClick={() => setShowFilterModule(true)}>Filter</CustomBtn>
-         </div>
+      return (
+         <>
+            <div className={styles.sectionName}>
+               <span>Categories</span>
+               <CustomBtn onClick={() => setShowFilterModule(true)}>
+                  Filter
+               </CustomBtn>
+            </div>
 
-         <div className={styles.cards}>
-            <AnimatePresence>
-               {
-                  filterList(topicList, {
+            <div className={styles.cards}>
+               <AnimatePresence>
+                  {filterList(topicList, {
                      parameter: filterParams.selectedSortType,
                      reverse: filterParams.reverseList.data,
-                  }).map((element) =>
+                  }).map((element) => (
                      <Card
                         key={element.id.toString()}
-                        editCard={
-                           (event: React.MouseEvent) => {
-                              event.stopPropagation()
-                              event.preventDefault()
-                              setNewComponentData({ ...element })
-                              setShowAddSection(true);
-                           }}
-                        data={element} />
-                  )
-               }
-            </AnimatePresence>
-         </div>
-      </>
+                        editCard={(event: React.MouseEvent) => {
+                           event.stopPropagation();
+                           event.preventDefault();
+                           setNewComponentData({ ...element });
+                           setShowAddSection(true);
+                        }}
+                        data={element}
+                     />
+                  ))}
+               </AnimatePresence>
+            </div>
+         </>
+      );
    }
 }
 
