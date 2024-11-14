@@ -21,13 +21,13 @@ function ListShower({
    setShowAddSection,
    setShowFilterModule,
 }: IListShowerProps): JSX.Element {
-   const [topicList] = useAtom(topicsData);
+   const [topicList, setTopicList] = useAtom(topicsData);
 
    //Filter and sort settings
    const { filterParams } = useAtomValue(settingsDataConst);
 
    useEffect(() => {
-      checkFirstTime();
+      checkFirstTime(setTopicList);
    }, []);
 
    if (topicList.length == 0) {
