@@ -39,6 +39,9 @@ function Header(): JSX.Element {
                      <Link to={"/"}>Learn quick</Link>
                   </div>
                   <div className={styles.btnSection}>
+                     <Link to={"/about"}>
+                        <img src="/about.svg" alt="about" />
+                     </Link>
                      <Link to={"/settings"}>
                         <img src="/settings.svg" alt="settings" />
                      </Link>

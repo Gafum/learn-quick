@@ -8,6 +8,7 @@ import { findElemByID } from "../Function/findElementByID";
 import { shuffleArray } from "../Function/shufleArray";
 import { SetStateAction, useEffect, useState } from "react";
 import { topicsData } from "../JotaiData/jotaiData";
+import errorRedirect from "../Function/errorRedirect";
 
 interface IchangeParams extends Omit<IchangeParamsProps, "sectionId"> {}
 
@@ -46,7 +47,7 @@ function useTestData({
             setIsLoading(false);
 
             if (topicData.length == 0) {
-               throw new Error("Can't find data. 400 error");
+               throw errorRedirect("Can't find data. 400 error");
             }
 
             setMyIterableList(
@@ -95,7 +96,10 @@ function useTestData({
             ).sort((a, b) => (a.rate > b.rate ? -1 : 1))
          );
       },
-      topicName: findElemByID<ITopicData>(topicData, sectionId).name,
+      topicName:
+         isLoadedFromStorage && !isLoading
+            ? findElemByID<ITopicData>(topicData, sectionId).name
+            : "",
    };
 }
 

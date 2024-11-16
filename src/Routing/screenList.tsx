@@ -7,6 +7,7 @@ import WritingScreen from "../Screens/WritingScreen/WritingScreen";
 
 import { IContainerProps } from "../Components/Containers/Container";
 import CombiningScreen from "../Screens/CombiningScreen/CombiningScreen";
+import About from "../Screens/AboutScreen/About";
 interface IRouterComponentProps extends Omit<IContainerProps, "children"> {}
 
 export interface IscreenParam {
@@ -22,6 +23,12 @@ export const screenList: IscreenParam[] = [
       name: "Home",
       path: "/",
       component: <MainScreen />,
+      hasSectionId: false,
+   },
+   {
+      name: "About",
+      path: "/about",
+      component: <About />,
       hasSectionId: false,
    },
    {

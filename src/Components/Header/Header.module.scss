@@ -31,20 +31,22 @@ header {
          display: flex;
          justify-content: center;
          align-items: flex-end;
+         gap: 10px;
          a {
-            filter: invert(1) brightness(200%);
             height: 100%;
             display: flex;
             justify-content: center;
             align-items: flex-end;
             img {
                width: 25px;
+               height: 25px;
+               transition: filter 0.2s;
                @media (hover: hover) {
                   &:hover {
                      -webkit-filter: drop-shadow(
-                        0px 0px 4px rgba(0, 0, 0, 0.3)
+                        0px 0px 4px rgba(255, 255, 255, 0.5)
                      );
-                     filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.3));
+                     filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.5));
                   }
                }
             }

@@ -14,7 +14,11 @@ function Router(): JSX.Element {
          return "/" + location.pathname.split("/")[1] == e.path;
       })?.name;
 
-      document.title = `${screenName} - Learn Quick`;
+      if (screenName) {
+         document.title = `${screenName} - Learn Quick`;
+      } else {
+         document.title = "Learn Quick";
+      }
    }, [location]);
 
    return (
@@ -31,6 +35,7 @@ function Router(): JSX.Element {
                      <Route
                         key={path}
                         path={path + (hasSectionId ? "/:sectionId" : "")}
+                        errorElement={<ErrorComponent />}
                         element={
                            <Container
                               newPadding={{ b: "60px" }}

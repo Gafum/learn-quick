@@ -8,7 +8,6 @@ import { settingsDataConst } from "../../JotaiData/jotaiData";
 import { useAtom } from "jotai";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
-import KeyboardShortcuts from "./KeyboardShortcuts/KeyboardShortcuts";
 
 export interface IparamInSettings {
    question: string;
@@ -17,8 +16,7 @@ export interface IparamInSettings {
 }
 
 function Settings(): JSX.Element {
-   const [settingsData, setSettingsData] = useAtom(settingsDataConst)
-
+   const [settingsData, setSettingsData] = useAtom(settingsDataConst);
 
    return (
       <LazyMotion features={domAnimation}>
@@ -27,8 +25,8 @@ function Settings(): JSX.Element {
             className={styles.settingsScreen}
             {...ScreensAnimation}
          >
-            {(Object.keys(settingsData) as (keyof IsettingsData)[])
-               .map((elem: keyof IsettingsData) => {
+            {(Object.keys(settingsData) as (keyof IsettingsData)[]).map(
+               (elem: keyof IsettingsData) => {
                   return (
                      <SettingsListGenerator
                         key={elem.toString()}
@@ -36,17 +34,18 @@ function Settings(): JSX.Element {
                         setSettingsData={setSettingsData}
                         settingsData={settingsData}
                      />
-                  )
-               })
-            }
+                  );
+               }
+            )}
 
-            <KeyboardShortcuts />
-
-            <CustomBtn className={styles.resetBtn} onClick={() => setSettingsData(RESET)}>
+            <CustomBtn
+               className={styles.resetBtn}
+               onClick={() => setSettingsData(RESET)}
+            >
                Reset Settings
             </CustomBtn>
          </m.div>
-      </LazyMotion >
+      </LazyMotion>
    );
 }
 

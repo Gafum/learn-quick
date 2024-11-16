@@ -9,6 +9,7 @@
 -  **Custom Categories**: Create categories based on your learning criteria, making it easy to focus on topics you're interested in.
 -  **Flashcards**: Each category can contain flashcards with a front side for the word and a back side for its definition or image to aid visual learning.
 -  **Quizzes & Tasks**: Engage in various tasks and quizzes to reinforce learning.
+-  **Combination Test**: Match words with their definitions in a drag-and-drop style exercise. This test challenges your ability to associate vocabulary terms quickly and accurately, enhancing memory retention.
 -  **Customizable Settings**: Adjust settings to make managing tasks in quizzes more convenient.
 
 ## Technologies Used
