@@ -12,6 +12,13 @@
 
    p {
       margin-top: 8px;
+      > strong,
+      > a {
+         font-size: inherit;
+      }
+      > a {
+         text-decoration: underline;
+      }
    }
 
    p,

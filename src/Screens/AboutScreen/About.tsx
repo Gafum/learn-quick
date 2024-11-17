@@ -103,6 +103,23 @@ function About(): JSX.Element {
             </ul>
 
             <h2>Developer</h2>
+            <p>
+               During the development, we used such technologies as{" "}
+               <strong>Vite</strong>, <strong>React</strong>,{" "}
+               <strong>Github</strong> and <strong>SCSS</strong>. The images for
+               the examples set of flash cards were taken from the next
+               resources:{" "}
+               <a target="_blank" href="https://images.pexels.com">
+                  Pexels
+               </a>
+               ,{" "}
+               <a target="_blank" href="https://img.freepik.com">
+                  Freepik
+               </a>
+               {". "}
+               Figma was used to draw the icons. Also here you can see the
+               social media of the author:
+            </p>
             <ul className={styles.linkList}>
                <li>
                   <a href="https://github.com/Gafum">GitHub</a>
