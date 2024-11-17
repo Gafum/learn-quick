@@ -39,7 +39,7 @@ function SectionScreen(): JSX.Element {
 
    useEffect(() => {
       document.title = topicName + " - Learn Quick";
-   }, []);
+   }, [topicName]);
 
    function editCard(id: NumStr) {
       setItemData(findElemByID(myIterableList, id));
