@@ -1,5 +1,6 @@
 .aboutPage {
    width: 100%;
+   padding-bottom: 200px;
 
    h2 {
       margin: 10px 0 3px;
@@ -41,7 +42,7 @@
             font-size: inherit;
             > strong {
                font-size: inherit;
-               font-weight: 500;
+               font-weight: 400;
                word-break: keep-all;
                white-space: nowrap;
             }
@@ -53,7 +54,7 @@
       display: flex;
       justify-content: flex-start;
       gap: 20px;
-      li:has(a) {
+      li {
          margin-left: 0;
       }
    }
@@ -103,8 +104,11 @@
          }
       }
       .linkList {
-         flex-direction: column;
+         flex-direction: column-reverse;
          gap: 0px;
+         li a {
+            font-size: 16px;
+         }
       }
    }
 }
