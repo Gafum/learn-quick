@@ -39,6 +39,7 @@ function SectionScreen(): JSX.Element {
 
    useEffect(() => {
       document.title = topicName + " - Learn Quick";
+      window.scrollTo(0, 0);
    }, [topicName]);
 
    function editCard(id: NumStr) {

@@ -1,8 +1,13 @@
 import { domAnimation, LazyMotion, m } from "framer-motion";
 import styles from "./About.module.scss";
 import { ScreensAnimation } from "../../CustomData/animation";
+import { useEffect } from "react";
 
 function About(): JSX.Element {
+   useEffect(() => {
+      window.scrollTo(0, 0);
+   });
+
    return (
       <LazyMotion features={domAnimation}>
          <m.div {...ScreensAnimation} className={styles.aboutPage}>
@@ -26,7 +31,7 @@ function About(): JSX.Element {
             </p>
             <p>
                Also you can add flashcards to your favorites to focus on
-               challenging words. Favorited words will appear more frequently
+               challenging words. Favorites words will appear more frequently
                during quizzes and exercises, allowing you to concentrate on
                vocabulary that needs extra attention.
             </p>
