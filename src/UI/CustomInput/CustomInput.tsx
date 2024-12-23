@@ -1,6 +1,7 @@
 import {
    Dispatch,
    forwardRef,
+   InputHTMLAttributes,
    SetStateAction,
    useEffect,
    useMemo,
@@ -9,18 +10,19 @@ import {
 } from "react";
 import styles from "./CustomInput.module.scss";
 
-interface Iinput {
+interface ICustomInput
+   extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
    hint: JSX.Element | string;
-   readonly value: string;
    setValue: Dispatch<SetStateAction<string>>;
    inputsWidth?: string;
-   maxLength?: number;
    rows?: number;
-   required?: boolean;
    updateFocuseData?: any;
    timeToFocus?: number;
 }
 
+interface ISelectInput extends Omit<ICustomInput, "setValue" | "hint"> {}
+
+//Custom Input Hook =============>
 export function useCustomInput(
    text?: string
 ): [string, Dispatch<SetStateAction<string>>] {
@@ -28,47 +30,36 @@ export function useCustomInput(
    return [value, setValue];
 }
 
-const SelectInput = forwardRef(
-   (
-      data: {
-         maxLength: number | undefined;
-         value: string;
-         onChange: React.ChangeEventHandler;
-         rows: number;
-         required: boolean;
-         id: string;
-      },
-      ref
-   ): JSX.Element => {
-      if (data.rows == 0) {
-         return (
-            <input
-               type="text"
-               {...data}
-               ref={ref as React.RefObject<HTMLInputElement> | null}
-            />
-         );
-      }
+//  Create Input or textarea ===========>
+const SelectInput = forwardRef((data: ISelectInput, ref): JSX.Element => {
+   if (data.rows == 0) {
       return (
-         <textarea
+         <input
+            type="text"
             {...data}
-            ref={ref as React.RefObject<HTMLTextAreaElement> | null}
+            ref={ref as React.RefObject<HTMLInputElement> | null}
          />
       );
    }
-);
+   return (
+      <textarea
+         {...data}
+         ref={ref as React.RefObject<HTMLTextAreaElement> | null}
+      />
+   );
+});
 
 function CustomInput({
-   hint,
+   hint = "",
    inputsWidth,
-   value,
+   value = "",
    setValue,
-   maxLength,
+   maxLength = 221244,
    updateFocuseData,
    rows = 0,
    required = true,
    timeToFocus = 0,
-}: Iinput): JSX.Element {
+}: ICustomInput): JSX.Element {
    const inp = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
    const inputId = useMemo(
@@ -105,12 +96,12 @@ function CustomInput({
       >
          <SelectInput
             maxLength={maxLength}
-            value={value}
+            value={value?.toString()}
             onChange={changeValue}
-            ref={inp}
             rows={rows}
             required={required}
             id={inputId}
+            ref={inp}
          />
          <label htmlFor={inputId}>{hint}</label>
       </div>

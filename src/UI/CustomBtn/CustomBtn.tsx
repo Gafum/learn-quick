@@ -1,24 +1,29 @@
-import { MouseEvent, ReactNode } from "react";
+import { ButtonHTMLAttributes, MouseEvent, ReactNode } from "react";
 import styles from "./CustomBtn.module.scss";
 import { createClasses } from "../../Function/createClasses";
 
-interface IbtnProps {
+interface IbtnProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    children: ReactNode | string;
-   onClick?: (event: MouseEvent) => void;
-   className?: string;
 }
 
-
-function CustomBtn({ children, onClick, className = "" }: IbtnProps): JSX.Element {
-
-   function doThis(event: MouseEvent) {
-      event.stopPropagation()
+function CustomBtn({
+   children,
+   onClick,
+   className = "",
+}: IbtnProps): JSX.Element {
+   function doThis(
+      event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>
+   ) {
+      event.stopPropagation();
       if (!onClick) return;
-      onClick(event)
+      onClick(event);
    }
 
    return (
-      <button onClick={doThis} className={createClasses([styles.customBtn, className])}>
+      <button
+         onClick={doThis}
+         className={createClasses([styles.customBtn, className])}
+      >
          {children}
       </button>
    );
