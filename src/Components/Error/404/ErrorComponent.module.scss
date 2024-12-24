@@ -1,14 +1,16 @@
 .errorComponent {
    display: flex;
    flex-direction: column;
-   justify-content: center;
+   justify-content: flex-start;
    align-items: center;
    align-content: center;
    width: 100%;
    height: 100vh;
    gap: 25px;
+   padding-top: 25vh;
    h2 {
       font-size: 34px;
+      text-align: center;
    }
 
    a {
@@ -18,6 +20,7 @@
       padding: 5px 25px 7px;
       transition-property: filter box-shadow;
       transition-duration: 0.2s;
+      text-align: center;
       @media (hover: hover) {
          &:hover {
             box-shadow: 0 0 5px var(--main-bg-color);

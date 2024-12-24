@@ -11,9 +11,9 @@ import DialogCreateNewWord from "./Dialogs/DialogCreateNewWord";
 import { useCustomDialog } from "../../UI/CustomDialog/CustomDialog";
 import useTestData from "../../Hooks/useTestData";
 import React, { useEffect } from "react";
-import DataNotFound from "../../Components/DataNotFound/DataNotFound";
 import { domAnimation, LazyMotion, m } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
+import DataNotFound from "../../Components/Error/DataNotFound/DataNotFound";
 
 function SectionScreen(): JSX.Element {
    const {

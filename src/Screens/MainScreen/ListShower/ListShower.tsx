@@ -5,10 +5,11 @@ import styles from "../MainScreen.module.scss";
 import { useAtom, useAtomValue } from "jotai";
 import { settingsDataConst, topicsData } from "../../../JotaiData/jotaiData";
 import { ITopicData } from "../../../Types/interfaces";
-import DataNotFound from "../../../Components/DataNotFound/DataNotFound";
+
 import { AnimatePresence } from "framer-motion";
 import { useEffect } from "react";
 import { checkFirstTime } from "../MyFunction/checkFirstTime";
+import DataNotFound from "../../../Components/Error/DataNotFound/DataNotFound";
 
 interface IListShowerProps {
    setNewComponentData: React.Dispatch<React.SetStateAction<ITopicData>>;

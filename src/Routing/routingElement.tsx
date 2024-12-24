@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import Header from "../Components/Header/Header";
 import { AnimatePresence } from "framer-motion";
-import ErrorComponent from "../Components/Error/ErrorComponent";
+import ErrorComponent from "../Components/Error/404/ErrorComponent";
 import Container from "../Components/Containers/Container";
 import { IscreenParam, screenList } from "./screenList";
 import { useEffect } from "react";
