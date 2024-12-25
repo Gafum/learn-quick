@@ -114,7 +114,7 @@ function DialogCreateNewSection({
                   </div>
 
                   <CustomInput
-                     hint={"Section name"}
+                     placeholder={"Section name"}
                      value={value}
                      setValue={setValue}
                      maxLength={12}

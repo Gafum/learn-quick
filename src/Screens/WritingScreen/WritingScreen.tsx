@@ -119,7 +119,7 @@ function WritingScreen(): JSX.Element {
 
          <form onSubmit={showModule ? () => { } : nextQuestion}>
             <CustomInput
-               hint={"Write Answer"}
+               placeholder={"Write Answer"}
                value={value}
                setValue={
                   (event) => {
