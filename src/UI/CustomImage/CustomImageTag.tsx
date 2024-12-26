@@ -1,38 +1,16 @@
-import { useEffect, useState } from "react";
+import { ImgHTMLAttributes, useEffect, useState } from "react";
 
-interface ICustomImageProps {
-   src: string | undefined,
-   alt?: string,
-   className?: string,
-   style?: React.CSSProperties
-}
-
-
-function ImgTag(
-   { src, alt = "", className, style }: ICustomImageProps
-): JSX.Element {
-
+function ImgTag(data: ImgHTMLAttributes<HTMLImageElement>): JSX.Element {
    const [error, setError] = useState(false);
 
    useEffect(() => {
       setError(false);
-   }, [src])
+   }, [data.src]);
 
-   if (!src) {
-      return <></>;
-   }
-
-   return (
-      <>
-         {error ? <></> : <img
-            style={style}
-            src={src}
-            alt={alt}
-            className={className}
-            onError={() => setError(true)}
-         />
-         }
-      </>
+   return !data.src || error ? (
+      <></>
+   ) : (
+      <img {...data} onError={() => setError(true)} />
    );
 }
 
