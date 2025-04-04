@@ -114,11 +114,11 @@ function About(): JSX.Element {
                <strong>Github</strong> and <strong>SCSS</strong>. The images for
                the examples set of flash cards were taken from the next
                resources:{" "}
-               <a target="_blank" href="https://images.pexels.com">
+               <a target="_blank" href="https://www.pexels.com/">
                   Pexels
                </a>
                ,{" "}
-               <a target="_blank" href="https://img.freepik.com">
+               <a target="_blank" href="https://www.freepik.com/">
                   Freepik
                </a>
                {". "}
