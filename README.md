@@ -12,6 +12,13 @@
 -  **Combination Test**: Match words with their definitions in a drag-and-drop style exercise. This test challenges your ability to associate vocabulary terms quickly and accurately, enhancing memory retention.
 -  **Customizable Settings**: Adjust settings to make managing tasks in quizzes more convenient.
 
+## Available Tests
+
+-  **Flashcards** — Flip and browse through cards for memorization
+-  **Multiple-Choice Test** — Choose the correct definition from four options
+-  **Writing Test** — Type out the correct word based on definition
+-  **Combination Test** — Match words and meanings via drag-and-drop
+
 ## Shortcuts
 
 ### Flashcards

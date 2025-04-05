@@ -16,6 +16,8 @@ import ImgTag from "../../../UI/CustomImage/CustomImageTag";
 import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
 import { findIndexOfELement } from "../../../Function/findElementByID";
 
+const SliderComponent = Slider as unknown as React.ComponentType<any>;
+
 export const allImg = ["language", "science", "mathematics", "literature"];
 
 interface IdialogCreateNewSection extends ICustomDialogProps {
@@ -97,20 +99,20 @@ function DialogCreateNewSection({
                   onSubmit={createNewSection}
                >
                   <div className={styles.selectImg}>
-                     <Slider
+                     <SliderComponent
                         infinite={true}
                         dots={false}
                         speed={400}
                         slidesToShow={1}
                         ref={sliderRef}
-                        afterChange={(index) => setSlideIndex(index)}
+                        afterChange={setSlideIndex}
                      >
                         {allImg.map((e) => (
                            <div className={styles.sliderElement} key={e}>
                               <ImgTag src={`/${e}.svg`} />
                            </div>
                         ))}
-                     </Slider>
+                     </SliderComponent>
                   </div>
 
                   <CustomInput

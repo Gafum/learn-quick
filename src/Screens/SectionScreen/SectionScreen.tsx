@@ -1,5 +1,4 @@
 import WordCard from "./WordCard/WordCard";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import ImgTag from "../../UI/CustomImage/CustomImageTag";
 import MianScreenStyles from "../MainScreen/MainScreen.module.scss";
 import styles from "./SectionScreen.module.scss";
@@ -14,6 +13,11 @@ import React, { useEffect } from "react";
 import { domAnimation, LazyMotion, m } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
 import DataNotFound from "../../Components/Error/DataNotFound/DataNotFound";
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+
+const ResponsiveMasonryComponent =
+   ResponsiveMasonry as unknown as React.ComponentType<any>;
+const MasonryComponent = Masonry as unknown as React.ComponentType<any>;
 
 function SectionScreen(): JSX.Element {
    const {
@@ -86,7 +90,7 @@ function SectionScreen(): JSX.Element {
                ""
             )}
 
-            <ResponsiveMasonry
+            <ResponsiveMasonryComponent
                columnsCountBreakPoints={{
                   0: 1,
                   300: 2,
@@ -97,7 +101,7 @@ function SectionScreen(): JSX.Element {
                   1300: 7,
                }}
             >
-               <Masonry className={styles.sectionScreen} gutter="10px">
+               <MasonryComponent className={styles.sectionScreen} gutter="10px">
                   {myIterableList
                      .sort((a, b) => (a.id > b.id ? 1 : -1))
                      .map((e: IWordData) => (
@@ -108,8 +112,8 @@ function SectionScreen(): JSX.Element {
                            key={e.id}
                         />
                      ))}
-               </Masonry>
-            </ResponsiveMasonry>
+               </MasonryComponent>
+            </ResponsiveMasonryComponent>
          </m.div>
          {/* Float Btn */}
          <m.button
