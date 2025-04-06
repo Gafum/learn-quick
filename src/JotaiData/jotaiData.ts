@@ -2,11 +2,12 @@ import { ITopicData, IsettingsData } from "../Types/interfaces";
 import { atomWithStorage } from "jotai/utils";
 
 export const TopicDataID = "topicData";
+export const settingsDataID = "settingsData";
 
 export const topicsData = atomWithStorage<ITopicData[]>(TopicDataID, []);
 
 export const settingsDataConst = atomWithStorage<IsettingsData>(
-   "settingsData",
+   settingsDataID,
    {
       flashcards: {
          showBack: {

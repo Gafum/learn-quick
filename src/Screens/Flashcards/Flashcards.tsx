@@ -1,77 +1,73 @@
 import Flashcard from "./Flashcard/Flashcard";
-import { MouseEvent, useRef, useState } from "react";
 import { IWordData } from "../../Types/interfaces";
 import styles from "./Flashcards.module.scss";
-import "./Flashcard/SliderSettings.scss";
 import { sliderSettings } from "./SliderSetting";
 import useTestData from "../../Hooks/useTestData";
 import { m, LazyMotion, domAnimation } from "framer-motion";
 import { ScreensAnimation } from "../../CustomData/animation";
 import useHandleKeyDown from "../../Hooks/useHandleKeyDown";
-import Slider from "react-slick";
-
-const SliderComponent = Slider as unknown as React.ComponentType<any>;
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useRef } from "react";
+import SwiperCore from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 
 function Flashcards(): JSX.Element {
    const {
       isLoading,
-      setNewParamInTopicData,
       myIterableList,
-      setMyIterableList,
       reduceRate,
+      setNewParamInTopicData,
+      setMyIterableList,
    } = useTestData();
 
-   const [currentCardIndex, setCurrentCardIndex] = useState<number>(0);
-
-   const refFlaschcardsSlider = useRef<Slider>(null);
+   const swiperRef = useRef<SwiperCore>();
 
    useHandleKeyDown({
       callback: (event: KeyboardEvent) => {
-         if (!refFlaschcardsSlider.current) return;
+         if (!swiperRef.current) return;
 
-         if (event.key === "ArrowRight" || event.key == "Enter") {
-            refFlaschcardsSlider.current.slickNext();
+         if (event.key === "ArrowRight" || event.key === "Enter") {
+            swiperRef.current.slideNext();
          } else if (event.key === "ArrowLeft") {
-            refFlaschcardsSlider.current.slickPrev();
+            swiperRef.current.slidePrev();
          }
       },
-
-      dependencyList: [refFlaschcardsSlider, myIterableList],
+      dependencyList: [myIterableList],
    });
 
-   function currentElementSetter(index: number) {
-      setCurrentCardIndex(index);
-      reduceRate(myIterableList[index].id);
-   }
-
-   function addHardWord(event: MouseEvent): void {
+   function addHardWord(event: React.MouseEvent): void {
       event?.stopPropagation();
+      if (!swiperRef.current) return;
+
+      const activeSlideIndex = swiperRef.current.activeIndex;
 
       // local data
       let localWordList: IWordData[] = JSON.parse(
          JSON.stringify(myIterableList)
       );
 
-      function toggleFavorite(newRate: number, currentCardIndex: number): void {
+      function toggleFavorite(newRate: number, activeSlideIndex: number): void {
          setNewParamInTopicData({
-            id: myIterableList[currentCardIndex].id,
+            id: myIterableList[activeSlideIndex].id,
             param: "rate",
             newData: newRate,
          });
 
          localWordList.forEach(({ id }, index) => {
-            if (id == localWordList[currentCardIndex].id) {
+            if (id == localWordList[activeSlideIndex].id) {
                localWordList[index].rate = newRate;
             }
          });
       }
 
       //add to favorite or remove from them
-      if (myIterableList[currentCardIndex].rate <= 0) {
-         toggleFavorite(10, currentCardIndex);
+      if (myIterableList[activeSlideIndex].rate <= 0) {
+         toggleFavorite(10, activeSlideIndex);
 
          //create new Element
-         let newElement: IWordData = myIterableList[currentCardIndex];
+         let newElement: IWordData = myIterableList[activeSlideIndex];
          newElement.rate = 1;
 
          if (
@@ -80,7 +76,7 @@ function Flashcards(): JSX.Element {
             localWordList = [...localWordList, newElement];
          }
       } else {
-         toggleFavorite(0, currentCardIndex);
+         toggleFavorite(0, activeSlideIndex);
       }
 
       setMyIterableList(localWordList);
@@ -98,21 +94,25 @@ function Flashcards(): JSX.Element {
                className={styles.flashcards}
                {...ScreensAnimation}
             >
-               <SliderComponent
-                  ref={refFlaschcardsSlider}
-                  afterChange={currentElementSetter}
+               <Swiper
+                  onSlideChange={(swiper) =>
+                     reduceRate(myIterableList[swiper.activeIndex].id)
+                  }
+                  onSwiper={(swiper) => (swiperRef.current = swiper)}
                   {...sliderSettings}
+                  modules={[Navigation]}
+                  
                >
                   {myIterableList.map((element: IWordData, index) => (
-                     <Flashcard
-                        key={element.id}
-                        {...element}
-                        isCurrentCard={currentCardIndex == index}
-                        hardWordFunk={addHardWord}
-                        {...(index == 0 && { isTipCard: true })}
-                     />
+                     <SwiperSlide key={element.id}>
+                        <Flashcard
+                           {...element}
+                           {...(index == 0 && { isTipCard: true })}
+                           addHardWord={addHardWord}
+                        />
+                     </SwiperSlide>
                   ))}
-               </SliderComponent>
+               </Swiper>
             </m.div>
          </LazyMotion>
       </div>
