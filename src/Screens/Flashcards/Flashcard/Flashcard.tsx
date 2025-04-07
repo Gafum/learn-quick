@@ -73,7 +73,7 @@ function Flashcards({
                )}
             </div>
             <div className={styles.cardBack}>
-               <ImgTag src={img} />
+               <ImgTag src={img} className=""/>
                <div className={styles.meaning}>
                   <h4>{whereIsImage ? word : meaning}</h4>
                   {isTipCard && flashCardSettigs.showBack.data ? (

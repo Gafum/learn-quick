@@ -1,19 +1,24 @@
-// import { FormEvent, MouseEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, MouseEvent, useEffect, useRef } from "react";
 import CustomDialog, {
    ICustomDialogProps,
 } from "../../../UI/CustomDialog/CustomDialog";
-// import CustomInput, {
-//    useCustomInput,
-// } from "../../../UI/CustomInput/CustomInput";
+import CustomInput, {
+   useCustomInput,
+} from "../../../UI/CustomInput/CustomInput";
 
-// import styles from "../MainScreen.module.scss";
-// import { useSetAtom } from "jotai";
-// import { topicsData } from "../../../JotaiData/jotaiData";
-// import { generateUnicID } from "../../../Function/GenerateUnicID";
+import styles from "../MainScreen.module.scss";
+import { useSetAtom } from "jotai";
+import { topicsData } from "../../../JotaiData/jotaiData";
+import { generateUnicID } from "../../../Function/GenerateUnicID";
 import { ITopicData } from "../../../Types/interfaces";
-// import ImgTag from "../../../UI/CustomImage/CustomImageTag";
-// import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
-// import { findIndexOfELement } from "../../../Function/findElementByID";
+import ImgTag from "../../../UI/CustomImage/CustomImageTag";
+import CustomBtn from "../../../UI/CustomBtn/CustomBtn";
+import { findIndexOfELement } from "../../../Function/findElementByID";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 
 export const allImg = ["language", "science", "mathematics", "literature"];
 
@@ -22,123 +27,128 @@ interface IdialogCreateNewSection extends ICustomDialogProps {
 }
 
 function DialogCreateNewSection({
-   // show,
-   // setShow,
-   // itemData,
+   show,
+   setShow,
+   itemData,
 }: IdialogCreateNewSection): JSX.Element {
-   return <div></div>;
-   // const setTopicList = useSetAtom(topicsData);
+   const setTopicList = useSetAtom(topicsData);
 
-   // const [value, setValue] = useCustomInput(itemData.name);
-   // const [slideIndex, setSlideIndex] = useState(0);
-   // const sliderRef = useRef<Slider>(null);
+   const [value, setValue] = useCustomInput(itemData.name);
 
-   // useEffect(() => {
-   //    if (!sliderRef.current) return;
+   const swiperRef = useRef<SwiperCore>();
 
-   //    setValue(itemData.name);
+   useEffect(() => {
+      if (!swiperRef.current) return;
 
-   //    setSlideIndex(allImg.findIndex((element) => element == itemData.icon));
-   //    sliderRef.current.slickGoTo(
-   //       allImg.findIndex((element) => element == itemData.icon),
-   //       true
-   //    );
-   // }, [itemData]);
+      const index = allImg.findIndex((element) => element === itemData.icon);
 
-   // function createNewSection(event: FormEvent<HTMLFormElement>) {
-   //    event.preventDefault();
+      if (index !== -1) {
+         swiperRef.current.slideTo(index);
+      }
 
-   //    if (itemData.id == "") {
-   //       setTopicList((data: ITopicData[]) => {
-   //          return [
-   //             ...data,
-   //             {
-   //                icon: allImg[slideIndex],
-   //                name: value.toString().trim().toString(),
-   //                id: generateUnicID(),
-   //                data: [],
-   //             },
-   //          ];
-   //       });
-   //    } else {
-   //       setTopicList((prev: ITopicData[]) => {
-   //          let localList: ITopicData[] = JSON.parse(JSON.stringify(prev));
-   //          localList[findIndexOfELement(localList, itemData.id)].name = value;
-   //          localList[findIndexOfELement(localList, itemData.id)].icon =
-   //             allImg[slideIndex];
-   //          return localList;
-   //       });
-   //    }
+      setValue(itemData.name);
+   }, [itemData]);
 
-   //    setShow(false);
-   // }
+   function createNewSection(event: FormEvent<HTMLFormElement>) {
+      event.preventDefault();
 
-   // function deleteSection(event: MouseEvent) {
-   //    event.preventDefault();
-   //    event.stopPropagation();
-   //    setTopicList((prev: ITopicData[]) => {
-   //       let localList: ITopicData[] = JSON.parse(JSON.stringify(prev));
-   //       localList.splice(findIndexOfELement(localList, itemData.id), 1);
-   //       return localList;
-   //    });
-   //    setShow(false);
-   // }
+      if (itemData.id == "") {
+         setTopicList((data: ITopicData[]) => {
+            if (!swiperRef.current) return data;
+            return [
+               ...data,
+               {
+                  icon: allImg[swiperRef.current.activeIndex],
+                  name: value.toString().trim().toString(),
+                  id: generateUnicID(),
+                  data: [],
+               },
+            ];
+         });
+      } else {
+         setTopicList((prev: ITopicData[]) => {
+            if (!swiperRef.current) return prev;
+            let localList: ITopicData[] = JSON.parse(JSON.stringify(prev));
+            localList[findIndexOfELement(localList, itemData.id)].name = value;
+            localList[findIndexOfELement(localList, itemData.id)].icon =
+               allImg[swiperRef.current.activeIndex];
+            return localList;
+         });
+      }
 
-   // return (
-   //    <>
-   //       <CustomDialog
-   //          show={show}
-   //          setShow={setShow}
-   //          title={itemData.id == "" ? "Add Category" : "Edit Category"}
-   //       >
-   //          <div className={styles.addSectionBlock}>
-   //             <form
-   //                className={styles.addSectionForm}
-   //                onSubmit={createNewSection}
-   //             >
-   //                <div className={styles.selectImg}>
-   //                   <SliderComponent
-   //                      infinite={true}
-   //                      dots={false}
-   //                      speed={400}
-   //                      slidesToShow={1}
-   //                      ref={sliderRef}
-   //                      afterChange={setSlideIndex}
-   //                   >
-   //                      {allImg.map((e) => (
-   //                         <div className={styles.sliderElement} key={e}>
-   //                            <ImgTag src={`/${e}.svg`} />
-   //                         </div>
-   //                      ))}
-   //                   </SliderComponent>
-   //                </div>
+      setShow(false);
+   }
 
-   //                <CustomInput
-   //                   placeholder={"Section name"}
-   //                   value={value}
-   //                   setValue={setValue}
-   //                   maxLength={12}
-   //                   updateFocuseData={itemData}
-   //                   timeToFocus={405}
-   //                />
+   function deleteSection(event: MouseEvent) {
+      event.preventDefault();
+      event.stopPropagation();
+      setTopicList((prev: ITopicData[]) => {
+         let localList: ITopicData[] = JSON.parse(JSON.stringify(prev));
+         localList.splice(findIndexOfELement(localList, itemData.id), 1);
+         return localList;
+      });
+      setShow(false);
+   }
 
-   //                {itemData.id == "" ? (
-   //                   ""
-   //                ) : (
-   //                   <CustomBtn
-   //                      onClick={deleteSection}
-   //                      className={styles.delteBtn}
-   //                   >
-   //                      Delete
-   //                   </CustomBtn>
-   //                )}
+   return (
+      <>
+         <CustomDialog
+            show={show}
+            setShow={setShow}
+            title={itemData.id == "" ? "Add Category" : "Edit Category"}
+         >
+            <div className={styles.addSectionBlock}>
+               <form
+                  className={styles.addSectionForm}
+                  onSubmit={createNewSection}
+               >
+                  <div className={styles.selectImg}>
+                     <Swiper
+                        speed={400}
+                        centeredSlides={true}
+                        slidesPerView={1}
+                        onSwiper={(swiper) => (swiperRef.current = swiper)}
+                        navigation={true}
+                        modules={[Navigation]}
+                        watchOverflow={true}
+                     >
+                        {allImg.map((e) => (
+                           <SwiperSlide
+                              className={styles.sliderElement}
+                              key={e}
+                           >
+                              <ImgTag src={`/${e}.svg`} />
+                           </SwiperSlide>
+                        ))}
+                     </Swiper>
+                  </div>
 
-   //                <CustomBtn>{itemData.id == "" ? "Add" : "Edit"}</CustomBtn>
-   //             </form>
-   //          </div>
-   //       </CustomDialog>
-   //    </>
-   // );
+                  <CustomInput
+                     placeholder={"Section name"}
+                     value={value}
+                     setValue={setValue}
+                     maxLength={12}
+                     updateFocuseData={itemData}
+                     timeToFocus={405}
+                  />
+
+                  {itemData.id == "" ? (
+                     ""
+                  ) : (
+                     <CustomBtn
+                        onClick={deleteSection}
+                        className={styles.delteBtn}
+                     >
+                        Delete
+                     </CustomBtn>
+                  )}
+
+                  <CustomBtn>{itemData.id == "" ? "Add" : "Edit"}</CustomBtn>
+               </form>
+            </div>
+         </CustomDialog>
+      </>
+   );
 }
 
 export default DialogCreateNewSection;

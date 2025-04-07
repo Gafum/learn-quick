@@ -101,7 +101,6 @@ function Flashcards(): JSX.Element {
                   onSwiper={(swiper) => (swiperRef.current = swiper)}
                   {...sliderSettings}
                   modules={[Navigation]}
-                  
                >
                   {myIterableList.map((element: IWordData, index) => (
                      <SwiperSlide key={element.id}>

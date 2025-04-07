@@ -13,8 +13,11 @@
    cursor: pointer;
    overflow: hidden;
    border-radius: 10px;
+   padding: 0 15px;
+
    @media (max-width: 600px) {
       & {
+         padding: 0;
          max-height: 70vh;
          height: 80vh;
          min-height: 400px;
@@ -23,6 +26,7 @@
 }
 
 .flashcardInner {
+   border-radius: 10px;
    font-size: 48px;
    height: 100%;
    background-color: var(--main-bg-color);
@@ -208,8 +212,9 @@
          flex-direction: column;
          gap: 10px;
          padding: 40px 8px 15px;
-         >img{
+         > img {
             max-height: 50%;
+            max-width: 95%;
          }
          > .meaning {
             height: auto;
@@ -263,6 +268,8 @@
    width: 100%;
    overflow: hidden;
    padding: 10px;
+   border-bottom-left-radius: 10px;
+   border-bottom-right-radius: 10px;
 
    h4 {
       font-size: 24px;

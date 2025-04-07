@@ -6,5 +6,4 @@ export const sliderSettings = {
    speed: 400,
    pagination: false,
    navigation: true,
-   
 };
