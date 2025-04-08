@@ -87,7 +87,7 @@ function Flashcards(): JSX.Element {
    }
 
    return (
-      <div className={styles.flashcardsScreen}>
+      <div className={styles.flashcardsScreen+ " fleschcardsScreen"}>
          <LazyMotion features={domAnimation}>
             <m.div
                style={{ height: "100%" }}

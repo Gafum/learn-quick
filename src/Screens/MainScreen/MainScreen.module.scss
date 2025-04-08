@@ -155,12 +155,12 @@
       .addSectionForm {
          max-width: 100%;
          .selectImg {
-            width: 70px;
+            width: 140px;
             .sliderElement {
-               width: 40px;
+               width: 120px;
                height: 40px;
                img {
-                  width: 30px;
+                  max-height: 100%;
                }
             }
          }
