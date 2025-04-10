@@ -1,13 +1,24 @@
 .aboutPage {
    width: 100%;
    padding-bottom: 200px;
+   .firstBlock {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 30px;
+      margin-bottom: 20px;
+      .mainImg {
+         width: 70px;
+         margin-left: 10px;
+      }
 
-   h2 {
-      margin: 10px 0 3px;
-      font-size: 24px;
-      font-weight: 400;
-      &:first-child {
-         margin: 0;
+      h2 {
+         margin: 10px 0 3px;
+         font-size: 24px;
+         font-weight: 400;
+         &:first-child {
+            margin: 0;
+         }
       }
    }
 
@@ -85,8 +96,14 @@
       > ul li {
          margin-left: 4px;
       }
-      h2 {
-         font-size: 20px;
+      .firstBlock {
+         margin-bottom: 0px;
+         .mainImg {
+            display: none;
+         }
+         h2 {
+            font-size: 20px;
+         }
       }
    }
 }

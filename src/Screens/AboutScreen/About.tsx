@@ -11,7 +11,10 @@ function About(): JSX.Element {
    return (
       <LazyMotion features={domAnimation}>
          <m.div {...ScreensAnimation} className={styles.aboutPage}>
-            <h2>About Learn Quick</h2>
+            <div className={styles.firstBlock}>
+               <img src="/icon.svg" alt="icon" className={styles.mainImg} />
+               <h2>About Learn Quick</h2>
+            </div>
             <p>
                Learn Quick is a comprehensive web application designed to help
                users improve their vocabulary through engaging and interactive

@@ -43,6 +43,6 @@ vitest.config.*
 __tests__/
 __mocks__/
 
-# Build output (на всякий випадок)
+# Build output
 dist
 build
